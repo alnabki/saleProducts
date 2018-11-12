@@ -15,7 +15,7 @@ body {
 	
 </h1>
 <h1>
-   <img src="images/torta-p2_01.gif" width="3456" height="361" alt=""></td>
+   
 	Hello world!  
   
    
