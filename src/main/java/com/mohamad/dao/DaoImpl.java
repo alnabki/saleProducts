@@ -163,7 +163,6 @@ public class DaoImpl implements Dao  {
 		    try {
 		        System.out.println("IN LIST");
 		        accounts = (List<Account>)session.createQuery("from Account ").list();
-		        System.out.println("IN LIST");
 		        outer:
 		        for(Account acc:accounts) {
 			    	if(acc.username.equals(username) && acc.password.equals(password) ) {
@@ -175,20 +174,18 @@ public class DaoImpl implements Dao  {
 			    		account=null;
 			    	}
 		        }
-
 		    }
    	 catch (HibernateException e) {
 	        e.printStackTrace();
 	        session.getTransaction().rollback();
 	    }
-	    session.getTransaction().commit();
-	    System.out.println("IN LISTsist"+account.username);
+	  //  session.getTransaction().commit();	  
 	    return account;
        }
 
 	
 	
-	
+	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Admin> getAdminsByAccountId(int accountId) {
 			Session session = sessionFactory.getCurrentSession();
@@ -197,12 +194,12 @@ public class DaoImpl implements Dao  {
 		    try {
 		        System.out.println("IN LIST");
 		        admins = (List<Admin>)session.createQuery("from Admin where account_id="+accountId).list();
-		
+		        System.out.println("IN LIST");
 		    } catch (HibernateException e) {
 		        e.printStackTrace();
 		        session.getTransaction().rollback();
 		    }
-		    session.getTransaction().commit();
+		   // session.getTransaction().commit();
 		    return admins;
 		}
 	}

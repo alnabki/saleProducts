@@ -3,7 +3,7 @@ package com.mohamad.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-
+import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.mohamad.model.Account;
-
+import com.mohamad.model.Admin;
 import com.mohamad.model.Log;
 import com.mohamad.service.SaleManager;
 
@@ -85,15 +85,18 @@ import com.mohamad.service.SaleManager;
 	
 		@RequestMapping(value="/checklogin",method = RequestMethod.POST)
 	 	public String  login(HttpSession session,@RequestParam(value="username", required=true) String  username,@RequestParam(value="password", required=true) String  password)   {	
-	    Account  account1=new Account();
-	    account1=saleManager.checkLogin(username,password);
-		System.out.println(account1.username);
-			//System.out.println("account"+account1.username);
-	 		/*if (account != null) {
+	    Account  account=new Account();
+	    account=saleManager.checkLogin(username,password);
+		//System.out.println(account.username);
+			System.out.println("account="+account.username);
+	 		 if (account != null) {
+	 			System.out.println("account="+account.username);
 	 			Admin admin=new Admin();
 	 			Log log = new Log();
 	 			log.account = account;
+	 			System.out.println("account_id="+account.id);
 	 			List<Admin> admins =  saleManager.getAdminsByAccountId(account.id);
+	 			/*
 	 			for (Admin ad :admins) {
 	 				admin=ad;
 	 			}
@@ -104,10 +107,11 @@ import com.mohamad.service.SaleManager;
 	 			else {
 	 				log.role = "Admin" ;
 	 			}
-	
-	      }*/
+	 			*/
+	        }
+	        
 	 		return "redirect:login";
-	   }
+		}
 	   
 	   @RequestMapping(value="/main")
 		public String main(HttpSession session) {
