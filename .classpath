@@ -29,6 +29,23 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre-10.0.2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre-10.0.2">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="libs/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang3-3.2.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="libs/spring-aop-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-beans-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-context-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-core-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-expression-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-mvc-3.0.7.jar"/>
+	<classpathentry kind="lib" path="libs/spring-web-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-webmvc-4.2.4.RELEASE.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

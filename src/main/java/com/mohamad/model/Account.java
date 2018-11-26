@@ -1,6 +1,6 @@
 package com.mohamad.model;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +12,11 @@ import javax.persistence.Table;
 @Table(name="account")
 
 	
-	public class Account implements Serializable {
+	public class Account  {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	
 
 	@Id
     @GeneratedValue

@@ -1,13 +1,13 @@
 package com.mohamad.model;
 
-import java.io.Serializable;
+
 
 //MOHAMAD Code  
-public class  Log implements Serializable {
+public class  Log {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	
 	public String role;
@@ -35,12 +35,9 @@ public class  Log implements Serializable {
 		this.account = account;
 	}
 
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	
 	
 
 	
-}
+
