@@ -1,5 +1,7 @@
 package com.mohamad.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="products")
-public class Product {
+public class Product  {
 	
+	/**
+	 * 
+	 */
+	
+
 	@Id
     @GeneratedValue
     

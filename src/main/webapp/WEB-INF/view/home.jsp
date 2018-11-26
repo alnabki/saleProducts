@@ -3,11 +3,8 @@
 <html>
 <head>
 	<title>Home</title>
-	<style type="text/css">
-body {
-	background-image: torta-p2_02.gif;
-}
-</style>
+	<style><%@include file="/resources/css/mystyle.css"%></style>
+    <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>" >
 </head>
 <body>
 <h1>
@@ -20,7 +17,7 @@ body {
   
    
    	
-	<a href="index">Click here to See test page... </a>
+	<a href="login">Click here to See test page... </a>
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

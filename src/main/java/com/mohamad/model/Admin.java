@@ -1,5 +1,7 @@
 package com.mohamad.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,17 +12,19 @@ import javax.persistence.Table;
 @Table(name="admin_account")
 public class Admin {
 
+	/**
+	 * 
+	 */
+
+
 	@Id
     @GeneratedValue
     
 	@Column (name="id")
 	public int id;
 	
-	@Column (name="username")
-    public String username;
-    
-	@Column (name="password")
-    public String password;
+	@Column (name="account_id")
+    public String accountId;
 
 	public int getId() {
 		return id;
@@ -30,21 +34,14 @@ public class Admin {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    
 	
 	
 }

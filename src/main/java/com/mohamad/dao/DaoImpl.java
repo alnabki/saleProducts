@@ -6,13 +6,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
 import com.mohamad.model.Product;
-
 
 
 
@@ -153,7 +152,60 @@ public class DaoImpl implements Dao  {
 		        }
 		    session.getTransaction().commit();
 	}
-}
+	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public Account checkLogin(String username, String password) {
+		    Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    Account account=new Account();
+		    List<Account> accounts = null;
+		    try {
+		        System.out.println("IN LIST");
+		        accounts = (List<Account>)session.createQuery("from Account ").list();
+		        System.out.println("IN LIST");
+		        outer:
+		        for(Account acc:accounts) {
+			    	if(acc.username.equals(username) && acc.password.equals(password) ) {
+			    		account=acc;
+			    		System.out.println("IN LIST");
+			    		break outer;
+			        }
+			    	else {
+			    		account=null;
+			    	}
+		        }
+
+		    }
+   	 catch (HibernateException e) {
+	        e.printStackTrace();
+	        session.getTransaction().rollback();
+	    }
+	    session.getTransaction().commit();
+	    System.out.println("IN LISTsist"+account.username);
+	    return account;
+       }
+
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Admin> getAdminsByAccountId(int accountId) {
+			Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    List<Admin> admins = null;
+		    try {
+		        System.out.println("IN LIST");
+		        admins = (List<Admin>)session.createQuery("from Admin where account_id="+accountId).list();
+		
+		    } catch (HibernateException e) {
+		        e.printStackTrace();
+		        session.getTransaction().rollback();
+		    }
+		    session.getTransaction().commit();
+		    return admins;
+		}
+	}
 
 
 

@@ -71,11 +71,14 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateCustomer(Customer customer){
 				dao.updateCustomer( customer);
 			}
-
-
 			public void updateProduct(Product product) {
 				// TODO Auto-generated method stub
-				
+			}
+			public Account checkLogin(String username, String password) {
+				return dao.checkLogin(username,password);
+			}
+			public List<Admin> getAdminsByAccountId(int accountId){
+			   return dao.getAdminsByAccountId(accountId);
 			}
 	}
 

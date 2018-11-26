@@ -28,4 +28,6 @@ public interface Dao {
 	public List<Customer> getAllCustomers();
 	public void deleteCustomer(Integer customerId);
 	public void updateCustomer(Customer customer);
+	public Account checkLogin(String username, String password);
+	public List<Admin> getAdminsByAccountId(int accountId);
 }
