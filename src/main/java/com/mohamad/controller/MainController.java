@@ -1,7 +1,9 @@
 package com.mohamad.controller;
 
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -28,6 +30,9 @@ import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Log;
 import com.mohamad.service.SaleManager;
+
+import em.model.Project;
+import em.model.Task;
 
 
 	@Controller
@@ -147,9 +152,45 @@ import com.mohamad.service.SaleManager;
 			 	    return model;
 		        }
 			else {
-		 		ModelAndView model2 = new ModelAndView("notLoged");
+		 		ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			}
+		
+	 	}	
+	   
+	   @RequestMapping(value="/customer")
+	   public ModelAndView customerpage(HttpSession session) {
+			Log log = (Log)session.getAttribute("log");
+			
+			
+			if(log != null && ( log.role == "Customer" )) {
+		        	ModelAndView model = new ModelAndView("customer");
+			 	   
+		        	
+		        	
+			 	    model.addObject("log.role",log.role);
+			 	    return model;
+		        }
+			else {
+		 		ModelAndView model2 = new ModelAndView("notlogin");
 		 		return model2;
 			}
 		
 	 	}	   
+	   
+	  
+	   
+	   @RequestMapping(value="/notlogin")
+		public ModelAndView notlogin() {
+			ModelAndView model = new ModelAndView("notLoged");
+			return model;			
+		}
+	   @RequestMapping(value="/logout")
+		public String logout(HttpSession session) throws ParseException {
+			Log log = (Log) session.getAttribute("log");
+			if(log != null ) {
+			session.removeAttribute("log");
+			}
+			return "redirect:login";			
+		}
 	}

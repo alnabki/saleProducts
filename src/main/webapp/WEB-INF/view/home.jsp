@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/mystyle.css"/>" >
 </head>
 <body>
+
+
+
 <h1>
 	Hello world!  
 	
