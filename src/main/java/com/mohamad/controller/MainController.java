@@ -87,16 +87,12 @@ import com.mohamad.service.SaleManager;
 	 	public String  login(HttpSession session,@RequestParam(value="username", required=true) String  username,@RequestParam(value="password", required=true) String  password)   {	
 	    Account  account=new Account();
 	    account=saleManager.checkLogin(username,password);
-		//System.out.println(account.username);
-			System.out.println("account="+account.username);
 	 		 if (account != null) {
-	 			System.out.println("account="+account.username);
 	 			Admin admin=new Admin();
 	 			Log log = new Log();
 	 			log.account = account;
-	 			System.out.println("account_id="+account.id);
 	 			List<Admin> admins =  saleManager.getAdminsByAccountId(account.id);
-	 			/*
+	 		
 	 			for (Admin ad :admins) {
 	 				admin=ad;
 	 			}
@@ -107,15 +103,20 @@ import com.mohamad.service.SaleManager;
 	 			else {
 	 				log.role = "Admin" ;
 	 			}
-	 			*/
+	 			
+	 			session.setAttribute("log", log);
+		 		session.setMaxInactiveInterval(-1);
+		 		return "redirect:main";
 	        }
-	        
-	 		return "redirect:login";
+	 		else {
+				return "redirect:notlogin";
+			}			
+	 		
 		}
 	   
 	   @RequestMapping(value="/main")
 		public String main(HttpSession session) {
-
+		   
 			Log log = (Log)session.getAttribute("log");
 			if(log != null) {
 				if(log.role == "Admin") {
@@ -123,7 +124,7 @@ import com.mohamad.service.SaleManager;
 					return "redirect:admin";
 				}else {
 					session.getCreationTime();
-					return "redirect:employee";
+					return "redirect:customer";
 				}
 			} 
 			else {

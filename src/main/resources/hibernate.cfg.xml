@@ -7,6 +7,10 @@
     <session-factory>
        
         <mapping class="com.mohamad.model.Account" />
+        <mapping class="com.mohamad.model.Admin" />
+        <mapping class="com.mohamad.model.Customer" />
+        <mapping class="com.mohamad.model.Product" />
+        <mapping class="com.mohamad.model.Log" />
      
     </session-factory>
 </hibernate-configuration>

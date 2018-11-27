@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamad.model.Account;
@@ -15,6 +16,8 @@ import com.mohamad.model.Product;
 
 
 
+
+@Repository
 public class DaoImpl implements Dao  {
 	
 	@Autowired
@@ -199,9 +202,11 @@ public class DaoImpl implements Dao  {
 		        e.printStackTrace();
 		        session.getTransaction().rollback();
 		    }
-		   // session.getTransaction().commit();
+		// session.getTransaction().commit();
 		    return admins;
 		}
+
+	
 	}
 
 
