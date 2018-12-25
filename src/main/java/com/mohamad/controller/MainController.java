@@ -1,7 +1,6 @@
 package com.mohamad.controller;
 
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -31,8 +30,7 @@ import com.mohamad.model.Admin;
 import com.mohamad.model.Log;
 import com.mohamad.service.SaleManager;
 
-import em.model.Project;
-import em.model.Task;
+
 
 
 	@Controller
@@ -144,6 +142,8 @@ import em.model.Task;
 			
 			if(log != null && ( log.role == "Admin" )) {
 		        	ModelAndView model = new ModelAndView("admin");
+		        	//List<Product> product=get
+		        	
 			 	   // List<Project>projects = dio.getProjects();
 			 		//List<Employee>employees = dio.getEmployees();
 			 	//    model.addObject("projects", projects);	
