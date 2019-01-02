@@ -5,6 +5,7 @@ import java.util.List;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
+import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 
 public interface SaleManager  {
@@ -30,4 +31,10 @@ public interface SaleManager  {
 	public void updateCustomer(Customer customer);
 	public Account checkLogin(String username, String password);
 	public List<Admin> getAdminsByAccountId(int accountId);
+	
+	public void addOrder(Order order);
+	public List<Order> getAllOrders();
+	public void deleteOrde(Integer orderId);
+	public void updateOrder(Order order);
+	
 }

@@ -11,6 +11,7 @@ import com.mohamad.dao.Dao;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
+import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 
 @Service("saleManager")
@@ -79,6 +80,19 @@ public class SaleManagerImpl implements SaleManager {
 			}
 			public List<Admin> getAdminsByAccountId(int accountId){
 			   return dao.getAdminsByAccountId(accountId);
+			}
+			
+			public void addOrder(Order order) {
+				dao.addOrder(order);
+			}
+			public List<Order> getAllOrders() {
+				return dao.getAllOrders();
+			}
+			public void deleteOrde(Integer orderId) {
+				dao.deleteOrde(orderId);
+			}
+			public void updateOrder(Order order) {
+				dao.updateOrder(order);
 			}
 	}
 

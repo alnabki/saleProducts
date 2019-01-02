@@ -14,7 +14,7 @@
 
         <div align="right">
 				<form:form name="login" method="post" action="checklogin" modelAttribute="account">
-			        <table >
+			        <table  class="tableLogin">
 				        <tr>
 				           <td>  Email </td>
 				           <td>  <input type='text' name="username" value='${account.username}'/></td>

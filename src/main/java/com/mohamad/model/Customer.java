@@ -34,9 +34,15 @@ public class Customer  {
 	@Column(name="address")
     public String address;
 	
+	@Column(name="age")
+    public int age;
+	
+	
+
 	@Column(name="phone")
     public long phone;
 
+	
 	public int getId() {
 		return id;
 	}
@@ -75,6 +81,14 @@ public class Customer  {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public long getPhone() {

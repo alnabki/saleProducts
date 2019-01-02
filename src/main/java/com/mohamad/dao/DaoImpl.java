@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
+import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 
 
@@ -23,17 +24,21 @@ public class DaoImpl implements Dao  {
 	@Autowired
     private SessionFactory sessionFactory;
 
-//Account Process	
+//Account Process
 	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void addAccount(Account account) {
 		this.sessionFactory.getCurrentSession().save(account);
 	}
 	
+	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Account> getAllAccounts() {
 		return this.sessionFactory.getCurrentSession().createQuery("from Account").list();
 	}
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void deleteAccount(Integer accountId) {
 		Account account = (Account) sessionFactory.getCurrentSession().load(
 				Account.class, accountId);
@@ -41,7 +46,8 @@ public class DaoImpl implements Dao  {
         	this.sessionFactory.getCurrentSession().delete(account);
         }
     }
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void updateAccount(Account account) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -57,16 +63,19 @@ public class DaoImpl implements Dao  {
 
 	
 // Admin Process	
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void addAdmin(Admin admin) {
 		this.sessionFactory.getCurrentSession().save(admin);
 	}
 	
+	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Admin> getAllAdmins() {
 		return this.sessionFactory.getCurrentSession().createQuery("from Admin").list();
 	}
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void deleteAdmin(Integer adminId) {
 		Admin admin = (Admin) sessionFactory.getCurrentSession().load(
 				Admin.class, adminId);
@@ -74,7 +83,8 @@ public class DaoImpl implements Dao  {
         	this.sessionFactory.getCurrentSession().delete(admin);
         }
     }
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void updateAdmin(Admin admin) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -91,17 +101,19 @@ public class DaoImpl implements Dao  {
 	
 	
 // Product Process
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void addProduct(Product product) {
 		this.sessionFactory.getCurrentSession().save(product);
 	}
-	
-		@SuppressWarnings("unchecked")
+	@Transactional
+	@SuppressWarnings("unchecked")    
 	public List<Product> getAllProducts() {
 			return this.sessionFactory.getCurrentSession().createQuery("from Product").list();
 		}
 	
-	
+	@Transactional
+	@SuppressWarnings("unchecked")    
 	public void deleteProduct(Integer productId) {
 		Product product = (Product) sessionFactory.getCurrentSession().load(
 				Product.class, productId);
@@ -109,7 +121,8 @@ public class DaoImpl implements Dao  {
         	this.sessionFactory.getCurrentSession().delete(product);
         }
     }
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public void updateProduct(Product product) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -125,16 +138,19 @@ public class DaoImpl implements Dao  {
 	
 	
 // Customer process
+	@Transactional
 	
 	public void addCustomer(Customer customer) {
 		this.sessionFactory.getCurrentSession().save(customer);
 	}
 	
-		@SuppressWarnings("unchecked")
+	@Transactional
+	@SuppressWarnings("unchecked")
 	public List<Customer> getAllCustomers() {
 		return this.sessionFactory.getCurrentSession().createQuery("from Customer").list();
 	}
 	
+	@Transactional
 	public void deleteCustomer(Integer customerId) {
 		Customer customer = (Customer) sessionFactory.getCurrentSession().load(
 				Customer.class, customerId);
@@ -142,6 +158,7 @@ public class DaoImpl implements Dao  {
         	this.sessionFactory.getCurrentSession().delete(customer);
         }
     }
+	@Transactional
 	
 	public void updateCustomer(Customer customer) {
 		 Session session = sessionFactory.getCurrentSession();
@@ -206,6 +223,43 @@ public class DaoImpl implements Dao  {
 		    return admins;
 		}
 
+	
+	
+	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public void addOrder(Order order) {
+		this.sessionFactory.getCurrentSession().save(order);
+	}
+	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<Order> getAllOrders() {
+		return this.sessionFactory.getCurrentSession().createQuery("from Order").list();
+	}
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public void deleteOrde(Integer orderId) {
+		Order order = (Order) sessionFactory.getCurrentSession().load(
+				Order.class, orderId);
+        if (null != order) {
+        	this.sessionFactory.getCurrentSession().delete(order);
+        }
+    }
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public void updateOrder(Order order) {
+		 Session session = sessionFactory.getCurrentSession();
+		    try {
+		        System.out.println("IN Update");
+		        session.beginTransaction();
+		        session.saveOrUpdate(order);
+		        } catch (HibernateException e) {
+		            e.printStackTrace();
+		            session.getTransaction().rollback();
+		        }
+		    session.getTransaction().commit();
+		}
 	
 	}
 

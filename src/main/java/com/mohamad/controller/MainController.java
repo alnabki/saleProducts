@@ -27,7 +27,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
+import com.mohamad.model.Customer;
 import com.mohamad.model.Log;
+import com.mohamad.model.Order;
+import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
 
 
@@ -138,26 +141,23 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value="/admin")
 	   public ModelAndView adminpage(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
-			
-			
 			if(log != null && ( log.role == "Admin" )) {
 		        	ModelAndView model = new ModelAndView("admin");
-		        	//List<Product> product=get
-		        	
-			 	   // List<Project>projects = dio.getProjects();
-			 		//List<Employee>employees = dio.getEmployees();
-			 	//    model.addObject("projects", projects);	
-			 	 //   model.addObject("employees", employees);
+		            List<Product> products=saleManager.getAllProducts();
+		            List<Customer> customers=saleManager.getAllCustomers();
+		            List<Order> orders=saleManager.getAllOrders();
 			 	    model.addObject("log.role",log.role);
+			 	    model.addObject("products", products);
+			 	    model.addObject("customers", customers);
+			 	    model.addObject("orders", orders);
 			 	    return model;
 		        }
+			
 			else {
 		 		ModelAndView model2 = new ModelAndView("notlogin");
 		 		return model2;
 			}
-		
 	 	}	
-	   
 	   @RequestMapping(value="/customer")
 	   public ModelAndView customerpage(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");

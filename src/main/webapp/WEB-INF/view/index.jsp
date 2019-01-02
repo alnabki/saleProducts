@@ -26,7 +26,7 @@
 
   
   <form:form name="add" method="post" action="addaccount" modelAttribute="account">
-			        <table  align="right">
+			        <table  class="tableLogin"  align="center">
 				        <tr>
 				           <td>  Email </td>
 				           <td>  <input type='text' name="username" value='${account.username}'/></td>
