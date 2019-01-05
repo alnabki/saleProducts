@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,6 @@ public class DaoImpl implements Dao  {
 //Account Process
 	
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void addAccount(Account account) {
 		this.sessionFactory.getCurrentSession().save(account);
 	}
@@ -38,7 +38,6 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Account").list();
 	}
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void deleteAccount(Integer accountId) {
 		Account account = (Account) sessionFactory.getCurrentSession().load(
 				Account.class, accountId);
@@ -47,7 +46,6 @@ public class DaoImpl implements Dao  {
         }
     }
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void updateAccount(Account account) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -64,7 +62,6 @@ public class DaoImpl implements Dao  {
 	
 // Admin Process	
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void addAdmin(Admin admin) {
 		this.sessionFactory.getCurrentSession().save(admin);
 	}
@@ -75,7 +72,6 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Admin").list();
 	}
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void deleteAdmin(Integer adminId) {
 		Admin admin = (Admin) sessionFactory.getCurrentSession().load(
 				Admin.class, adminId);
@@ -84,7 +80,6 @@ public class DaoImpl implements Dao  {
         }
     }
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void updateAdmin(Admin admin) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -102,7 +97,6 @@ public class DaoImpl implements Dao  {
 	
 // Product Process
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void addProduct(Product product) {
 		this.sessionFactory.getCurrentSession().save(product);
 	}
@@ -113,7 +107,6 @@ public class DaoImpl implements Dao  {
 		}
 	
 	@Transactional
-	@SuppressWarnings("unchecked")    
 	public void deleteProduct(Integer productId) {
 		Product product = (Product) sessionFactory.getCurrentSession().load(
 				Product.class, productId);
@@ -121,10 +114,11 @@ public class DaoImpl implements Dao  {
         	this.sessionFactory.getCurrentSession().delete(product);
         }
     }
+
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void updateProduct(Product product) {
 		 Session session = sessionFactory.getCurrentSession();
+		  System.out.println("IN Update");
 		    try {
 		        System.out.println("IN Update");
 		        session.beginTransaction();
@@ -133,13 +127,12 @@ public class DaoImpl implements Dao  {
 		            e.printStackTrace();
 		            session.getTransaction().rollback();
 		        }
-		    session.getTransaction().commit();
+		
 		}
 	
 	
 // Customer process
 	@Transactional
-	
 	public void addCustomer(Customer customer) {
 		this.sessionFactory.getCurrentSession().save(customer);
 	}
@@ -159,7 +152,6 @@ public class DaoImpl implements Dao  {
         }
     }
 	@Transactional
-	
 	public void updateCustomer(Customer customer) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {
@@ -227,7 +219,6 @@ public class DaoImpl implements Dao  {
 	
 	
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void addOrder(Order order) {
 		this.sessionFactory.getCurrentSession().save(order);
 	}
@@ -238,7 +229,6 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Order").list();
 	}
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void deleteOrde(Integer orderId) {
 		Order order = (Order) sessionFactory.getCurrentSession().load(
 				Order.class, orderId);
@@ -247,7 +237,6 @@ public class DaoImpl implements Dao  {
         }
     }
 	@Transactional
-	@SuppressWarnings("unchecked")
 	public void updateOrder(Order order) {
 		 Session session = sessionFactory.getCurrentSession();
 		    try {

@@ -20,8 +20,9 @@
           
          
         <ul>
-         <li> <a href="/Products/">Products</a> </li>
-          <li> <a href="/sales/">sales</a> </li>
+         <li> <a href="addProduct">Add Product</a> </li>
+         <li> <a href="/sales/">View sales</a> </li>
+         <li> <a href="/sales/">Manage Account</a> </li>
         </ul>
         
         <br><br><br><br><br><br><br>

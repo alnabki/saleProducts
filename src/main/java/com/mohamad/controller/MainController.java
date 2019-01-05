@@ -36,6 +36,10 @@ import com.mohamad.service.SaleManager;
 
 
 
+
+
+
+
 	@Controller
 	public class MainController {
 	@Autowired
@@ -60,7 +64,7 @@ import com.mohamad.service.SaleManager;
 			
 			model.addAttribute("serverTime", formattedDate );
 			
-			return "home";
+			return "index";
 			
 		}
 		@RequestMapping(value="/index")
@@ -193,4 +197,36 @@ import com.mohamad.service.SaleManager;
 			}
 			return "redirect:login";			
 		}
+	   
+		@RequestMapping(value="/addProduct")
+		public ModelAndView addproduct(HttpSession session) {
+			Log log = (Log)session.getAttribute("log");
+			if(log != null &&  log.role == "Admin" ) {	
+		        	ModelAndView model = new ModelAndView("addProduct");
+			 	 
+					List<Product> products= saleManager.getAllProducts();
+			        model.addObject("products", products);	
+			 	    model.addObject("log.role",log.role);
+			 	    return model;
+		        }
+			else {
+		 		ModelAndView model2 = new ModelAndView("notLoged");
+		 		return model2;
+			}
+	 	}
+		@RequestMapping(value = "/updateproduct" ,method = RequestMethod.POST)	
+		 public String update(@ModelAttribute("product") Product product) {	
+			System.out.println(product.id);
+		     if(null != product ) {	
+		    	 System.out.println(product.id);
+		       saleManager.updateProduct(product);
+	         }
+		     return "redirect:addProduct";		     	
+	    }
+		@RequestMapping(value="/deleteproduct")
+	    public String deleteproduct(@RequestParam(value="id", required=true) int id) {
+	       saleManager.deleteProduct(id);
+	        return "redirect:addProduct";	 
+	    }
+		
 	}

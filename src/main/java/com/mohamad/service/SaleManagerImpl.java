@@ -59,6 +59,10 @@ public class SaleManagerImpl implements SaleManager {
 			public void deleteProduct(Integer productId){
 				dao.deleteProduct( productId);
 			}
+			public void updateProduct(Product product) {
+				dao.updateProduct(product);
+			}
+		
 			
 			public void addCustomer(Customer customer){
 				dao.addCustomer( customer);
@@ -72,9 +76,7 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateCustomer(Customer customer){
 				dao.updateCustomer( customer);
 			}
-			public void updateProduct(Product product) {
-				// TODO Auto-generated method stub
-			}
+			
 			public Account checkLogin(String username, String password) {
 				return dao.checkLogin(username,password);
 			}
