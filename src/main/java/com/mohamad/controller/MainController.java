@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +32,8 @@ import com.mohamad.model.Log;
 import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
+
+
 
 
 
@@ -228,5 +230,16 @@ import com.mohamad.service.SaleManager;
 	       saleManager.deleteProduct(id);
 	        return "redirect:addProduct";	 
 	    }
-		
+		@RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
+		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
+			product1=product;
+			product.validate(product1, bindingResult); 
+			if (bindingResult.hasErrors()) {
+	        	 return "redirect:addProduct";
+	        }
+	        else {
+		    saleManager.addProduct(product1);
+		    return "redirect:addProduct";
+	        }
+		}
 	}

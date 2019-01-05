@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+
 @Entity
 @Table(name="products")
 public class Product  {
@@ -63,6 +66,10 @@ public class Product  {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+	 public void validate(Object target, Errors errors) {
+	       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", "field.required");
+	       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"price", "field.required");
+	       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantity", "field.required");
+	       
+	 }
 }
