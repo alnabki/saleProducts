@@ -12,8 +12,14 @@
 </head>
 
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+
+<div align="right">
+          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+        </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 <div align="center">
-	     <h1 ><i>Products<b></b></i></h1>
+	     <h1 ><i>Products for sale<b></b></i></h1>
 		     <table border="1">
 			      <tr class="staticInfoTable">
 			          <th>S.No.</th>

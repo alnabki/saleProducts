@@ -242,4 +242,20 @@ import com.mohamad.service.SaleManager;
 		    return "redirect:addProduct";
 	        }
 		}
+		 @RequestMapping(value="/viewsales")
+		   public ModelAndView viewSales(HttpSession session) {
+				//Log log = (Log)session.getAttribute("log");
+				//if(log != null && ( log.role == "Admin" )) {
+			        	ModelAndView model = new ModelAndView("viewSales");
+			            List<Order> orders=saleManager.getAllOrders();
+				 	 //   model.addObject("log.role",log.role);
+				 	    model.addObject("orders", orders);
+				 	    return model;
+			     //  }
+				
+			//	else {
+			 //		ModelAndView model2 = new ModelAndView("notlogin");
+			 //		return model2;
+			//	}
+		 	}	
 	}
