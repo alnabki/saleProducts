@@ -16,7 +16,7 @@
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div align="center">
 	     <h1 ><i>Products for sale<b></b></i></h1>
@@ -26,7 +26,7 @@
 			          <th>Products name</th>
 			          <th>quantity</th>
 			          <th>price</th>
-			          <th>Select</th>
+			          <th>Edit</th>
 			          <th>Delete</th>
 			          <th>Update</th>
 			      </tr>  
@@ -39,7 +39,7 @@
 				              <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
 				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
 				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
-				              <td > <a href="getproduct?id=${product.id}"  >  GO</a>     </td>
+				              <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
 				              <td > <a href="deleteproduct?id=${product.id}">  DELETE</a> </td>	                   
 				              <td > <input type="submit" value="UPDATE"   />             </td>
 					      </tr>

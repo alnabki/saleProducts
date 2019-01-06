@@ -15,8 +15,12 @@
 	<div align="right">
 	          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 	        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <table align="center" >
+	        
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+  <div align="center">
+      <h1 ><i><b>all Sales</b></i></h1>
+        <table  >
+              
 		      <tr>
 		          <th>S.No.    </th>
 		          <th> CustomerName   </th>
@@ -31,7 +35,7 @@
 		       </c:forEach>
 		     
           </table>
-    
+    </div>
     
     
 </body>

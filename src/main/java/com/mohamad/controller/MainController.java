@@ -167,13 +167,9 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value="/customer")
 	   public ModelAndView customerpage(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
-			
-			
 			if(log != null && ( log.role == "Customer" )) {
 		        	ModelAndView model = new ModelAndView("customer");
 			 	   
-		        	
-		        	
 			 	    model.addObject("log.role",log.role);
 			 	    return model;
 		        }
@@ -183,8 +179,6 @@ import com.mohamad.service.SaleManager;
 			}
 		
 	 	}	   
-	   
-	  
 	   
 	   @RequestMapping(value="/notlogin")
 		public ModelAndView notlogin() {
@@ -200,7 +194,7 @@ import com.mohamad.service.SaleManager;
 			return "redirect:login";			
 		}
 	   
-		@RequestMapping(value="/addProduct")
+		@RequestMapping(value="/addproduct")
 		public ModelAndView addproduct(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
 			if(log != null &&  log.role == "Admin" ) {	
@@ -223,39 +217,59 @@ import com.mohamad.service.SaleManager;
 		    	 System.out.println(product.id);
 		       saleManager.updateProduct(product);
 	         }
-		     return "redirect:addProduct";		     	
+		     return "redirect:addproduct";		     	
 	    }
 		@RequestMapping(value="/deleteproduct")
 	    public String deleteproduct(@RequestParam(value="id", required=true) int id) {
 	       saleManager.deleteProduct(id);
-	        return "redirect:addProduct";	 
+	        return "redirect:addproduct";	 
 	    }
 		@RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
 		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
 			product1=product;
 			product.validate(product1, bindingResult); 
 			if (bindingResult.hasErrors()) {
-	        	 return "redirect:addProduct";
+	        	 return "redirect:addproduct";
 	        }
 	        else {
 		    saleManager.addProduct(product1);
-		    return "redirect:addProduct";
+		    return "redirect:addproduct";
 	        }
 		}
 		 @RequestMapping(value="/viewsales")
 		   public ModelAndView viewSales(HttpSession session) {
-				//Log log = (Log)session.getAttribute("log");
-				//if(log != null && ( log.role == "Admin" )) {
+				Log log = (Log)session.getAttribute("log");
+				if(log != null && ( log.role == "Admin" )) {
 			        	ModelAndView model = new ModelAndView("viewSales");
 			            List<Order> orders=saleManager.getAllOrders();
-				 	 //   model.addObject("log.role",log.role);
+				 	    model.addObject("log.role",log.role);
 				 	    model.addObject("orders", orders);
 				 	    return model;
-			     //  }
+			     }
 				
-			//	else {
-			 //		ModelAndView model2 = new ModelAndView("notlogin");
-			 //		return model2;
-			//	}
+				else {
+			    	ModelAndView model2 = new ModelAndView("notlogin");
+					return model2;
+				}
 		 	}	
+		 @RequestMapping(value="/managecustomers")
+		   public ModelAndView manageAccounts(HttpSession session) {
+				Log log = (Log)session.getAttribute("log");
+				if(log != null && ( log.role == "Admin" )) {
+			        	ModelAndView model = new ModelAndView("manageCustomers");
+			            List<Customer> customers=saleManager.getAllCustomers();
+				 	    model.addObject("log.role",log.role);
+				 	    model.addObject("customers", customers);
+				 	    return model;
+			     }
+				else {
+			    	ModelAndView model2 = new ModelAndView("notlogin");
+					return model2;
+				}
+		 	}	
+		 @RequestMapping(value="/deletecustomer")
+		    public String deletecustomer(@RequestParam(value="id", required=true) int id) {
+		       saleManager.deleteCustomer(id);
+		        return "redirect:managecustomers";	 
+		    }
 	}
