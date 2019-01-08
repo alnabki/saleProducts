@@ -1,13 +1,20 @@
 package com.mohamad.controller;
 
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -22,12 +29,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
+import com.mohamad.model.ProductImage;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
 import com.mohamad.model.Product;
@@ -271,5 +280,53 @@ import com.mohamad.service.SaleManager;
 		    public String deletecustomer(@RequestParam(value="id", required=true) int id) {
 		       saleManager.deleteCustomer(id);
 		        return "redirect:managecustomers";	 
+		    }
+		 
+		 
+		 /*
+		 @RequestMapping(value = "/upload", method = RequestMethod.POST)
+		 public void handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException{
+		 if (!file.isEmpty()) {
+		  BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+		  File destination = new File("C:/Users/mohamad/Documents/") ;// something like C:/Users/tom/Documents/nameBasedOnSomeId.png
+		  ImageIO.write(src, "png", destination);
+		  //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
+		  }  
+		 }
+		 */
+		 
+		 @RequestMapping("/save-product")
+		    public String uploadResources( HttpServletRequest servletRequest, @ModelAttribute ProductImage productImage,Model model) {
+		        //Get the uploaded files and store them
+		        List<MultipartFile> files = productImage.getImages();
+		        List<String> fileNames = new ArrayList<String>();
+		        if (null != files && files.size() > 0)
+		        {
+		            for (MultipartFile multipartFile : files) {
+		 
+		                String fileName = multipartFile.getOriginalFilename();
+		                fileNames.add(fileName);
+		 
+		                File imageFile = new File(servletRequest.getServletContext().getRealPath("C:\\Users\\mohammad\\Documents\\images"), fileName);
+		                try
+		                {
+		                    multipartFile.transferTo(imageFile);
+		                } catch (IOException e)
+		                {
+		                    e.printStackTrace();
+		                }
+		            }
+		        }
+		 
+		        // Here, you can save the productImage details in database
+		         
+		        model.addAttribute("productImage", productImage);
+		        return "viewProductDetail";
+		    }
+		     
+		    @RequestMapping(value = "/product-input-form")
+		    public String inputProduct(Model model) {
+		        model.addAttribute("productImage", new ProductImage());
+		        return "addProduct";
 		    }
 	}

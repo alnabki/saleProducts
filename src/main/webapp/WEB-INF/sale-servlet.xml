@@ -82,9 +82,14 @@
 
     <!-- Specifying the Resource location to load JS, CSS, Images etc -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
-
+    
+    <mvc:resources mapping="/image/**" location="/image/" />
+   
     
     
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="20848820" />
+    </bean>
     
  
 </beans>

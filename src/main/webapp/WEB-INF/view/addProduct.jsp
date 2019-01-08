@@ -55,7 +55,33 @@
                     </form:form>       
 	            </table>
 			
-             </table>
+		     	<div id="global">
+        <form:form name="productImage" action="save-product" method="post" modelAttribute="productImage" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Add a productImage</legend>
+                <p>
+                    <label for="name">ProductImage Name: </label>
+                   <input type='text'   name="name" value ='${productImage.name}' required/>
+				             
+                   
+                </p>
+                <p>
+                    <label for="description">Description: </label>
+                    <input type='text'   name="description" value ='${productImage.description}' required/>
+                </p>
+                <p>
+                    <label for="image">ProductImage Images: </label>
+                    <input type="file" name="images" multiple="multiple"/>
+                    
+                </p>
+                <p id="buttons">
+                    <input id="reset" type="reset" tabindex="4">
+                    <input id="submit" type="submit" tabindex="5" value="Add ProductImage">
+                </p>
+            </fieldset>
+        </form:form>
+    </div>
+           
 </div>
 </body>
 </html>
