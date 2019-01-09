@@ -1,8 +1,7 @@
 package com.mohamad.controller;
 
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -13,14 +12,12 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Customer;
-import com.mohamad.model.ProductImage;
+import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
 import com.mohamad.model.Product;
@@ -293,7 +290,7 @@ import com.mohamad.service.SaleManager;
 		  //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
 		  }  
 		 }
-		 */
+		
 		 
 		 @RequestMapping("/save-product")
 		    public String uploadResources( HttpServletRequest servletRequest, @ModelAttribute ProductImage productImage,Model model) {
@@ -307,7 +304,7 @@ import com.mohamad.service.SaleManager;
 		                String fileName = multipartFile.getOriginalFilename();
 		                fileNames.add(fileName);
 		 
-		                File imageFile = new File(servletRequest.getServletContext().getRealPath("C:\\Users\\mohammad\\Documents\\images"), fileName);
+		                File imageFile = new File(servletRequest.getServletContext().getRealPath("/index.jsp"), fileName);
 		                try
 		                {
 		                    multipartFile.transferTo(imageFile);
@@ -328,5 +325,38 @@ import com.mohamad.service.SaleManager;
 		    public String inputProduct(Model model) {
 		        model.addAttribute("productImage", new ProductImage());
 		        return "addProduct";
+		    }
+		     */
+		 
+		 @RequestMapping(value = "/upload", method = RequestMethod.GET)
+		    public String DisplayForm() {
+		        return "addProduct";
+		    }
+		 
+		    @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
+		    public String crunchifySave(
+		            @ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
+		            
+		        String saveDirectory = "c:/saleUploadFolder/";
+		 
+		        List<MultipartFile> saleFiles = uploadForm.getFiles();
+		 
+		        List<String> fileNames = new ArrayList<String>();
+		 
+		        if (null != saleFiles && saleFiles.size() > 0) {
+		            for (MultipartFile multipartFile : saleFiles) {
+		 
+		                String fileName = multipartFile.getOriginalFilename();
+		                if (!"".equalsIgnoreCase(fileName)) {
+		                    // Handle file content - multipartFile.getInputStream()
+		                    multipartFile
+		                            .transferTo(new File(saveDirectory + fileName));
+		                    fileNames.add(fileName);
+		                }
+		            }
+		        }
+		 
+		        map.addAttribute("files", fileNames);
+		        return "viewProductDetail";
 		    }
 	}

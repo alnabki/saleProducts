@@ -1,23 +1,31 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Save Product Image</title>
+<style><%@include file="/resources/css/mystyle.css"%></style>
+<title>Sale - Upload Multiple Files Example</title>
+<style type="text/css">
+body {
+    <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+}
+</style>
 </head>
 <body>
-<div id="global">
-    <h4>The product has been saved.</h4>
-        <h5>Details:</h5>
-        Product Name: ${productImage.name}<br/>
-        Description: ${productImage.description}<br/>
-        <p>Following files are uploaded successfully.</p>
+    <br>
+    <br>
+    <div align="center">
+ 
+        <h1>Sale - Spring MVC Upload Multiple Files Example</h1>
+        <p>Awesome.. Following files are uploaded successfully.</p>
         <ol>
-        <c:forEach items="${productImage.images}" var="image">
-            <li>${image.originalFilename}
-            <img width="100" src="<c:url value="/image/"/>${image.originalFilename}"/>
-            </li>
-        </c:forEach>
+            <c:forEach items="${files}" var="file">
+           - ${file} <br>
+            </c:forEach>
         </ol>
-</div>
+        <a href="http://localhost:8080/saleProducts/addproduct"><input
+            type="button" value="Go Back" /></a> <br />
+        <br />
+        <br />
+       
+    </div>
 </body>
 </html>

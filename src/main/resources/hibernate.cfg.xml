@@ -13,6 +13,7 @@
         <mapping class="com.mohamad.model.Log" />
         <mapping class="com.mohamad.model.Order" />
         <mapping class="com.mohamad.model.ProductImage" />
+        <mapping class="com.mohamad.model.SaleFileUpload" />
      
     </session-factory>
 </hibernate-configuration>
