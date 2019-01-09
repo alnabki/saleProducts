@@ -68,18 +68,8 @@
 					     
 		              </form:form>
 		        </c:forEach>
-		         <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
-                        <td></td>
-	                    <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
-				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
-				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
-	                    <td ><input type="submit" value="ADD Product     "/></td>            
-                    </form:form>       
+		              
 	            </table>
-			
-			
-			
-			
 			
 			</div>
 

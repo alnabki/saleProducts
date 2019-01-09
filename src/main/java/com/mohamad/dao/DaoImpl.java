@@ -19,6 +19,7 @@ import com.mohamad.model.Product;
 
 
 
+
 @Repository
 public class DaoImpl implements Dao  {
 	
@@ -99,6 +100,23 @@ public class DaoImpl implements Dao  {
 	@Transactional
 	public void addProduct(Product product) {
 		this.sessionFactory.getCurrentSession().save(product);
+	}
+
+	@Transactional
+	public Product getProduct(int id) {
+	    Session session = sessionFactory.getCurrentSession();
+	    Product product=null;
+	    System.out.println("IN GetIteam");
+	    try {
+	        System.out.println("IN GetIteam");
+	        session.beginTransaction();
+	        product = (Product) session.get(Product.class, id);
+	    } catch (HibernateException e) {
+	        e.printStackTrace();
+	        session.getTransaction().rollback();
+	    }
+	   //session.getTransaction().commit();
+	    return product;
 	}
 	@Transactional
 	@SuppressWarnings("unchecked")    

@@ -62,6 +62,9 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateProduct(Product product) {
 				dao.updateProduct(product);
 			}
+			public Product getProduct(int id) {
+				return dao.getProduct(id);
+			}
 		
 			
 			public void addCustomer(Customer customer){

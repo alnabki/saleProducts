@@ -24,6 +24,7 @@ public interface Dao {
 	public List<Product> getAllProducts();
 	public void deleteProduct(Integer productId);
 	public void updateProduct(Product product);
+	public Product getProduct(int id);
 	
 	public void addCustomer(Customer customer);
 	public List<Customer> getAllCustomers();
@@ -36,5 +37,6 @@ public interface Dao {
 	public List<Order> getAllOrders();
 	public void deleteOrde(Integer orderId);
 	public void updateOrder(Order order);
+	
 	
 }

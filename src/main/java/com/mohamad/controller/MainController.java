@@ -230,6 +230,14 @@ import com.mohamad.service.SaleManager;
 	       saleManager.deleteProduct(id);
 	        return "redirect:addproduct";	 
 	    }
+		@RequestMapping(value="/getproduct")
+	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
+	        Product product = saleManager.getProduct(id);
+	    	System.out.println("name= "+ product.name);
+	        ModelAndView model = new ModelAndView("editProduct");
+	        model.addObject("product", product);
+	        return model;	 
+	    }
 		@RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
 		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
 			product1=product;
@@ -239,8 +247,9 @@ import com.mohamad.service.SaleManager;
 	        }
 	        else {
 		    saleManager.addProduct(product1);
-		    return "redirect:addproduct";
+		    return "editProduct";
 	        }
+			
 		}
 		 @RequestMapping(value="/viewsales")
 		   public ModelAndView viewSales(HttpSession session) {
