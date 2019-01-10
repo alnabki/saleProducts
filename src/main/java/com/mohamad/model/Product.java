@@ -34,7 +34,13 @@ public class Product  {
 	
 	@Column(name="quantity")
     public int quantity;
-
+    
+	@Column(name="image_name")
+    public int fileName;
+	
+	@Column(name="directory")
+    public int directory;
+	
 	public int getId() {
 		return id;
 	}

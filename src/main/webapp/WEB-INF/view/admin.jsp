@@ -26,9 +26,9 @@
         </ul>
         
         <br><br><br><br><br><br><br><br><br><br>
-        
-        
-         <table align="center" >
+       <div align="center">
+         <h1 ><i> Products<b></b></i></h1>
+         <table  >
 		      <tr>
 		          <th>S.No.</th>
 		          <th>Products name</th>
@@ -44,10 +44,11 @@
 		      </tr>
 		     </c:forEach>
           </table>
-          
           <br><br>
           
-          <table align="center" >
+           <h1 ><i>Customers<b></b></i></h1>
+           
+          <table  >
 		      <tr>
 		          <th>S.No.    </th>
 		          <th> Name    </th>
@@ -68,27 +69,26 @@
 	              <td> ${customer.phone}     </td>
 		      </tr>
 		     </c:forEach>
-		     
 		    </table>
 		       
             <br><br>
-		       
-		      <table align="center" >
+               <h1 ><i>Orders<b></b></i></h1>
+		      <table >
 		      <tr>
 		          <th>S.No.    </th>
 		          <th> CustomerName   </th>
 		          <th> Product   </th>
-		          
 		      </tr> 
 		       <c:forEach var="order" items="${orders}" varStatus="status"> 
-		             <td> ${status.index + 1}   </td>
+		          <tr >
+		             <td> ${status.index + 1}       </td>
 		             <td> ${order.customer.name }   </td>
-		             <td>${order.product.name }   </td>
-		       
+		             <td> ${order.product.name }    </td>
+		          </tr>   
 		       </c:forEach>
-		     
-          </table>
-       
+		       
+            </table>
+            </div>
 </body>
 </html>
 

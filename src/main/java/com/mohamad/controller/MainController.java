@@ -247,7 +247,7 @@ import com.mohamad.service.SaleManager;
 	        }
 	        else {
 		    saleManager.addProduct(product1);
-		    return "editProduct";
+		    return "redirect:addproduct";
 	        }
 			
 		}
@@ -346,21 +346,22 @@ import com.mohamad.service.SaleManager;
 		    public String crunchifySave(
 		            @ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
 		            
-		        String saveDirectory = "c:/saleUploadFolder/";
-		 
+		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
-		 
 		        List<String> fileNames = new ArrayList<String>();
-		 
+		       
 		        if (null != saleFiles && saleFiles.size() > 0) {
 		            for (MultipartFile multipartFile : saleFiles) {
 		 
 		                String fileName = multipartFile.getOriginalFilename();
+		                   System.out.println(fileName);
+		                   System.out.println(saveDirectory);
+		                   
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                    // Handle file content - multipartFile.getInputStream()
-		                    multipartFile
-		                            .transferTo(new File(saveDirectory + fileName));
+		                    multipartFile.transferTo(new File(saveDirectory + fileName));
 		                    fileNames.add(fileName);
+		                   
 		                }
 		            }
 		        }

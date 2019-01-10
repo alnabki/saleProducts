@@ -47,8 +47,6 @@
 			          <th>quantity</th>
 			          <th>price</th>
 			          <th>Edit</th>
-			          <th>Delete</th>
-			          <th>Update</th>
 			          <th>Photos</th>
 			      </tr>  
 		       <c:forEach var="product" items="${products}" varStatus="status">
@@ -57,24 +55,62 @@
 					      <tr>
 				              <td>${status.index + 1}</td>
 				                  <input type='hidden' name="id"       value ='${product.id}'/>
-				              <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
-				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
-				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
+				              <td>${product.name}    </td>
+				              <td>${product.quantity}</td>
+				              <td>${product.price}</td>
 				              <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
-				              <td > <a href="deleteproduct?id=${product.id}">  DELETE</a> </td>	                   
-				              <td > <input type="submit" value="UPDATE"   />             </td>
 				               <td >  <img  src="<c:url value="c:/saleUploadFolder/mm1.png" />"/>    </td>
 					      </tr>
-					     
-		              </form:form>
+		               </form:form>
 		        </c:forEach>
-		              
+		      </table>
+					      <br> <br><br> <br> 
+					      
+                      <h1 ><i>Add New Product<b></b></i></h1>
+		          
+                   <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
+            
+ 
+            <p>Select files to upload. Press Add button to add more file  inputs.</p>
+            
+	            <table id="fileTable">
+	                <tr>
+	                    <td><input name="files[0]" type="file" /></td>
+	                </tr>
+	                <tr>
+	                    <td><input name="files[1]" type="file" /></td>
+	                </tr>
 	            </table>
+         
+            
+            <input type="submit" value="Upload" />
+            <input id="addFile" type="button" value="Add File" />
+        </form:form>
+        <br/>
+            <table>
+		           <tr class="staticInfoTable">
+			        
+			          <th>Products name</th>
+			          <th>quantity</th>
+			          <th>price</th>
+			         
+			      </tr>  
+		         <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
+                          <tr>
+	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
+				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
+				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
+			              </tr>
+	     </table>
+			              <br/>
+			               <input type="submit" value="ADD Product     "/>
+                  </form:form> 
+	            
 			
 			</div>
-
+<!-- 
    <div align="center">
-        <h1>Sale - Spring MVC Upload Multiple Files Example</h1>
+        <h1>Upload photos to this product</h1>
  
         <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
             
@@ -98,7 +134,7 @@
         <br />
     </div>
 
-
+-->
 
 </body>
 </html>
