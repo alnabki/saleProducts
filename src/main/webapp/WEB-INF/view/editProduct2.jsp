@@ -11,6 +11,19 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<script
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+                        //add more file components if Add is clicked
+           $('#addFile').click(function() {
+                               var fileIndex = $('#fileTable tr').children().length - 1;
+                               $('#fileTable').append('<tr><td>'
+                                                       + '   <input type="file" name="files['+ fileIndex +']" />'
+                                                       + '</td></tr>');
+           });
+    });
+</script>
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
@@ -20,9 +33,12 @@
      <div align="center">
 	     <h1 ><i>Edit Product<b></b></i></h1>
 	     
-	       <h1>Add more photo to this Product</h1>
-	     <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
+	       
+	    <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">
+                     <tr>
+                       <td>Add more photo to this Product</td>
+                    </tr>
                       <input type='hidden' name="id"       value ='${product.id}'/>
                     <tr>
 	                   <td><input id="addFile" type="button" value="Add File" /></td>
@@ -40,39 +56,20 @@
 	                  
 	           <input type="submit"   name="update" value="Upload">
 	              
-         </form:form>
-        
-			        <form:form name="getForm" action="updateproduct"  method="post" modelAttribute="product" >  
-			                        <input type='hidden' name="id"       value ='${product.id}'/>
-			          Products name=<input type='text'   name="name"     value ='${product.name}'     required/>
-			          quantity     =<input type='text'   name="quantity" value ='${product.quantity}' required/>
-			          price        =<input type='text'   name="price"    value ='${product.price}'    required/>
-			                        <input type="hidden"  name="fileName" value="${files}"> 
-			           <br> <br>
-                      <input type="submit" value="Update"   /> 
-                    <button> <a href="deleteproduct?id=${product.id}">   Delete this Product</a></button><br>
-                     </form:form> 
+        </form:form>
+                                           <br>
+        <form:form name="getForm" action="updateproduct"  method="post" modelAttribute="product" >  
+	                       <input type='hidden' name="id"       value ='${product.id}'/>
+	         Products name=<input type='text'   name="name"     value ='${product.name}'     required/>
+	         quantity     =<input type='text'   name="quantity" value ='${product.quantity}' required/>
+	         price        =<input type='text'   name="price"    value ='${product.price}'    required/>
+	                       <input type="hidden"  name="fileName" value="${files}"> 
+	                                       <br> <br>
+                          <input type="submit" value="Update"   /> 
+                          <button> <a href="deleteproduct?id=${product.id}">   Delete this Product</a></button><br>
+          </form:form> 
                       
-                      <br> <br>
-                  </div>       
-			       
-             <div align="center">
-             
-      
-         
-            
-          
-            
-      
-        <br/>
-            
-		      
-	            
-			
-			</div>
-	         
-     
-        
-          
+                                        <br> <br>
+   </div> 
 </body>
 </html>

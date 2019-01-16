@@ -13,23 +13,15 @@
 <script
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>
-    $(document)
-            .ready(
-                    function() {
+    $(document).ready(function() {
                         //add more file components if Add is clicked
-                        $('#addFile')
-                                .click(
-                                        function() {
-                                            var fileIndex = $('#fileTable tr')
-                                                    .children().length - 1;
-                                            $('#fileTable')
-                                                    .append(
-                                                            '<tr><td>'
-                                                                    + '   <input type="file" name="files['+ fileIndex +']" />'
-                                                                    + '</td></tr>');
-                                        });
- 
-                    });
+           $('#addFile').click(function() {
+                               var fileIndex = $('#fileTable tr').children().length - 1;
+                               $('#fileTable').append('<tr><td>'
+                                                       + '   <input type="file" name="files['+ fileIndex +']" />'
+                                                       + '</td></tr>');
+           });
+    });
 </script>
 
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
@@ -70,7 +62,7 @@
 		          
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
  
-            <p>Select files to upload. Press Add button to add more file  inputs.</p>
+            <p>Select files to upload. Press Add button to add more photo  inputs.</p>
             
 	            <table id="fileTable">
 	                <tr>
@@ -112,15 +104,10 @@
                             
                                 
 			              </tr>
-	           </table> <br/>
+	             </table> <br/>
 			               <input type="submit" value="ADD Product   "/>
                     </form:form> 
-         
-	            
-			
 			</div>
-
-
 </body>
 </html>
 			
