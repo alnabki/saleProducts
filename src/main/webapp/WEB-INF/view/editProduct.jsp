@@ -16,6 +16,7 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
      </div>
      <br><br><br><br><br><br><br><br><br><br><br><br>
+     
      <div align="center">
 	     <h1 ><i>Edit Product<b></b></i></h1>
         
@@ -30,17 +31,12 @@
                      </form:form> 
                       
                       <br> <br>
-                      
+                  </div>       
 			       
              <div align="center">
         <h1>Add more photo to this Product</h1>
  
-        <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
-            
- 
-            <p>Select files to upload. Press Add button to add more file  inputs.</p>
-            
-	            <table id="fileTable">
+        <table id="fileTable">
 	                <tr>
 	                    <td><input name="files[0]" type="file" /></td>
 	                </tr>
@@ -48,14 +44,36 @@
 	                    <td><input name="files[1]" type="file" /></td>
 	                </tr>
 	            </table>
-            <br />
+         
             
             <input type="submit" value="Upload" />
             <input id="addFile" type="button" value="Add File" />
-        </form:form>
-        <br />
-        </div>
-         </div>  
+      
+        <br/>
+            <table>
+		           <tr class="staticInfoTable">
+			        
+			          <th>Products name</th>
+			          <th>quantity</th>
+			          <th>price</th>
+			         
+			      </tr>  
+		         <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
+                          <tr>
+	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
+				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
+				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
+			              </tr>
+	     </table>
+			              <br/>
+			               <input type="submit" value="ADD Product     "/>
+                  </form:form> 
+	            
+			
+			</div>
+	         
+     
+        
           
 </body>
 </html>

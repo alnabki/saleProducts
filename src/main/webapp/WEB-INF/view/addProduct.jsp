@@ -68,8 +68,7 @@
 					      
                       <h1 ><i>Add New Product<b></b></i></h1>
 		          
-                   <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
-            
+         <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
  
             <p>Select files to upload. Press Add button to add more file  inputs.</p>
             
@@ -81,89 +80,38 @@
 	                    <td><input name="files[1]" type="file" /></td>
 	                </tr>
 	            </table>
-         
-            
-            <input type="submit" value="Upload" />
-            <input id="addFile" type="button" value="Add File" />
-        </form:form>
-        <br/>
-            <table>
-		           <tr class="staticInfoTable">
+	            
+                     <input id="addFile" type="button" value="Add File" /><br/>
+                     <input type="submit" value="ADD Product   "/>
+               </form:form>  
+                <table>
+		             <tr class="staticInfoTable">
 			        
 			          <th>Products name</th>
 			          <th>quantity</th>
 			          <th>price</th>
 			         
-			      </tr>  
-		         <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
+			        </tr>  
+		            <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
                           <tr>
+                              
 	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
 				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
 				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
+				               
 			              </tr>
-	     </table>
-			              <br/>
-			               <input type="submit" value="ADD Product     "/>
-                  </form:form> 
+	           </table> <br/>
+			             
+			             
+			               <input type="submit" value="ADD Product   "/>
+                    </form:form> 
+         
 	            
 			
 			</div>
-<!-- 
-   <div align="center">
-        <h1>Upload photos to this product</h1>
- 
-        <form:form method="post" action="savefiles.html" modelAttribute="uploadForm" enctype="multipart/form-data">
-            
- 
-            <p>Select files to upload. Press Add button to add more file  inputs.</p>
-            
-	            <table id="fileTable">
-	                <tr>
-	                    <td><input name="files[0]" type="file" /></td>
-	                </tr>
-	                <tr>
-	                    <td><input name="files[1]" type="file" /></td>
-	                </tr>
-	            </table>
-            <br />
-            
-            <input type="submit" value="Upload" />
-            <input id="addFile" type="button" value="Add File" />
-        </form:form>
- 
-        <br />
-    </div>
 
--->
 
 </body>
 </html>
 			
-			<!--  
-		     	<div id="global">
-        <form:form name="productImage" action="save-product" method="post" modelAttribute="productImage" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Add a productImage</legend>
-                <p>
-                    <label for="name">ProductImage Name: </label>
-                   <input type='text'   name="name" value ='${productImage.name}' required/>
-				             
-                   
-                </p>
-                <p>
-                    <label for="description">Description: </label>
-                    <input type='text'   name="description" value ='${productImage.description}' required/>
-                </p>
-                <p>
-                    <label for="image">ProductImage Images: </label>
-                    <input type="file" name="images" multiple="multiple"/>
-                    
-                </p>
-                <p id="buttons">
-                    <input id="reset" type="reset" tabindex="4">
-                    <input id="submit" type="submit" tabindex="5" value="Add ProductImage">
-                </p>
-            </fieldset>
-        </form:form>
-    </div>
-       -->    
+			

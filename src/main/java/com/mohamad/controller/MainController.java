@@ -238,19 +238,7 @@ import com.mohamad.service.SaleManager;
 	        model.addObject("product", product);
 	        return model;	 
 	    }
-		@RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
-		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
-			product1=product;
-			product.validate(product1, bindingResult); 
-			if (bindingResult.hasErrors()) {
-	        	 return "redirect:addproduct";
-	        }
-	        else {
-		    saleManager.addProduct(product1);
-		    return "redirect:addproduct";
-	        }
-			
-		}
+		
 		 @RequestMapping(value="/viewsales")
 		   public ModelAndView viewSales(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
@@ -289,62 +277,28 @@ import com.mohamad.service.SaleManager;
 		    }
 		 
 		 
-		 /*
-		 @RequestMapping(value = "/upload", method = RequestMethod.POST)
-		 public void handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException{
-		 if (!file.isEmpty()) {
-		  BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-		  File destination = new File("C:/Users/mohamad/Documents/") ;// something like C:/Users/tom/Documents/nameBasedOnSomeId.png
-		  ImageIO.write(src, "png", destination);
-		  //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
-		  }  
-		 }
-		
-		 
-		 @RequestMapping("/save-product")
-		    public String uploadResources( HttpServletRequest servletRequest, @ModelAttribute ProductImage productImage,Model model) {
-		        //Get the uploaded files and store them
-		        List<MultipartFile> files = productImage.getImages();
-		        List<String> fileNames = new ArrayList<String>();
-		        if (null != files && files.size() > 0)
-		        {
-		            for (MultipartFile multipartFile : files) {
-		 
-		                String fileName = multipartFile.getOriginalFilename();
-		                fileNames.add(fileName);
-		 
-		                File imageFile = new File(servletRequest.getServletContext().getRealPath("/index.jsp"), fileName);
-		                try
-		                {
-		                    multipartFile.transferTo(imageFile);
-		                } catch (IOException e)
-		                {
-		                    e.printStackTrace();
-		                }
-		            }
-		        }
-		 
-		        // Here, you can save the productImage details in database
-		         
-		        model.addAttribute("productImage", productImage);
-		        return "viewProductDetail";
-		    }
-		     
-		    @RequestMapping(value = "/product-input-form")
-		    public String inputProduct(Model model) {
-		        model.addAttribute("productImage", new ProductImage());
-		        return "addProduct";
-		    }
-		     */
+		 @RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
+		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
+			product1=product;
+			product.validate(product1, bindingResult); 
+			if (bindingResult.hasErrors()) {
+	        	 return "redirect:addproduct";
+	        }
+	        else {
+		    saleManager.addProduct(product1);
+		    return "redirect:addproduct";
+	        }
+			
+		}
 		 
 		 @RequestMapping(value = "/upload", method = RequestMethod.GET)
 		    public String DisplayForm() {
 		        return "addProduct";
 		    }
 		 
-		    @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
-		    public String crunchifySave(
-		            @ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
+		    @SuppressWarnings("null")
+			@RequestMapping(value = "/savefiles", method = RequestMethod.POST)
+		    public String crunchifySave(@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
 		            
 		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
@@ -356,7 +310,10 @@ import com.mohamad.service.SaleManager;
 		                String fileName = multipartFile.getOriginalFilename();
 		                   System.out.println(fileName);
 		                   System.out.println(saveDirectory);
-		                   
+		                  //Product product = null;
+		                  //product.fileName=fileName;
+		                  //product.directory=saveDirectory;
+		                  // saleManager.updateProduct(product);
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                    // Handle file content - multipartFile.getInputStream()
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));

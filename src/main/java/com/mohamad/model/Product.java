@@ -36,11 +36,28 @@ public class Product  {
     public int quantity;
     
 	@Column(name="image_name")
-    public int fileName;
+    public String fileName;
 	
 	@Column(name="directory")
-    public int directory;
+    public String directory;
 	
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getDirectory() {
+		return directory;
+	}
+
+	public void setDirectory(String directory) {
+		this.directory = directory;
+	}
+
 	public int getId() {
 		return id;
 	}
