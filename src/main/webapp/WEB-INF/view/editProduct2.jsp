@@ -27,6 +27,7 @@
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+           <a href="addproduct">Back</a>
      </div>
      <br><br><br><br><br><br><br><br><br><br><br><br>
      
@@ -37,7 +38,7 @@
 	    <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">
                      <tr>
-                       <td>Add more photo to this Product</td>
+                       <td>Add  photos to this Product (all old photos will lost)</td>
                     </tr>
                       <input type='hidden' name="id"       value ='${product.id}'/>
                     <tr>
