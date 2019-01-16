@@ -38,6 +38,7 @@ public class Product  {
 	@Column(name="image_name")
     public String fileName;
 	
+	
 	@Column(name="directory")
     public String directory;
 	

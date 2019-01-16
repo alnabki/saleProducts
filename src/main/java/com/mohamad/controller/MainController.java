@@ -223,7 +223,7 @@ import com.mohamad.service.SaleManager;
 		    	 System.out.println(product.id);
 		       saleManager.updateProduct(product);
 	         }
-		     return "redirect:addproduct";		     	
+		     return "editProduct2";		     	
 	    }
 		@RequestMapping(value="/deleteproduct")
 	    public String deleteproduct(@RequestParam(value="id", required=true) int id) {
@@ -297,8 +297,8 @@ import com.mohamad.service.SaleManager;
 		    }
 		 
 		    @SuppressWarnings("null")
-			@RequestMapping(value = "/savefiles", method = RequestMethod.POST)
-		    public String crunchifySave(@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
+			@RequestMapping(value = "/savefiles&update", method = RequestMethod.POST,params = { "savefiles" })
+		    public ModelAndView crunchifySave(HttpSession session,@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
 		            
 		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
@@ -310,10 +310,7 @@ import com.mohamad.service.SaleManager;
 		                String fileName = multipartFile.getOriginalFilename();
 		                   System.out.println(fileName);
 		                   System.out.println(saveDirectory);
-		                  //Product product = null;
-		                  //product.fileName=fileName;
-		                  //product.directory=saveDirectory;
-		                  // saleManager.updateProduct(product);
+		                  
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                    // Handle file content - multipartFile.getInputStream()
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
@@ -322,8 +319,58 @@ import com.mohamad.service.SaleManager;
 		                }
 		            }
 		        }
-		 
 		        map.addAttribute("files", fileNames);
-		        return "viewProductDetail";
+		        Log log = (Log)session.getAttribute("log");
+				if(log != null &&  log.role == "Admin" ) {	
+			        	ModelAndView model = new ModelAndView("viewProductDetail2");
+						List<Product> products= saleManager.getAllProducts();
+				        model.addObject("products", products);	
+				 	    model.addObject("log.role",log.role);
+				 	    return model;
+			        }
+				
+				else {
+			 		ModelAndView model2 = new ModelAndView("notLoged");
+			 		return model2;
+				}
+		        
+		    }
+		    @SuppressWarnings("null")
+			@RequestMapping(value = "/savefiles&update", method = RequestMethod.POST,params = { "update" })
+		    public ModelAndView crunchifyEdit(HttpSession session,@RequestParam(value="id", required=true) int id,@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
+		            
+		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
+		        List<MultipartFile> saleFiles = uploadForm.getFiles();
+		        List<String> fileNames = new ArrayList<String>();
+		       
+		        if (null != saleFiles && saleFiles.size() > 0) {
+		            for (MultipartFile multipartFile : saleFiles) {
+		 
+		                String fileName = multipartFile.getOriginalFilename();
+		                   System.out.println(fileName);
+		                   System.out.println(saveDirectory);
+		                  
+		                if (!"".equalsIgnoreCase(fileName)) {
+		                    // Handle file content - multipartFile.getInputStream()
+		                    multipartFile.transferTo(new File(saveDirectory + fileName));
+		                    fileNames.add(fileName);
+		                   
+		                }
+		            }
+		        }
+		        map.addAttribute("files", fileNames);
+		        Log log = (Log)session.getAttribute("log");
+				if(log != null &&  log.role == "Admin" ) {	
+			        	ModelAndView model = new ModelAndView("editProduct2");
+						Product product=saleManager.getProduct(id);
+				        model.addObject("product", product);	
+				 	    model.addObject("log.role",log.role);
+				 	    return model;
+			        }
+				else {
+			 		ModelAndView model2 = new ModelAndView("notLoged");
+			 		return model2;
+				}
+		        
 		    }
 	}

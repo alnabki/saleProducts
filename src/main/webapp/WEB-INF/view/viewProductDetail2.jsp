@@ -79,15 +79,17 @@
 	                <tr>
 	                    <td><input name="files[0]" type="file" /></td>
 	                </tr>
+	        
 	                <tr>
 	                    <td><input name="files[1]" type="file" /></td>
 	                </tr>
 	                
 	            </table>
-	            
-                  
-                 
-                     <input type="submit"  name="savefiles" value="upload"/>    <br/>
+	                 <c:forEach items="${files}" var="file">
+                       - ${file} <br>
+                    </c:forEach>
+                      <input type="submit"  name="savefiles" value="upload"/> 
+                        
                </form:form>  
                 <table>
 		             <tr class="staticInfoTable">
@@ -103,7 +105,12 @@
 	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
 				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
 				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
-				               
+				              
+                                   
+                                   <input type="hidden"  name="fileName" value="${files}"> 
+                                  
+                            
+                                
 			              </tr>
 	           </table> <br/>
 			               <input type="submit" value="ADD Product   "/>

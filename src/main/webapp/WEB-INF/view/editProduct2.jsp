@@ -18,16 +18,10 @@
      <br><br><br><br><br><br><br><br><br><br><br><br>
      
      <div align="center">
-     
-     
-     
 	     <h1 ><i>Edit Product<b></b></i></h1>
-        
-        
-        
-        
-        <h1>Add more photo to this Product</h1>
-         <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
+	     
+	       <h1>Add more photo to this Product</h1>
+	     <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">
                       <input type='hidden' name="id"       value ='${product.id}'/>
                     <tr>
@@ -40,16 +34,20 @@
 	                    <td><input name="files[1]" type="file" /></td>
 	                </tr>
 	            </table>
-	             
-	               <input type="submit"   name="update" value="Upload">	
+		              <c:forEach items="${files}" var="file">
+	                   - ${file} <br>
+	                  </c:forEach>
+	                  
+	           <input type="submit"   name="update" value="Upload">
+	              
          </form:form>
-      
-        <br/>
+        
 			        <form:form name="getForm" action="updateproduct"  method="post" modelAttribute="product" >  
 			                        <input type='hidden' name="id"       value ='${product.id}'/>
 			          Products name=<input type='text'   name="name"     value ='${product.name}'     required/>
 			          quantity     =<input type='text'   name="quantity" value ='${product.quantity}' required/>
 			          price        =<input type='text'   name="price"    value ='${product.price}'    required/>
+			                        <input type="hidden"  name="fileName" value="${files}"> 
 			           <br> <br>
                       <input type="submit" value="Update"   /> 
                     <button> <a href="deleteproduct?id=${product.id}">   Delete this Product</a></button><br>
@@ -60,7 +58,13 @@
 			       
              <div align="center">
              
-        
+      
+         
+            
+          
+            
+      
+        <br/>
             
 		      
 	            
