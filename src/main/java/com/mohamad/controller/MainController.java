@@ -222,13 +222,28 @@ import jdk.internal.org.objectweb.asm.Handle;
 			}
 	 	}
 		@RequestMapping(value = "/updateproduct" ,method = RequestMethod.POST)	
-		 public String update(@ModelAttribute("product") Product product) {	
+		 public ModelAndView update(@ModelAttribute("product") Product product) {	
 			System.out.println(product.id);
+			ModelAndView model = new ModelAndView("editProduct2");
 		     if(null != product ) {	
+		    	 if(product.fileName != null && !product.fileName.isEmpty()) {
+				    	String test = product.fileName; 
+				    	test= test.replaceAll("[\\[\\],(){}]","");  
+				    	String[] arr = test.split(" ");  
+				        List<String> imageNames = new ArrayList<String>();
+				    	for ( String imageName : arr) {
+				    	    System.out.println(imageName);
+				    	    imageNames.add(imageName);
+				    	}
+			    	
+			    	    model.addObject("imageNames",imageNames);
+			    	  
+			    	 }
+		     }
 		    	 System.out.println(product.id);
 		       saleManager.updateProduct(product);
-	         }
-		     return "editProduct2";		     	
+	         
+		     return model;		     	
 	    }
 		@RequestMapping(value="/deleteproduct")
 	    public String deleteproduct(@RequestParam(value="id", required=true) int id) {
@@ -242,7 +257,7 @@ import jdk.internal.org.objectweb.asm.Handle;
 	    	System.out.println("name= "+ product.name);
 	    	  ModelAndView model = new ModelAndView("editProduct");
 	    	  
-	    	  
+	     if(null != product ) {	  
 	    	if(product.fileName != null && !product.fileName.isEmpty()) {
 		    	String test = product.fileName; 
 		    	test= test.replaceAll("[\\[\\],(){}]","");  
@@ -254,8 +269,8 @@ import jdk.internal.org.objectweb.asm.Handle;
 		    	}
 	    	
 	    	    model.addObject("imageNames",imageNames);
-	    	  
-	    	 }
+	    	}
+	      }
 	        model.addObject("product", product);
 	        return model;	 
 	    }
@@ -335,7 +350,7 @@ import jdk.internal.org.objectweb.asm.Handle;
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                   //  Handle files.content - multipartFile.getInputStream();
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
-		                 //   fileNames.add(fileName);
+		                    fileNames.add(fileName);
 		                    System.out.println(fileName);
 		                }
 		            }
@@ -345,6 +360,9 @@ import jdk.internal.org.objectweb.asm.Handle;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("viewProductDetail2");
 						List<Product> products= saleManager.getAllProducts();
+						
+						
+						 model.addObject("fileNames",fileNames);	
 				        model.addObject("products", products);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;
@@ -385,8 +403,6 @@ import jdk.internal.org.objectweb.asm.Handle;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("editProduct2");
 						Product product=saleManager.getProduct(id);
-						
-						
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;
