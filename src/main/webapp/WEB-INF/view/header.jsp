@@ -18,7 +18,7 @@
 
        <c:if test='${ log.role =="Customer"  }' >
            <div   align='right'>
-		        Account: ${log.account.username} <br>
+		        Account: ${log.account.username} 
 		        <a href="logout"><button>Logout</button></a><br>
 
            </div>
@@ -28,7 +28,7 @@
      </c:if>
      <c:if test='${ log.role =="Admin"   }' >
            <div    align='right'>
-			    Account: ${log.account.username } <br>
+			    Account: ${log.account.username } 
 			    <a href="logout"><button>Logout</button></a>
            </div>
       

@@ -39,6 +39,8 @@ import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
 
+import jdk.internal.org.objectweb.asm.Handle;
+
 
 
 
@@ -234,6 +236,9 @@ import com.mohamad.service.SaleManager;
 	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
 	        Product product = saleManager.getProduct(id);
 	    	System.out.println("name= "+ product.name);
+	    	 
+	    	
+	      	System.out.println("name= "+ product.fileName);
 	        ModelAndView model = new ModelAndView("editProduct");
 	        model.addObject("product", product);
 	        return model;	 
@@ -312,10 +317,10 @@ import com.mohamad.service.SaleManager;
 		                   System.out.println(saveDirectory);
 		                  
 		                if (!"".equalsIgnoreCase(fileName)) {
-		                    // Handle file content - multipartFile.getInputStream()
+		                   //  Handle files.content - multipartFile.getInputStream();
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
-		                    fileNames.add(fileName);
-		                   
+		                 //   fileNames.add(fileName);
+		                    System.out.println(fileName);
 		                }
 		            }
 		        }
@@ -354,6 +359,7 @@ import com.mohamad.service.SaleManager;
 		                    // Handle file content - multipartFile.getInputStream()
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
 		                    fileNames.add(fileName);
+		                    System.out.println(fileName);
 		                   
 		                }
 		            }

@@ -25,6 +25,7 @@
     });
 </script>
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+${product.fileName}"
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
            <a href="addproduct">Back</a>
@@ -33,6 +34,7 @@
      
      <div align="center">
 	     <h1 ><i>Edit Product<b></b></i></h1>
+	     
 	     
 	       
 	    <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">

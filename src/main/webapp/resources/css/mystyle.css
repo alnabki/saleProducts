@@ -38,5 +38,12 @@ body {
    
    tr:nth-child(even) {background-color: #ffffff;}
    
+   .imageProduct { 
+    width:15%;
+  height: auto;
+    
+    
+   }
+   
    <!-- background-image: url(http://localhost:8080/saleProductsebapp/resources/images/taylor.jpg);-->
    <!--background:url(https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwMi85Mzkvb3JpZ2luYWwvY2FtcC1maXJlLWluZnJhcmVkLW5vdi04LmpwZw== ) no-repeat ;background-size: 100% 100% ;-->

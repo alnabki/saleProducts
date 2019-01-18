@@ -34,6 +34,10 @@
      <div align="center">
 	     <h1 ><i>Edit Product<b></b></i></h1>
 	     
+	    
+	     <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br><br><br>
+	    
+	     
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">
                     <tr>
