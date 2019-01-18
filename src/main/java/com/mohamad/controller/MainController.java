@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
@@ -36,6 +38,7 @@ import com.mohamad.model.Customer;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
+import com.mohamad.model.PatternDemo;
 import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
 
@@ -232,14 +235,27 @@ import jdk.internal.org.objectweb.asm.Handle;
 	       saleManager.deleteProduct(id);
 	        return "redirect:addproduct";	 
 	    }
+		@SuppressWarnings("null")
 		@RequestMapping(value="/getproduct")
 	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
 	        Product product = saleManager.getProduct(id);
 	    	System.out.println("name= "+ product.name);
-	    	 
+	    	  ModelAndView model = new ModelAndView("editProduct");
+	    	  
+	    	  
+	    	if(product.fileName != null && !product.fileName.isEmpty()) {
+		    	String test = product.fileName; 
+		    	test= test.replaceAll("[\\[\\],(){}]","");  
+		    	String[] arr = test.split(" ");  
+		        List<String> imageNames = new ArrayList<String>();
+		    	for ( String imageName : arr) {
+		    	    System.out.println(imageName);
+		    	    imageNames.add(imageName);
+		    	}
 	    	
-	      	System.out.println("name= "+ product.fileName);
-	        ModelAndView model = new ModelAndView("editProduct");
+	    	    model.addObject("imageNames",imageNames);
+	    	  
+	    	 }
 	        model.addObject("product", product);
 	        return model;	 
 	    }
@@ -369,6 +385,8 @@ import jdk.internal.org.objectweb.asm.Handle;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("editProduct2");
 						Product product=saleManager.getProduct(id);
+						
+						
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;

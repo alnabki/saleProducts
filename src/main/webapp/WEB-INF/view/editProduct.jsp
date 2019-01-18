@@ -34,9 +34,10 @@
      <div align="center">
 	     <h1 ><i>Edit Product<b></b></i></h1>
 	     
-	    
-	     <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br><br><br>
-	    
+	          <c:forEach var="imageName" items="${imageNames}" varStatus="status">
+					
+					    <img class="imageProduct"  src="<c:url value="/resources/images/${imageName}" />"/>
+	           </c:forEach>
 	     
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">

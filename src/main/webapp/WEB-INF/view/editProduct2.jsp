@@ -25,7 +25,7 @@
     });
 </script>
 <body background="<c:url value='/resources/images/laptopBackground3.png'  />">
-${product.fileName}"
+
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
            <a href="addproduct">Back</a>
