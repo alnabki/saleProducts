@@ -38,6 +38,10 @@
 	     <c:forEach var="imageName" items="${imageNames}" varStatus="status">
 	          <img class="imageProduct"  src="<c:url value="/resources/images/${imageName}" />"/>
 	      </c:forEach>
+	      
+	      <c:forEach var="fileName" items="${fileNames}" varStatus="status">
+	                 <img class="imageProduct"  src="<c:url value="/resources/images/${fileName}" />"/>
+	      </c:forEach>
 	       
 	    <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">

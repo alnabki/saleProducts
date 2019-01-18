@@ -38,7 +38,6 @@ import com.mohamad.model.Customer;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
-import com.mohamad.model.PatternDemo;
 import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
 
@@ -403,6 +402,7 @@ import jdk.internal.org.objectweb.asm.Handle;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("editProduct2");
 						Product product=saleManager.getProduct(id);
+					    model.addObject("fileNames",fileNames);
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;
