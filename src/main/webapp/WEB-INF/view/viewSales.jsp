@@ -16,6 +16,13 @@
 	          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 	        </div>
 	        
+	    <ul>
+         <li> <a href="addproduct">Add Product</a> </li>
+         <li> <a href="viewsales">View sales</a> </li>
+         <li> <a href="managecustomers">Manage Account</a> </li>
+         <li><a href="admin">Back</a></li>
+        </ul>
+	        
         <br><br><br><br><br><br><br><br><br><br><br><br>
   <div align="center">
       <h1 ><i><b>all Sales</b></i></h1>
@@ -27,11 +34,13 @@
 		          <th> Product   </th>
 		          
 		      </tr> 
-		       <c:forEach var="order" items="${orders}" varStatus="status"> 
+		      
+		       <c:forEach var="order" items="${orders}" varStatus="status">
+		       <tr> 
 		             <td> ${status.index + 1}   </td>
 		             <td> ${order.customer.name }   </td>
 		             <td>${order.product.name }   </td>
-		       
+		       </tr>
 		       </c:forEach>
 		     
           </table>
