@@ -45,21 +45,28 @@
 			          <th>Products name</th>
 			          <th>quantity</th>
 			          <th>price</th>
-			          <th>Edit</th>
 			          <th>Photos</th>
+			          <th>Edit</th>
 			      </tr>  
 		       <c:forEach var="product" items="${productViews}" varStatus="status">
 			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
 			          
 					      <tr>
-				              <td>${status.index + 1}</td>
-				                  <input type='hidden' name="id"       value ='${product.id}'/>
-				              <td>${product.name}    </td>
-				              <td>${product.quantity}</td>
-				              <td>${product.price}</td>
-				              <td>  <a href="getproduct?id=${product.id}"  > Edit</a> </td>       
-				              <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/></td>
+					           <input type='hidden' name="id"       value ='${product.id}'/>
+				              <td  height=100 width=20>${status.index + 1}</td>
+				                  
 				             
+				             
+				                <td  height=100 width=20>${product.name}</td>
+				             
+				                <td  height=100 width=20>${product.quantity}</td>
+				             
+				                <td  height=100 width=20>${product.price}</td>
+				                     
+				             
+				                <td height=100 width=50 ><img class="imageProduct1"  src="<c:url value="/resources/images/${product.fileName}"  />"/></td>
+				                <td  height=100 width=20   > <a href="getproduct?id=${product.id}">Edit</a> </td> 
+				                 
 	                       
 					      </tr>
 		               </form:form>

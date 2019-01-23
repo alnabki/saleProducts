@@ -40,7 +40,7 @@
 
 	     <h1 ><i>Products for sale<b></b></i></h1>
 	     ---------------------------------------------------------------------------------------------------------------<br>
-	      <c:forEach var="product" items="${products}" varStatus="status">
+	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
 			          
 		    --
@@ -52,9 +52,7 @@
 				             
 				            
 				         
-			                 <c:forEach var="imageName" items="${imageNames}" varStatus="status">
-				                 <img class="imageProduct"  src="<c:url value="/resources/images/${imageName}" />"/>
-                             </c:forEach><br>
+			                    <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/></td>
                      <a href="getproduct?id=${product.id}"  > Edit</a> <br>        
          ---------------------------------------------------------------------------------------------------------------------<br>                     
 					     
