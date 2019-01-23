@@ -24,7 +24,7 @@
            });
     });
 </script>
-<body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+<body background="<c:url value='/resources/images/background7.jpg'  />">
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
           <a href="addproduct">Back</a>
@@ -36,8 +36,6 @@
          <li><a href="addproduct">Back</a></li>
         </ul>
      
-     
-     <br><br><br><br><br><br><br><br><br><br><br><br>
      
      
      <div align="center">

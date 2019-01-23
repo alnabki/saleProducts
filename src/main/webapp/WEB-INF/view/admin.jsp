@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Login</title>
 </head>
-<body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+<body background="<c:url value='/resources/images/background7.jpg'  />">
 
 
         <div align="right">
@@ -24,7 +24,7 @@
          <li> <a href="managecustomers">Manage Account</a> </li>
         </ul>
         
-        <br><br><br><br><br><br><br><br><br><br>
+     
        <div align="center">
          <h1 ><i> Products<b></b></i></h1>
          <table  >
