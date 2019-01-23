@@ -114,4 +114,20 @@ public class Product  {
 	    	 }
 		  return imageNames;
 	 }
+	 public String FirstImage(String fileName){
+		
+		 String firstImage = null;
+		 if(fileName != null && !fileName.isEmpty()) {
+		    	String test = fileName; 
+		    	test= test.replaceAll("[\\[\\],(){}]","");  
+		    	String[] arr = test.split(" ");  
+		    	 outer:
+		    	for ( String first : arr) {
+		    	    System.out.println(first);
+		    	    firstImage=first;
+		    	    break outer;
+		    	}
+	    	 }
+		  return firstImage;
+	 }
 }

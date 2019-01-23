@@ -208,13 +208,19 @@ import com.mohamad.service.SaleManager;
 			if(log != null &&  log.role == "Admin" ) {	
 		        	ModelAndView model = new ModelAndView("addProduct");
 					List<Product> products= saleManager.getAllProducts();
+					List<Product> productViews=new ArrayList<Product>();
 					if(null != products ) {	
-						List<String> imageNames = new ArrayList<String>();
+						
 						for (Product product: products) {
-				    	 imageNames=product.CleanNameImage(product.fileName);
-				     }
-						model.addObject("imageNames",imageNames);
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							  System.out.println( productView.name);
+							  System.out.println( productView.name);
+							productViews.add(productView);
+				        }
+						model.addObject("productViews",productViews);
 					}
+					
 			        model.addObject("products", products);	
 			 	    model.addObject("log.role",log.role);
 			 	    return model;

@@ -35,38 +35,34 @@
          <li> <a href="managecustomers">Manage Account</a> </li>
          <li><a href="admin">Back</a></li>
         </ul>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<div align="center">
+
 	     <h1 ><i>Products for sale<b></b></i></h1>
-		     <table border="1">
-			      <tr class="staticInfoTable">
-			          <th>S.No.</th>
-			          <th>Products name</th>
-			          <th>quantity</th>
-			          <th>price</th>
-			          <th>Edit</th>
-			          <th>Photos</th>
-			      </tr>  
-		       <c:forEach var="product" items="${productViews}" varStatus="status">
+	     ---------------------------------------------------------------------------------------------------------------<br>
+	      <c:forEach var="product" items="${products}" varStatus="status">
 			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
 			          
-					      <tr>
-				              <td>${status.index + 1}</td>
-				                  <input type='hidden' name="id"       value ='${product.id}'/>
-				              <td>${product.name}    </td>
-				              <td>${product.quantity}</td>
-				              <td>${product.price}</td>
-				              <td>  <a href="getproduct?id=${product.id}"  > Edit</a> </td>       
-				              <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/></td>
+		    --
+			     <input type='hidden' name="id"       value ='${product.id}'/>
+			         S.No.=  ${status.index + 1} <br>
+			         Products name=  ${product.name}  <br> 
+			         Quantity     =  ${product.quantity} <br>
+			         Price       =  ${product.price}  <br>
 				             
-	                       
-					      </tr>
+				            
+				         
+			                 <c:forEach var="imageName" items="${imageNames}" varStatus="status">
+				                 <img class="imageProduct"  src="<c:url value="/resources/images/${imageName}" />"/>
+                             </c:forEach><br>
+                     <a href="getproduct?id=${product.id}"  > Edit</a> <br>        
+         ---------------------------------------------------------------------------------------------------------------------<br>                     
+					     
 		               </form:form>
 		        </c:forEach>
-		      </table>
+		      
 					      <br> <br><br> <br> 
-					      
+<div align="center">		      
                       <h1 ><i>Add New Product<b></b></i></h1>
 		          
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
