@@ -2,6 +2,9 @@ package com.mohamad.model;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -95,5 +98,20 @@ public class Product  {
 	       ValidationUtils.rejectIfEmptyOrWhitespace(errors,"price", "field.required");
 	       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantity", "field.required");
 	       
+	 }
+	 
+	 public List<String> CleanNameImage(String fileName){
+		 List<String> imageNames = new ArrayList<String>();
+		 if(fileName != null && !fileName.isEmpty()) {
+		    	String test = fileName; 
+		    	test= test.replaceAll("[\\[\\],(){}]","");  
+		    	String[] arr = test.split(" ");  
+		     
+		    	for ( String imageName : arr) {
+		    	    System.out.println(imageName);
+		    	    imageNames.add(imageName);
+		    	}
+	    	 }
+		  return imageNames;
 	 }
 }

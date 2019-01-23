@@ -35,7 +35,7 @@
          <li> <a href="managecustomers">Manage Account</a> </li>
          <li><a href="addproduct">Back</a></li>
         </ul>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 <div align="center">
 	     <h1 ><i>Products for sale<b></b></i></h1>

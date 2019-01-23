@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
@@ -41,7 +39,7 @@ import com.mohamad.model.Order;
 import com.mohamad.model.Product;
 import com.mohamad.service.SaleManager;
 
-import jdk.internal.org.objectweb.asm.Handle;
+
 
 
 
@@ -209,7 +207,6 @@ import jdk.internal.org.objectweb.asm.Handle;
 			Log log = (Log)session.getAttribute("log");
 			if(log != null &&  log.role == "Admin" ) {	
 		        	ModelAndView model = new ModelAndView("addProduct");
-			 	 
 					List<Product> products= saleManager.getAllProducts();
 			        model.addObject("products", products);	
 			 	    model.addObject("log.role",log.role);
@@ -225,21 +222,11 @@ import jdk.internal.org.objectweb.asm.Handle;
 			System.out.println(product.id);
 			ModelAndView model = new ModelAndView("editProduct2");
 		     if(null != product ) {	
-		    	 if(product.fileName != null && !product.fileName.isEmpty()) {
-				    	String test = product.fileName; 
-				    	test= test.replaceAll("[\\[\\],(){}]","");  
-				    	String[] arr = test.split(" ");  
-				        List<String> imageNames = new ArrayList<String>();
-				    	for ( String imageName : arr) {
-				    	    System.out.println(imageName);
-				    	    imageNames.add(imageName);
-				    	}
-			    	
-			    	    model.addObject("imageNames",imageNames);
-			    	  
-			    	 }
+		    	 List<String> imageNames = new ArrayList<String>();
+		    	 imageNames=product.CleanNameImage(product.fileName);
+			      model.addObject("imageNames",imageNames);
 		     }
-		    	 System.out.println(product.id);
+		       System.out.println(product.id);
 		       saleManager.updateProduct(product);
 	         
 		     return model;		     	
@@ -257,19 +244,11 @@ import jdk.internal.org.objectweb.asm.Handle;
 	    	  ModelAndView model = new ModelAndView("editProduct");
 	    	  
 	     if(null != product ) {	  
-	    	if(product.fileName != null && !product.fileName.isEmpty()) {
-		    	String test = product.fileName; 
-		    	test= test.replaceAll("[\\[\\],(){}]","");  
-		    	String[] arr = test.split(" ");  
-		        List<String> imageNames = new ArrayList<String>();
-		    	for ( String imageName : arr) {
-		    	    System.out.println(imageName);
-		    	    imageNames.add(imageName);
-		    	}
-	    	
-	    	    model.addObject("imageNames",imageNames);
+	    	 List<String> imageNames = new ArrayList<String>();
+	    	 imageNames=product.CleanNameImage(product.fileName);
+	    	 model.addObject("imageNames",imageNames);
 	    	}
-	      }
+	     
 	        model.addObject("product", product);
 	        return model;	 
 	    }
