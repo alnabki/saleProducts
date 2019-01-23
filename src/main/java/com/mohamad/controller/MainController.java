@@ -351,7 +351,18 @@ import com.mohamad.service.SaleManager;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("viewProductDetail2");
 						List<Product> products= saleManager.getAllProducts();
-						
+						List<Product> productViews=new ArrayList<Product>();
+						if(null != products ) {	
+							
+							for (Product product: products) {
+								product.fileName=product.FirstImage(product.fileName);
+								Product productView=product;
+								  System.out.println( productView.name);
+								  System.out.println( productView.name);
+								productViews.add(productView);
+					        }
+							model.addObject("productViews",productViews);
+						}
 						
 						 model.addObject("fileNames",fileNames);	
 				        model.addObject("products", products);	

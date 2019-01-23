@@ -58,7 +58,7 @@
 				              <td>${product.quantity}</td>
 				              <td>${product.price}</td>
 				              <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
-				               <td >  <img  src="<c:url value="c:/saleUploadFolder/mm1.png" />"/>    </td>
+				              <td height=100 width=50 ><img class="imageProduct1"  src="<c:url value="/resources/images/${product.fileName}"  />"/></td>
 					      </tr>
 		               </form:form>
 		        </c:forEach>
@@ -113,11 +113,7 @@
 				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
 				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
 				              
-                                   
                                    <input type="hidden"  name="fileName" value="${files}"> 
-                                  
-                            
-                                
 			              </tr>
 	             </table> <br/>
 	             Description   =<textarea   rows="4" cols="50" name="description" form="usrform">
