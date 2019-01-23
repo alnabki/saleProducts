@@ -42,8 +42,8 @@ public class Product  {
     public String fileName;
 	
 	
-	@Column(name="directory")
-    public String directory;
+	@Column(name="description")
+    public String description;
 	
 	
 	public String getFileName() {
@@ -54,12 +54,16 @@ public class Product  {
 		this.fileName = fileName;
 	}
 
-	public String getDirectory() {
-		return directory;
+	
+
+	
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDirectory(String directory) {
-		this.directory = directory;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getId() {

@@ -106,7 +106,7 @@
 			          <th>price</th>
 			         
 			        </tr>  
-		            <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
+		            <form:form id="usrform" name="addForm" action="addproduct"  method="post" modelAttribute="product" >
                           <tr>
                               
 	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
@@ -120,6 +120,10 @@
                                 
 			              </tr>
 	             </table> <br/>
+	             Description   =<textarea   rows="4" cols="50" name="description" form="usrform">
+                          ${product.description}</textarea>  
+	              
+	              <br><br>
 			               <input type="submit" value="ADD Product   "/>
                     </form:form> 
 			</div>

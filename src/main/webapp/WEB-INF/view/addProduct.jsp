@@ -35,7 +35,7 @@
          <li> <a href="managecustomers">Manage Account</a> </li>
          <li><a href="admin">Back</a></li>
         </ul>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div align="center">
 	     <h1 ><i>Products for sale<b></b></i></h1>
@@ -105,7 +105,7 @@
 			          <th>price</th>
 			         
 			        </tr>  
-		            <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
+		            <form:form id="usrform" name="addForm" action="addproduct"  method="post" modelAttribute="product" >
                           <tr>
                               
 	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
@@ -113,8 +113,11 @@
 				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
 				               
 			              </tr>
-	           </table> <br/>
-			               <input type="submit" value="ADD Product   "/>
+	           </table> <br>
+	                        Description =<textarea   rows="4" cols="50" name="description" form="usrform">
+                                             ${product.description}</textarea>  
+	                        <br><br>
+			               <input type="submit" value="     ADD Product   "/>
                     </form:form> 
 			</div>
 </body>

@@ -70,12 +70,15 @@
          
                                         <br/>
                                         
-        <form:form name="getForm" action="updateproduct"  method="post" modelAttribute="product" >  
-                        <input type='hidden' name="id"       value ='${product.id}'/>
-          Products name=<input type='text'   name="name"     value ='${product.name}'     required/>
-          quantity     =<input type='text'   name="quantity" value ='${product.quantity}' required/>
-          price        =<input type='text'   name="price"    value ='${product.price}'    required/>
+        <form:form id="usrform" name="getForm" action="updateproduct"  method="post" modelAttribute="product" >  
+                        <input type='hidden' name="id"             value ='${product.id}'/>
+          Products name=<input type='text'   name="name"           value ='${product.name}'     required/>
+          quantity     =<input type='text'   name="quantity"       value ='${product.quantity}' required/>
+          price        =<input type='text'   name="price"          value ='${product.price}'    required/>
                                       <br> <br>
+          Description  =<textarea   rows="4" cols="50" name="description" form="usrform">
+                          ${product.description}</textarea>  
+                                        <br> <br>
                        <input type="submit" value="Update"   /> 
                        <button> <a href="deleteproduct?id=${product.id}">   Delete this Product</a></button><br>
           </form:form> 
