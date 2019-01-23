@@ -58,7 +58,9 @@
 				              <td>${product.quantity}</td>
 				              <td>${product.price}</td>
 				              <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
-				               <td >  <img  src="<c:url value="c:/saleUploadFolder/mm1.png" />"/>    </td>
+				                 <c:forEach var="imageName" items="${imageNames}" varStatus="status">
+					               <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${imageName}" />"/></td>
+	                             </c:forEach>
 					      </tr>
 		               </form:form>
 		        </c:forEach>
