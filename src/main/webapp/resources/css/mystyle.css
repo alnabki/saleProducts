@@ -1,12 +1,8 @@
 @charset "ISO-8859-1";
 
 body {
-	
-	
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-	
-		
+      background-repeat: repeat;
+      background-size: 100% 100%  ;
      }
   table{
       color: blue;
@@ -82,8 +78,8 @@ body {
   }
 }
 #positionIndex{
-	position: relative;
-  left:50px;
+  position: relative;
+  left:100px;
   top: 150px;
    
 }
