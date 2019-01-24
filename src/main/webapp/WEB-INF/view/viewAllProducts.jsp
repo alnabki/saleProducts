@@ -37,28 +37,33 @@
         </ul>
      
 
-
+ <div align="center">
 	     <h1 ><i>Products for sale<b></b></i></h1>
-	     ---------------------------------------------------------------------------------------------------------------<br>
+	     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
+			       <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
+			                          <input type='hidden' name="id"       value ='${product.id}'/>   
+		                              S.No.        =  ${status.index + 1} <br>
+		                              <h2 >Products name=<b><u> ${product.name} </u></b></h2> 
+		                              <a href="getproduct?id=${product.id}"><u><big>Edit</big></u></a><br><br>
+		                                                        Quantity     =  ${product.quantity} <br>
+			                                                     Price        =  ${product.price}  <br>
+		                              <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
+			                        
 			        
-			          
-		 
-			                         <input type='hidden' name="id"       value ='${product.id}'/>
-			         S.No.        =  ${status.index + 1} <br>
-			         Products name=  ${product.name}  <br> 
-			         Quantity     =  ${product.quantity} <br>
-			         Price        =  ${product.price}  <br>
-				     Description  =  ${product.description} <br>        
+			        
+			        
+				     Description  =  ${product.description} <br><br><br>        
 				            
 				         
-			                    <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/></td>
+			                       
+                    </form:form> 
                               <br><br>
-         ---------------------------------------------------------------------------------------------------------------------<br>                     
+         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     
 		          
 		        </c:forEach>
-		      
+		       </div>
 					 
 
 </body>
