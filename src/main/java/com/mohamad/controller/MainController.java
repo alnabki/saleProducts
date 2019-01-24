@@ -64,17 +64,31 @@ import com.mohamad.service.SaleManager;
 		 * Simply selects the home view to render by returning its name.
 		 */
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String home(Locale locale, Model model) {
+		public ModelAndView home(Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
+			ModelAndView model1 = new ModelAndView("index");
 			
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 			
 			String formattedDate = dateFormat.format(date);
+			List<Product> allProducts=saleManager.getAllProducts();
+	         List<Product> productViews = new ArrayList<Product>();
+				if(null != allProducts ) {	
+					for (Product product: allProducts) {
+						product.fileName=product.FirstImage(product.fileName);
+						Product productView=product;
+						  System.out.println( productView.name);
+						  System.out.println( productView.name);
+						productViews.add(productView);
+			        }
+					
+				}
+		 	  model1.addObject("productViews",productViews);
 			
-			model.addAttribute("serverTime", formattedDate );
+			model1.addObject("serverTime", formattedDate );
 			
-			return "index";
+			return model1;
 			
 		}
 		@RequestMapping(value="/index")
@@ -99,7 +113,10 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value="/login")
 	 	public ModelAndView  login(){
 	 		ModelAndView model = new ModelAndView("login");
-			return model;
+	 		
+	 		
+		 	    return model;
+	    
 	 	}  
 	  
 	
