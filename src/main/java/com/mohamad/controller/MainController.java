@@ -378,7 +378,7 @@ import com.mohamad.service.SaleManager;
 		        map.addAttribute("files", fileNames);
 		        Log log = (Log)session.getAttribute("log");
 				if(log != null &&  log.role == "Admin" ) {	
-			        	ModelAndView model = new ModelAndView("viewProductDetail2");
+			        	ModelAndView model = new ModelAndView("addProduct2");
 						List<Product> products= saleManager.getAllProducts();
 						  List<Product> productViews = new ArrayList<Product>();
 						if(null != products ) {	

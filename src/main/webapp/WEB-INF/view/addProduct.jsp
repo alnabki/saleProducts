@@ -26,7 +26,7 @@
 
 <body background="<c:url value='/resources/images/background7.jpg'  />">
 <div align="right">
-          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+   <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>
         
         <ul>
@@ -38,43 +38,7 @@
 
 
 <div align="center">
-	     <h1 ><i>Products for sale<b></b></i></h1>
-		     <table border="1">
-			      <tr class="staticInfoTable">
-			          <th>S.No.</th>
-			          <th>Products name</th>
-			          <th>quantity</th>
-			          <th>price</th>
-			          <th>Photos</th>
-			          <th>Edit</th>
-			      </tr>  
-		       <c:forEach var="product" items="${productViews}" varStatus="status">
-			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
-			          
-					      <tr>
-					           <input type='hidden' name="id"       value ='${product.id}'/>
-				              <td  height=100 width=20>${status.index + 1}</td>
-				                  
-				             
-				             
-				                <td  height=100 width=20>${product.name}</td>
-				             
-				                <td  height=100 width=20>${product.quantity}</td>
-				             
-				                <td  height=100 width=20>${product.price}</td>
-				                     
-				             
-				                <td height=100 width=50 ><img class="imageProduct1"  src="<c:url value="/resources/images/${product.fileName}"  />"/></td>
-				                <td  height=100 width=20   > <a href="getproduct?id=${product.id}">Edit</a> </td> 
-				                 
-	                       
-					      </tr>
-		               </form:form>
-		        </c:forEach>
-		      </table>
-					      <br> <br><br> <br> 
-					      
-                      <h1 ><i>Add New Product<b></b></i></h1>
+  <h1 ><i>Add New Product<b></b></i></h1>
 		          
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
  
@@ -119,6 +83,46 @@
 	                        <br><br>
 			               <input type="submit" value="     ADD Product   "/>
                     </form:form> 
+                    <br><br>
+                    
+       
+	     <h1 ><i>Products for sale<b></b></i></h1>
+		     <table border="1">
+			      <tr class="staticInfoTable">
+			          <th>S.No.</th>
+			          <th>Products name</th>
+			          <th>quantity</th>
+			          <th>price</th>
+			          <th>Photos</th>
+			          <th>Edit</th>
+			      </tr>  
+		       <c:forEach var="product" items="${productViews}" varStatus="status">
+			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
+			          
+					      <tr>
+					           <input type='hidden' name="id"       value ='${product.id}'/>
+				              <td  height=100 width=20>${status.index + 1}</td>
+				                  
+				             
+				             
+				                <td  height=100 width=20>${product.name}</td>
+				             
+				                <td  height=100 width=20>${product.quantity}</td>
+				             
+				                <td  height=100 width=20>${product.price}</td>
+				                     
+				             
+				                <td height=100 width=50 ><img class="imageProduct1"  src="<c:url value="/resources/images/${product.fileName}"  />"/></td>
+				                <td  height=100 width=20   > <a href="getproduct?id=${product.id}">Edit</a> </td> 
+				                 
+	                       
+					      </tr>
+		               </form:form>
+		        </c:forEach>
+		      </table>
+					  
+					      
+                    
 			</div>
 </body>
 </html>
