@@ -12,6 +12,7 @@
 </head>
   <body background="<c:url value='/resources/images/background7.jpg'  />">
 
+       
         <div align="right">
 				<form:form name="login" method="post" action="checklogin" modelAttribute="account">
 			        <table  class="tableLogin">

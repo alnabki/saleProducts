@@ -49,5 +49,43 @@ body {
       height: auto;
    }
    
+ .navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+.timeserver{
+	text-color:white;
+	
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+#positionIndex{
+	position: relative;
+  left:50px;
+  top: 150px;
+   
+}
    <!-- background-image: url(http://localhost:8080/saleProductsebapp/resources/images/taylor.jpg);-->
    <!--background:url(https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwMi85Mzkvb3JpZ2luYWwvY2FtcC1maXJlLWluZnJhcmVkLW5vdi04LmpwZw== ) no-repeat ;background-size: 100% 100% ;-->
