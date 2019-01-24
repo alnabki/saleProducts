@@ -45,8 +45,8 @@
 			          <th>Products name</th>
 			          <th>quantity</th>
 			          <th>price</th>
-			          <th>Edit</th>
 			          <th>Photos</th>
+			          <th>Edit</th>
 			      </tr>  
 		       <c:forEach var="product" items="${products}" varStatus="status">
 			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
@@ -57,8 +57,9 @@
 				              <td>${product.name}    </td>
 				              <td>${product.quantity}</td>
 				              <td>${product.price}</td>
-				              <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
+				             
 				              <td height=100 width=50 ><img class="imageProduct1"  src="<c:url value="/resources/images/${product.fileName}"  />"/></td>
+					          <td > <a href="getproduct?id=${product.id}"  > Edit</a>     </td>
 					      </tr>
 		               </form:form>
 		        </c:forEach>
@@ -116,8 +117,8 @@
                                    <input type="hidden"  name="fileName" value="${files}"> 
 			              </tr>
 	             </table> <br/>
-	             Description   =<textarea   rows="4" cols="50" name="description" form="usrform">
-                          ${product.description}</textarea>  
+	             Description   =<textarea rows="4" cols="50" name="description" form="usrform">${product.description}</textarea>
+                            
 	              
 	              <br><br>
 			               <input type="submit" value="ADD Product   "/>

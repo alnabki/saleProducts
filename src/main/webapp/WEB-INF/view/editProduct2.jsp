@@ -82,8 +82,8 @@
 	         price        =<input type='text'   name="price"    value ='${product.price}'    required/>
 	                       <input type="hidden"  name="fileName" value="${files}"> 
 	                                       <br> <br>
-	          Description =<textarea   rows="4" cols="50" name="description" form="usrform">
-                          ${product.description}</textarea>                 
+	          Description =<textarea   rows="4" cols="50" name="description" form="usrform">${product.description}</textarea>
+                                           
 	                                  
 	                                        <br> <br> 
                           <input type="submit" value="Update"   /> 

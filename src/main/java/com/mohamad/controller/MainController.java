@@ -281,6 +281,35 @@ import com.mohamad.service.SaleManager;
 			    	ModelAndView model2 = new ModelAndView("notlogin");
 					return model2;
 				}
+		 	}
+		 @RequestMapping(value="/viewallproducts")
+		   public ModelAndView viewallproducts(HttpSession session) {
+				Log log = (Log)session.getAttribute("log");
+				if(log != null && ( log.role == "Admin" )) {
+			        	ModelAndView model = new ModelAndView("viewAllProducts");
+			            List<Product> allProducts=saleManager.getAllProducts();
+			            List<Product> productViews = new ArrayList<Product>();
+			            
+						if(null != allProducts ) {	
+							
+							for (Product product: allProducts) {
+								product.fileName=product.FirstImage(product.fileName);
+								Product productView=product;
+								  System.out.println( productView.name);
+								  System.out.println( productView.name);
+								productViews.add(productView);
+					        }
+							
+						}
+				 	    model.addObject("log.role",log.role);
+				 	   model.addObject("productViews",productViews);
+				 	    return model;
+			     }
+				
+				else {
+			    	ModelAndView model2 = new ModelAndView("notlogin");
+					return model2;
+				}
 		 	}	
 		 @RequestMapping(value="/managecustomers")
 		   public ModelAndView manageAccounts(HttpSession session) {
@@ -351,7 +380,7 @@ import com.mohamad.service.SaleManager;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("viewProductDetail2");
 						List<Product> products= saleManager.getAllProducts();
-						List<Product> productViews=new ArrayList<Product>();
+						  List<Product> productViews = new ArrayList<Product>();
 						if(null != products ) {	
 							
 							for (Product product: products) {

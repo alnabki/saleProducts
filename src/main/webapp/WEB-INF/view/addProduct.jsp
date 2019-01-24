@@ -114,8 +114,8 @@
 				               
 			              </tr>
 	           </table> <br>
-	                        Description =<textarea   rows="4" cols="50" name="description" form="usrform">
-                                             ${product.description}</textarea>  
+	                        Description =<textarea   rows="4" cols="50" name="description" form="usrform">${product.description}</textarea>
+                                               
 	                        <br><br>
 			               <input type="submit" value="     ADD Product   "/>
                     </form:form> 

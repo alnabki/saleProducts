@@ -24,7 +24,7 @@
     });
 </script>
 
-<body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+<body background="<c:url value='/resources/images/background7.jpg'  />">
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>
@@ -35,75 +35,32 @@
          <li> <a href="managecustomers">Manage Account</a> </li>
          <li><a href="admin">Back</a></li>
         </ul>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+     
 
 
 	     <h1 ><i>Products for sale<b></b></i></h1>
 	     ---------------------------------------------------------------------------------------------------------------<br>
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
-			          <form:form name="formupdateproducts" method="post" action="updateproduct" modelAttribute="product">
+			        
 			          
-		    --
-			     <input type='hidden' name="id"       value ='${product.id}'/>
-			         S.No.=  ${status.index + 1} <br>
+		 
+			                         <input type='hidden' name="id"       value ='${product.id}'/>
+			         S.No.        =  ${status.index + 1} <br>
 			         Products name=  ${product.name}  <br> 
 			         Quantity     =  ${product.quantity} <br>
-			         Price       =  ${product.price}  <br>
-				             
+			         Price        =  ${product.price}  <br>
+				     Description  =  ${product.description} <br>        
 				            
 				         
 			                    <td>  <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/></td>
-                     <a href="getproduct?id=${product.id}"  > Edit</a> <br>        
+                              <br><br>
          ---------------------------------------------------------------------------------------------------------------------<br>                     
 					     
-		               </form:form>
+		          
 		        </c:forEach>
 		      
-					      <br> <br><br> <br> 
-<div align="center">		      
-                      <h1 ><i>Add New Product<b></b></i></h1>
-		          
-         <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
- 
-            <p>Select files to upload. Press Add button to add more file  inputs.</p>
-            
-	            <table id="fileTable">
-	                <tr>
-	                   <td><input id="addFile" type="button" value="Add File" /></td>
-	                </tr>   
-	                <tr>
-	                    <td><input name="files[0]" type="file" /></td>
-	                </tr>
-	                <tr>
-	                    <td><input name="files[1]" type="file" /></td>
-	                </tr>
-	                
-	            </table>
-	            
-                  
-                 
-                     <input type="submit"  name="savefiles" value="upload"/>    <br/>
-               </form:form>  
-                <table>
-		             <tr class="staticInfoTable">
-			        
-			          <th>Products name</th>
-			          <th>quantity</th>
-			          <th>price</th>
-			         
-			        </tr>  
-		            <form:form name="addForm" action="addproduct"  method="post" modelAttribute="product" >
-                          <tr>
-                              
-	                          <td><input type='text'   name="name"     value ='${product.name}'     required/></td>
-				              <td><input type='text'   name="quantity" value ='${product.quantity}' required/></td>
-				              <td><input type='text'   name="price"    value ='${product.price}'    required/></td>
-				               
-			              </tr>
-	           </table> <br/>
-			               <input type="submit" value="ADD Product   "/>
-                    </form:form> 
-			</div>
+					 
+
 </body>
 </html>
 			
