@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<style><%@include file="/resources/css/mystyle.css"%></style>
+
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Insert title here</title>
@@ -19,7 +19,7 @@
  
 
  <div class="navbar">
-  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a class="active" href="/saleProducts/"><i class="fa fa-fw fa-home"></i> Home</a> 
   <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> 
   <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
   <a href="login"    >  <i class="fa fa-fw fa-user"></i> Sign in</a>
