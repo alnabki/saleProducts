@@ -31,6 +31,7 @@
      </div>
      <br><br><br>
       <ul>
+         <li> <a href="viewallproducts">View All Products</a> </li>
          <li> <a href="addproduct">Add Product</a> </li>
          <li> <a href="viewsales">View sales</a> </li>
          <li> <a href="managecustomers">Manage Account</a> </li>
