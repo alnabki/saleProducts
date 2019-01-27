@@ -21,23 +21,6 @@
 
 <body background="<c:url value='/resources/images/background7.jpg'  />">
  <!-- <img  src="<c:url value="/resources/images/laptopBackground.png" />"/><br> -->
- 
- 
- <div class="navbar">
-  <a class="active" href="/saleProducts/"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
-  
-  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
-  <a href="login"    >  <i class="fa fa-fw fa-user"></i> Sign in</a>
-  <a > <i  class="timeserver"> The time in Stockholm: ${serverTime}.</i></a>
-  <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-</div>
-
-<br>
-
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,10 +28,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    
-        <a class="navbar-brand" href="#">Hidden brand</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        
             <li class="nav-item active">
                  <a class="active" href="/saleProducts/"><i class="fa fa-fw fa-home"></i> Home</a> 
             </li>
@@ -58,17 +38,10 @@
             <li class="nav-item active">
                  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  
             </li>
-            
-            
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
         </ul>
-        
+         <a > <i  class="nav-item active"> The time in Stockholm: ${serverTime}.</i></a>
         <form class="form-inline my-2 my-lg-0">
+           
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -76,15 +49,9 @@
 </nav>
 
 
-
-
-
-
-
-
  <div id="positionIndex" >
 	    <h1  align="center"><i>Products for sale<b></b></i></h1>
-	     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    
 			                          <input type='hidden' name="id"       value ='${product.id}'/>   
@@ -94,13 +61,10 @@
 		                                                        Quantity in the Store     =  ${product.quantity} <br>
 			                                                     Price        =  ${product.price}  <br>
 		                              <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
-				                       Description  =  ${product.description} <br>   
-				            
-				         
-			                       
+				                       Description  =  ${product.description} <br> 
                   
-                              <br><br>
-         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
+                              <br>
+         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     
 		          
 		        </c:forEach>

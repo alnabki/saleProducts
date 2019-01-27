@@ -70,7 +70,6 @@ import com.mohamad.service.SaleManager;
 			
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-			
 			String formattedDate = dateFormat.format(date);
 			List<Product> allProducts=saleManager.getAllProducts();
 	         List<Product> productViews = new ArrayList<Product>();
@@ -82,15 +81,40 @@ import com.mohamad.service.SaleManager;
 						  System.out.println( productView.name);
 						productViews.add(productView);
 			        }
-					
 				}
 		 	  model1.addObject("productViews",productViews);
 			
 			model1.addObject("serverTime", formattedDate );
-			
 			return model1;
-			
 		}
+		
+		@RequestMapping(value = "/customer", method = RequestMethod.GET)
+		public ModelAndView customer(HttpSession session) {
+			
+		
+			List<Product> allProducts=saleManager.getAllProducts();
+	        List<Product> productViews = new ArrayList<Product>();
+			Log log = (Log)session.getAttribute("log");
+			if(log != null && ( log.role == "Customer" )) {
+				
+					ModelAndView model1 = new ModelAndView("customer");
+					if(null != allProducts ) {	
+						for (Product product: allProducts) {
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							productViews.add(productView);
+				        }
+					}
+			 	    model1.addObject("productViews",productViews);
+			 	    model1.addObject("log.role",log.role);
+					return model1;
+				}
+			    else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			   }
+		}	
+			
 		@RequestMapping(value="/index")
 		   public ModelAndView test() {	
 			String msg="hello i am mohamad";

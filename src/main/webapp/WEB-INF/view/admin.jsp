@@ -17,14 +17,15 @@
         <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>
-        
-        <ul>
-        <li>  <a href="viewallproducts">View All Products</a> </li>
-         <li> <a href="addproduct">Add Product</a> </li>
-         <li> <a href="viewsales">View sales</a> </li>
-         <li> <a href="managecustomers">Manage Account</a> </li>
-        </ul>
-        
+        <br><br><br>
+        <div>
+	        <ul>
+	        <li>  <a href="viewallproducts">View All Products</a> </li>
+	         <li> <a href="addproduct">Add Product</a> </li>
+	         <li> <a href="viewsales">View sales</a> </li>
+	         <li> <a href="managecustomers">Manage Account</a> </li>
+	        </ul>
+        </div>
      
        <div align="center">
          <h1 ><i> Products<b></b></i></h1>

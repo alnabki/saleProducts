@@ -15,7 +15,7 @@
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>
-        
+        <br><br><br>
         <ul>
          <li> <a href="addproduct">Add Product</a> </li>
          <li> <a href="viewsales">View sales</a> </li>

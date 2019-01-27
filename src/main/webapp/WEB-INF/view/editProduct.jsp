@@ -29,6 +29,7 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
           <a href="addproduct">Back</a>
      </div>
+     <br><br><br>
       <ul>
          <li> <a href="addproduct">Add Product</a> </li>
          <li> <a href="viewsales">View sales</a> </li>
