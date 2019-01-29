@@ -74,7 +74,7 @@ import javax.persistence.Table;
 		return address;
 	}
 	@Column (name="country")
-	public int country;
+	public String country;
 
 	public void setAddress(String address) {
 		this.address = address;
@@ -96,11 +96,11 @@ import javax.persistence.Table;
 		this.city = city;
 	}
 
-	public int getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(int country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 

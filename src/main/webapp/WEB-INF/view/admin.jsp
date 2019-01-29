@@ -47,7 +47,7 @@
           </table>
           <br><br>
           
-           <h1 ><i>Customers<b></b></i></h1>
+           <h1 ><i>Accounts<b></b></i></h1>
            
           <table  >
 		      <tr>
@@ -55,19 +55,25 @@
 		          <th> Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
-		          <th> Address </th>
 		          <th> Age     </th>
 		          <th> Phone   </th>
+		          <th> Address </th>
+		          <th> Post code     </th>
+		          <th> City   </th>
+		          <th> Country   </th>
 		      </tr>  
-	          <c:forEach var="customer" items="${customers}" varStatus="status">
+	          <c:forEach var="account" items="${accounts}" varStatus="status">
 		      <tr >
 	              <td> ${status.index + 1}   </td>
-	              <td> ${customer.name}      </td>
-	              <td> ${customer.email}     </td>
-	              <td> ${customer.password}  </td>
-	              <td> ${customer.address}   </td>
-	              <td> ${customer.age}       </td>
-	              <td> ${customer.phone}     </td>
+	              <td> ${account.username}      </td>
+	              <td> ${account.email}     </td>
+	              <td> ${account.password}  </td>
+	              <td> ${account.age}       </td>
+	              <td> ${account.phone}     </td>
+	              <td> ${account.address}   </td>
+	              <td> ${account.postcode}       </td>
+	              <td> ${account.city}     </td>
+	              <td> ${account.country}     </td>
 		      </tr>
 		     </c:forEach>
 		    </table>

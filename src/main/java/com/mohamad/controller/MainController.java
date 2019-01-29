@@ -209,11 +209,11 @@ import com.mohamad.service.SaleManager;
 			if(log != null && ( log.role == "Admin" )) {
 		        	ModelAndView model = new ModelAndView("admin");
 		            List<Product> products=saleManager.getAllProducts();
-		            List<Customer> customers=saleManager.getAllCustomers();
+		            List<Account> accounts=saleManager.getAllAccounts();
 		            List<Order> orders=saleManager.getAllOrders();
 			 	    model.addObject("log.role",log.role);
 			 	    model.addObject("products", products);
-			 	    model.addObject("customers", customers);
+			 	    model.addObject("accounts", accounts);
 			 	    model.addObject("orders", orders);
 			 	   
 			 	    return model;
@@ -368,9 +368,9 @@ import com.mohamad.service.SaleManager;
 				Log log = (Log)session.getAttribute("log");
 				if(log != null && ( log.role == "Admin" )) {
 			        	ModelAndView model = new ModelAndView("manageCustomers");
-			            List<Customer> customers=saleManager.getAllCustomers();
+			            List<Account> accounts=saleManager.getAllAccounts();
 				 	    model.addObject("log.role",log.role);
-				 	    model.addObject("customers", customers);
+				 	    model.addObject("accounts", accounts);
 				 	    return model;
 			     }
 				else {
@@ -378,9 +378,9 @@ import com.mohamad.service.SaleManager;
 					return model2;
 				}
 		 	}	
-		 @RequestMapping(value="/deletecustomer")
-		    public String deletecustomer(@RequestParam(value="id", required=true) int id) {
-		       saleManager.deleteCustomer(id);
+		 @RequestMapping(value="/deleteaccount")
+		    public String deleteaccount(@RequestParam(value="id", required=true) int id) {
+		       saleManager.deleteAccount(id);
 		        return "redirect:managecustomers";	 
 		    }
 		 

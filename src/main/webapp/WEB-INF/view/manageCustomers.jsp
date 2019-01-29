@@ -29,26 +29,32 @@
            <h1 ><i><b>All Customers</b></i></h1>
           <table >
 		      <tr>
-		          <th> S.No.   </th>
+		          <th>S.No.    </th>
 		          <th> Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
-		          <th> Address </th>
 		          <th> Age     </th>
 		          <th> Phone   </th>
-		          <th> DELETE  </th>
+		          <th> Address </th>
+		          <th> Post code     </th>
+		          <th> City   </th>
+		          <th> Country   </th>
 		      </tr>  
-	          <c:forEach var="customer" items="${customers}" varStatus="status">
+	          <c:forEach var="account" items="${accounts}" varStatus="status">
 		      <tr >
 	              <td> ${status.index + 1}   </td>
-	                 <input type='hidden'   name="id"            value = '${customer.id}'/>
-	             <td><input type='text'     name="name"          value = '${customer.name}'      required/></td>
-	             <td><input type='text'     name="email"         value = '${customer.email}'    required/></td>    
-	             <td><input type='password' name="password"      value = '${customer.password}' required/></td>
-	             <td><input type='text'     name="address"       value = '${customer.address}'    required/></td> 
-	             <td><input type='text'     name="age"           value = '${customer.age}'      required/></td>
-	             <td><input type='text'     name="phone"         value = '${customer.phone}'    required/></td>
-	             <td><a href="deletecustomer?id=${customer.id}">  DELETE</a> </td>	  
+	                 <input type='hidden'   name="id"            value = '${account.id}'/>
+	             <td><input type='text'     name="name"          value = '${account.username}'      required/></td>
+	             <td><input type='text'     name="email"         value = '${account.email}'    required/></td>    
+	             <td><input type='password' name="password"      value = '${account.password}' required/></td>
+	             <td><input type='text'     name="age"           value = '${account.age}'      required/></td>
+	             <td><input type='text'     name="phone"         value = '${account.phone}'      required/></td>
+	             <td><input type='text'     name="address"       value = '${account.address}'    required/></td> 
+	             <td><input type='text'     name="postcode"      value = '${account.postcode}'    required/></td>
+	             <td><input type='text'     name="city"          value = '${account.city}'    required/></td>
+	             <td><input type='text'     name="country"       value = '${account.country}'    required/></td>
+	               
+	             <td><a href="deleteaccount?id=${account.id}">  DELETE</a> </td>	  
 		      </tr>
 		     </c:forEach>
 		     
