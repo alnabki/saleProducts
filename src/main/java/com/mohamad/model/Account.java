@@ -38,13 +38,13 @@ import javax.persistence.Table;
 	public int phone;
 	
 	@Column (name="address")
-	public int address;
+	public String address;
 	
 	@Column (name="postcode")
-	public int postcode;
+	public String postcode;
 	
 	@Column (name="city")
-	public int city;
+	public String city;
 	
 	public String getEmail() {
 		return email;
@@ -70,27 +70,29 @@ import javax.persistence.Table;
 		this.phone = phone;
 	}
 
-	public int getAddress() {
+	public String getAddress() {
 		return address;
 	}
+	@Column (name="country")
+	public int country;
 
-	public void setAddress(int address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
 
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 
-	public int getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(int city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
@@ -102,8 +104,7 @@ import javax.persistence.Table;
 		this.country = country;
 	}
 
-	@Column (name="country")
-	public int country;
+	
 	
 	public int getId() {
 		return id;
