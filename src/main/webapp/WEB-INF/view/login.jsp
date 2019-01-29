@@ -51,7 +51,7 @@
 				<form:form name="login" method="post" action="checklogin" modelAttribute="account">
 				             Email:<br>
 				             <span>
-				             <input class="loginUserName" id="userid" name="username" type="text" value="" maxlength="64"   value='${account.username}'><br>
+				             <input class="loginUserName" id="userid" name="email" type="text" value="" maxlength="64"   value='${account.email}'><br>
 				            </span>
 				            <span>
 				             password:<br>

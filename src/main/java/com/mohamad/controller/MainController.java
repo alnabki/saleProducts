@@ -153,9 +153,9 @@ import com.mohamad.service.SaleManager;
 	  
 	
 		@RequestMapping(value="/checklogin",method = RequestMethod.POST)
-	 	public String  login(HttpSession session,@RequestParam(value="username", required=true) String  username,@RequestParam(value="password", required=true) String  password)   {	
+	 	public String  login(HttpSession session,@RequestParam(value="email", required=true) String  email,@RequestParam(value="password", required=true) String  password)   {	
 	    Account  account=new Account();
-	    account=saleManager.checkLogin(username,password);
+	    account=saleManager.checkLogin(email,password);
 	 		 if (account != null) {
 	 			Admin admin=new Admin();
 	 			Log log = new Log();

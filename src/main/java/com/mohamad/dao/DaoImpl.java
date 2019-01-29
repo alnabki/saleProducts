@@ -185,7 +185,7 @@ public class DaoImpl implements Dao  {
 	
 	@Transactional
 	@SuppressWarnings("unchecked")
-	public Account checkLogin(String username, String password) {
+	public Account checkLogin(String email, String password) {
 		    Session session = sessionFactory.getCurrentSession();
 		    session.beginTransaction();
 		    Account account=new Account();
@@ -195,7 +195,7 @@ public class DaoImpl implements Dao  {
 		        accounts = (List<Account>)session.createQuery("from Account ").list();
 		        outer:
 		        for(Account acc:accounts) {
-			    	if(acc.username.equals(username) && acc.password.equals(password) ) {
+			    	if(acc.email.equals(email) && acc.password.equals(password) ) {
 			    		account=acc;
 			    		System.out.println("IN LIST");
 			    		break outer;

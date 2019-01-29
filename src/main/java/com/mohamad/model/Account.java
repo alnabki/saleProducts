@@ -29,7 +29,7 @@ import javax.persistence.Table;
     public String password;
 
 	@Column (name="email")
-	public int email;
+	public String email;
 	
 	@Column (name="age")
 	public int age;
@@ -46,11 +46,11 @@ import javax.persistence.Table;
 	@Column (name="city")
 	public int city;
 	
-	public int getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(int email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
