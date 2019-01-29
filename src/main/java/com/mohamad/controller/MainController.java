@@ -204,6 +204,8 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value="/admin")
 	   public ModelAndView adminpage(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
+			
+			
 			if(log != null && ( log.role == "Admin" )) {
 		        	ModelAndView model = new ModelAndView("admin");
 		            List<Product> products=saleManager.getAllProducts();
@@ -213,6 +215,7 @@ import com.mohamad.service.SaleManager;
 			 	    model.addObject("products", products);
 			 	    model.addObject("customers", customers);
 			 	    model.addObject("orders", orders);
+			 	   
 			 	    return model;
 		        }
 			

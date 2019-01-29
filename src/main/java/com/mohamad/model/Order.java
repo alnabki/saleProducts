@@ -1,5 +1,7 @@
 package com.mohamad.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +31,20 @@ public class Order  {
 	@Column(name="quantity")
 	 public int quantity;
 	 
+	
+	@Column(name="orders_time")
+	 public long ordersDate;
+
+	
+	public long getOrdersDate() {
+		return ordersDate;
+	}
+	public void setOrdersDate(long ordersDate) {
+		this.ordersDate = ordersDate;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
@@ -52,6 +64,7 @@ public class Order  {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 
 	
 

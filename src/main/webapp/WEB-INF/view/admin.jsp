@@ -79,12 +79,16 @@
 		          <th>S.No.    </th>
 		          <th> CustomerName   </th>
 		          <th> Product   </th>
+		          <th> quantity   </th>
+		           <th> Order's Date   </th>
 		      </tr> 
 		       <c:forEach var="order" items="${orders}" varStatus="status"> 
 		          <tr >
 		             <td> ${status.index + 1}       </td>
-		             <td> ${order.customer.name }   </td>
+		             <td> ${order.account.username }   </td>
 		             <td> ${order.product.name }    </td>
+		             <td> ${order.quantity }    </td>
+		              <td> ${order.ordersDate }    </td>
 		          </tr>   
 		       </c:forEach>
 		       
