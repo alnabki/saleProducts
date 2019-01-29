@@ -25,10 +25,21 @@ public class Order  {
     
     @Column(name="id")
 	 public int id;
+	
+	@Column(name="quantity")
+	 public int quantity;
 	 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@ManyToOne
-	@JoinColumn(name = "customer_id", nullable = true)
-	public Customer customer;
+	@JoinColumn(name = "account_id", nullable = true)
+	public Account account;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = true)
@@ -42,12 +53,14 @@ public class Order  {
 		this.id = id;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	
+
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Product getProduct() {

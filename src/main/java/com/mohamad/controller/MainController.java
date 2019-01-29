@@ -133,6 +133,14 @@ import com.mohamad.service.SaleManager;
 		
 			return "redirect:index";
 	    }
+	   @RequestMapping(value = "/makeorder" ,method = RequestMethod.POST)
+		  public String makeorder(@ModelAttribute("order") Order order) {
+			
+			
+		    saleManager.addOrder(order);
+		
+			return "redirect:customer";
+	    }
 	   
 	   @RequestMapping(value="/login")
 	 	public ModelAndView  login(){

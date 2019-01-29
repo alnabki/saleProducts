@@ -34,19 +34,25 @@
  <div id="positionIndex" >
 	    <h1  align="center"><i>Products for sale<b></b></i></h1>
 	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+	      
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
-			    
-			                          <input type='hidden' name="id"       value ='${product.id}'/>   
+			    <form:form id="usrform" name="getForm" action="makeorder"  method="post" modelAttribute="order" >  
+			                          
 		                             
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
 		                               S.No.        =  ${status.index + 1} <br>
-		                             
+		                                                        <input type="hidden" name="product.id" value="${product.id}" />
+		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
 		                                                        Quantity in the Store     =  ${product.quantity} <br>
-			                                                     Price        =  ${product.price} Kr <br>
-		                              <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
+			                                                    Price        =  ${product.price} Kr <br>
+			                                                    Quantity = <input type="number"  name="quantity" value="${quantity}"  /><br>
+		                            
+		                                
 				                       Description  =  ${product.description} <br> 
-                  
+				                       <input type="submit" value="makeorder"   /><br>
+                    <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
                               <br>
+                              </form:form>
          ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     
 		          
