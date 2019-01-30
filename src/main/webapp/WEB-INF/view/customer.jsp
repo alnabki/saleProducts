@@ -45,11 +45,11 @@
 		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
 		                                                        Quantity in the Store     =  ${product.quantity} <br>
 			                                                    Price        =  ${product.price} Kr <br>
-			                                                    Quantity = <input type="number"  name="quantity" value="${quantity}"  /><br>
-		                            
+			                                                    Quantity = <input type="number"  name="quantity" value="${quantity}"  />
+		                                                         <input type="submit" value="Add to cart"   /><br>
 		                                
 				                       Description  =  ${product.description} <br> 
-				                       <input type="submit" value="makeorder"   /><br>
+				                      
                     <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
                               <br>
                               </form:form>
