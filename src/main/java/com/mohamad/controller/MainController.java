@@ -113,7 +113,16 @@ import com.mohamad.service.SaleManager;
 				   ModelAndView model2 = new ModelAndView("notlogin");
 		 		return model2;
 			   }
-		}	
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 			
