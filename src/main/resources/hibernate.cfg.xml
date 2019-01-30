@@ -12,6 +12,7 @@
         <mapping class="com.mohamad.model.Product" />
         <mapping class="com.mohamad.model.Log" />
         <mapping class="com.mohamad.model.Order" />
+        <mapping class="com.mohamad.model.Basket" />
        
         <mapping class="com.mohamad.model.SaleFileUpload" />
        

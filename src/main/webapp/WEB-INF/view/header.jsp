@@ -40,6 +40,7 @@
 		             <li class="nav-item active">
 		              <a href="logout"> <i class="fa fa-fw fa-user"> </i> ${log.account.username } <button> Logout</button>   </a> 
 		             </li>
+		             
 		        </ul>
 		     </div> 
 		  
@@ -47,7 +48,9 @@
 	             <i class="fa fa-fw fa-search"></i><input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
 	            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	        </form>
-		   </nav>
+	       
+		              <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket <button > basket</button>   </a> 
+		     		   </nav>
        </c:if>
      
       </div>

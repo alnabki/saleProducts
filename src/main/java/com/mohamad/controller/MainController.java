@@ -114,6 +114,33 @@ import com.mohamad.service.SaleManager;
 		 		return model2;
 			   }
 		}	
+		@RequestMapping(value = "/basket", method = RequestMethod.GET)
+		public ModelAndView basket(HttpSession session) {
+			
+		
+			List<Product> allProducts=saleManager.getAllProducts();
+	        List<Product> productViews = new ArrayList<Product>();
+			Log log = (Log)session.getAttribute("log");
+			if(log != null && ( log.role == "Customer" )) {
+				
+					ModelAndView model1 = new ModelAndView("basket");
+					if(null != allProducts ) {	
+						for (Product product: allProducts) {
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							productViews.add(productView);
+				        }
+					}
+			 	    model1.addObject("productViews",productViews);
+			 	    model1.addObject("log.role",log.role);
+					return model1;
+				}
+			    else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			   }
+		}	
+			
 			
 		@RequestMapping(value="/index")
 		   public ModelAndView test() {	
@@ -123,24 +150,7 @@ import com.mohamad.service.SaleManager;
 	   }
 		
 		
-	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
-		  public String addaccount(@ModelAttribute("account") Account account) {
-			
-			Account account1= new Account();
-			 account1.username="Mohamad";
-			 account1.password="123";
-		    saleManager.addAccount(account);
-		
-			return "redirect:index";
-	    }
-	   @RequestMapping(value = "/makeorder" ,method = RequestMethod.POST)
-		  public String makeorder(@ModelAttribute("order") Order order) {
-			
-			
-		    saleManager.addOrder(order);
-		
-			return "redirect:customer";
-	    }
+	   
 	   
 	   @RequestMapping(value="/login")
 	 	public ModelAndView  login(){
@@ -240,6 +250,7 @@ import com.mohamad.service.SaleManager;
 		
 	 	}	   
 	   
+	   
 	   @RequestMapping(value="/notlogin")
 		public ModelAndView notlogin() {
 			ModelAndView model = new ModelAndView("notLoged");
@@ -254,6 +265,29 @@ import com.mohamad.service.SaleManager;
 			return "redirect:login";			
 		}
 	   
+	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
+		  public String addaccount(@ModelAttribute("account") Account account) {
+			
+			Account account1= new Account();
+			 account1.username="Mohamad";
+			 account1.password="123";
+		    saleManager.addAccount(account);
+		
+			return "redirect:index";
+	    }
+	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
+		  public String addtobasket(@ModelAttribute("order") Order order) {
+			
+			
+		    saleManager.addOrder(order);
+		
+			return "redirect:customer";
+	    }
+	   @RequestMapping(value="/deleteorder")
+	    public String deleteorder(@RequestParam(value="id", required=true) int id) {
+	       saleManager.deleteOrde(id);
+	        return "redirect:basket";	 
+	    }
 		@RequestMapping(value="/addproduct")
 		public ModelAndView addproduct(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
