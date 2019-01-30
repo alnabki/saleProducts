@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
+import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
 import com.mohamad.model.Order;
 import com.mohamad.model.Product;
@@ -37,5 +38,11 @@ public interface SaleManager  {
 	public List<Order> getAllOrders();
 	public void deleteOrde(Integer orderId);
 	public void updateOrder(Order order);
+	
+	public void addToBasket(Basket basket);
+	public List<Basket> getAllBaskets();
+	public void deleteBasketById(Integer basketId);
+	public void updateBasket(Basket basket);
+	public Basket getBasketById(int id);
 	
 }

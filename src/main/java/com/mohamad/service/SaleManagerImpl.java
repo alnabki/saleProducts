@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mohamad.dao.Dao;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
+import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
 import com.mohamad.model.Order;
 import com.mohamad.model.Product;
@@ -20,6 +21,9 @@ public class SaleManagerImpl implements SaleManager {
 			@Autowired
 			 private Dao dao;
 		
+			
+			
+			
 			@Transactional
 			public void addAccount(Account account) {
 				dao.addAccount(account);
@@ -37,6 +41,10 @@ public class SaleManagerImpl implements SaleManager {
 				dao.deleteAccount( accountId);
 			}
 			
+			
+			
+			
+			
 			public void addAdmin(Admin admin){
 				dao.addAdmin( admin);
 			}
@@ -49,6 +57,9 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateAdmin(Admin admin){
 				dao.updateAdmin( admin);
 			}
+			
+			
+			
 			
 			public void addProduct(Product product){
 				dao.addProduct( product);
@@ -67,6 +78,9 @@ public class SaleManagerImpl implements SaleManager {
 			}
 		
 			
+			
+			
+			
 			public void addCustomer(Customer customer){
 				dao.addCustomer( customer);
 			}
@@ -80,12 +94,20 @@ public class SaleManagerImpl implements SaleManager {
 				dao.updateCustomer( customer);
 			}
 			
+			
+			
+			
+			
 			public Account checkLogin(String username, String password) {
 				return dao.checkLogin(username,password);
 			}
 			public List<Admin> getAdminsByAccountId(int accountId){
 			   return dao.getAdminsByAccountId(accountId);
 			}
+			
+			
+			
+			
 			
 			public void addOrder(Order order) {
 				dao.addOrder(order);
@@ -99,5 +121,24 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateOrder(Order order) {
 				dao.updateOrder(order);
 			}
+			
+			
+			
+			public void addToBasket(Basket basket){
+				dao.addToBasket( basket);
+			}
+			public List<Basket> getAllBaskets(){
+				return dao.getAllBaskets();
+			}
+			public void deleteBasketById(Integer productId){
+				dao.deleteProduct( productId);
+			}
+			public void updateBasket(Basket basket) {
+				dao.updateBasket(basket);
+			}
+			public Basket getBasketById(int id) {
+				return dao.getBasketById(id);
+			}
+			
 	}
 
