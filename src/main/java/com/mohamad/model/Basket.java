@@ -20,7 +20,48 @@ public class Basket {
 	 @Column(name="id")
 	 public int id;
 	
+	 
+
+
+
+	@Column(name="product_id")
+	 public int productId;
 	
+	@Column(name="quantity_shop")
+	 public int quantityShop;
+	
+	@Column(name="price")
+	 public int price;
+	
+	@ManyToOne
+	@JoinColumn(name = "account_id", nullable = true)
+	public Account account;
+	
+	
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public int getQuantityShop() {
+		return quantityShop;
+	}
+
+	public void setQuantityShop(int quantityShop) {
+		this.quantityShop = quantityShop;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -41,22 +82,10 @@ public class Basket {
 
 	
 
-	@ManyToOne
-	@JoinColumn(name = "account_id", nullable = true)
-	public Account account;
 	
-	@ManyToOne
-	@JoinColumn(name = "order_id", nullable = true)
-	public Order order;
+	
 
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
+	
 
 }

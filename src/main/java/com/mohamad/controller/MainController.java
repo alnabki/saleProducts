@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
+import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
@@ -285,10 +286,10 @@ import com.mohamad.service.SaleManager;
 			return "redirect:index";
 	    }
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
-		  public String addtobasket(@ModelAttribute("order") Order order) {
+		  public String addtobasket(@ModelAttribute("BASKET") Basket basket) {
 			
 			
-		    saleManager.addOrder(order);
+		    saleManager.addToBasket(basket);
 		
 			return "redirect:customer";
 	    }

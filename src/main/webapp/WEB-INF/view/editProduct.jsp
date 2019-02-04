@@ -51,7 +51,7 @@
          <form:form method="post" action="savefiles&update" modelAttribute="uploadForm" enctype="multipart/form-data">
                 <table id="fileTable">
                     <tr>
-                       <td>Add  photos to this Product (all old photos will lost)</td>
+                       <td>Add  photos to this Product (all old photos will be lost)</td>
                     </tr>
                       <input type='hidden' name="id"       value ='${product.id}'/>
                     <tr>

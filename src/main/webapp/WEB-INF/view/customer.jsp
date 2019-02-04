@@ -36,16 +36,18 @@
 	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 	      
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
-			    <form:form id="usrform" name="getForm" action="addtobasket"  method="post" modelAttribute="order" >  
+			    <form:form id="usrform" name="getForm" action="addtobasket"  method="post" modelAttribute="basket" >  
 			                          
 		                             
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
 		                               S.No.                  =  ${status.index + 1} <br>
-                                          <input type="hidden" name="product.id" value="${product.id}" />
+                                          <input type="hidden" name="productId" value="${product.id}" />
                                           <input type="hidden" name="account.id" value="${log.account.id}" />
+                                           <input type="hidden" name="price" value="${product.price}" />
+                                           
                                        Quantity in the Store  =  ${product.quantity} <br>
                                        Price                  =  ${product.price} Kr <br>
-                                       Quantity               = <input type="number"  name="quantity" value="${quantity}"  />
+                                       Quantity               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
                                       <input type="submit" value="Add to cart"   /><br>
                

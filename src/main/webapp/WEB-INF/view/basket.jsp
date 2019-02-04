@@ -20,9 +20,11 @@
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="gotockeckout"  method="post" modelAttribute="order" >  
 			                          
-		                             
+		                             ${status.index + 1} = <br>
 		                             <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/>
-                                       ${status.index + 1} = <h2 ><b><u> ${product.name} </u></b></h2>         Qty = <input type="number"  name="quantity" value="${quantity}"  />     Price        =  ${product.price} Kr <br>
+		                            
+                                        <h2 ><b><u> ${product.name} </u></b></h2>       Qty = <input type="number"  name="quantity" value="${quantity}"  />      Price  =  ${product.price} Kr  <br>  
+                                        
 		                             
 		                                                        <input type="hidden" name="product.id" value="${product.id}" />
 		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
