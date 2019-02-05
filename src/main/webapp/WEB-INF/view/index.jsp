@@ -21,6 +21,11 @@
 
 <body background="<c:url value='/resources/images/background7.jpg'  />">
  <!-- <img  src="<c:url value="/resources/images/laptopBackground.png" />"/><br> -->
+ 
+ <div align="right">
+          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+        </div>
+        <br>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,31 +50,39 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+          <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket <button > basket</button>   </a>
     </div>
 </nav>
 
 
- <div id="positionIndex" >
+<div id="positionIndex" >
 	    <h1  align="center"><i>Products for sale<b></b></i></h1>
 	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+	      
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
-			    
-			                          <input type='hidden' name="id"       value ='${product.id}'/>   
-		                              S.No.        =  ${status.index + 1} <br>
+			    <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="basket" >  
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
-		                             
-		                                                        Quantity in the Store     =  ${product.quantity} <br>
-			                                                     Price        =  ${product.price}  <br>
-		                              <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br>
-				                       Description  =  ${product.description} <br> 
-                  
-                              <br>
+		                               S.No.                  =  ${status.index + 1} <br>
+                                          <input type="hidden" name="productId" value="${product.id}" />
+                                          <input type="hidden" name="account.id" value="1"/>
+                                           <input type="hidden" name="price" value="${product.price}" />
+                                           
+                                       Quantity in the Store  =  ${product.quantity} <br>
+                                       Price                  =  ${product.price} Kr <br>
+                                       Quantity               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
+                                    
+                                      <input type="submit" value="Add to cart g"   /><br>
+               
+                                       Description            =  ${product.description} <br> 
+				                      
+                                      <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
+                                     
+                    </form:form>
          ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     
 		          
 		        </c:forEach>
 		       </div>
-					 
-
+		       
 </body>
 </html>

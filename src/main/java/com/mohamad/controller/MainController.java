@@ -131,6 +131,23 @@ import com.mohamad.service.SaleManager;
 			List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
 			Log log = (Log)session.getAttribute("log");
+			
+			
+			if(log == null ) {
+				
+				ModelAndView model3 = new ModelAndView("basket");
+				if(null != allProducts ) {	
+					for (Product product: allProducts) {
+						product.fileName=product.FirstImage(product.fileName);
+						Product productView=product;
+						productViews.add(productView);
+			        }
+				}
+		 	    model3.addObject("productViews",productViews);
+		 	   
+				return model3;
+			}
+			
 			if(log != null && ( log.role == "Customer" )) {
 				
 					ModelAndView model1 = new ModelAndView("basket");
@@ -150,13 +167,21 @@ import com.mohamad.service.SaleManager;
 		 		return model2;
 			   }
 		}	
-			
-			
+		
 		@RequestMapping(value="/index")
 		   public ModelAndView test() {	
-			String msg="hello i am mohamad";
-		 	ModelAndView model = new ModelAndView("index","msg",msg);
-		 	return model;
+		 	List<Product> allProducts=saleManager.getAllProducts();
+	        List<Product> productViews = new ArrayList<Product>();
+					ModelAndView model1 = new ModelAndView("index");
+					if(null != allProducts ) {	
+						for (Product product: allProducts) {
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							productViews.add(productView);
+				        }
+					}
+			 	    model1.addObject("productViews",productViews);
+					return model1;
 	   }
 		
 		
@@ -292,6 +317,15 @@ import com.mohamad.service.SaleManager;
 		    saleManager.addToBasket(basket);
 		
 			return "redirect:customer";
+	    }
+	   
+	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
+		  public String addtobasketasguest(@ModelAttribute("BASKET") Basket basket) {
+			
+			
+		    saleManager.addToBasket(basket);
+		
+			return "redirect:index";
 	    }
 	   @RequestMapping(value="/deleteorder")
 	    public String deleteorder(@RequestParam(value="id", required=true) int id) {
