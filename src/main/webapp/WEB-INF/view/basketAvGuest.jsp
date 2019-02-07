@@ -9,18 +9,32 @@
 <style><%@include file="/resources/css/mystyle.css"%></style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 <title> Login</title>
 </head>
-<body background="<c:url value='/resources/images/background7.jpg'  />">
+<body >
 
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
+
 <div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (# items)<b></b></i></h1>
-	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
-	  
+	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
+	   
+	   <c:if test='${ log == null   }' >
+	   
+		   <table align="center" >
+		     <tr>
+		       <td align="center">  you don't add any thing to basket</td>
+		      </tr>
+		   </table>
+	       
+	   
+	    </c:if>
+	     <c:if test='${ log.role =="Guest"   }' >
+	      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="gotockeckout"  method="post" modelAttribute="order" >  
 			                          
@@ -34,14 +48,18 @@
 		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
 			                                                   <br>
 		                                                         <input type="submit" value="Go to Checkout"   /><br><br>
+		                                                        
 		                                                         <td><a href="deleteorder?id=${order.id}">  Remove</a> </td>
                               <br>
                               
                               </form:form>
+                             
          ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     
 		          
 		        </c:forEach>
+		         </c:if>
+		         
 		       
 		       </div>
 

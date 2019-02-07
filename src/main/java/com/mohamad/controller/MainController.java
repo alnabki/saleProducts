@@ -64,6 +64,11 @@ import com.mohamad.service.SaleManager;
 		/**
 		 * Simply selects the home view to render by returning its name.
 		 */
+		
+		
+		
+		
+		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
@@ -88,6 +93,120 @@ import com.mohamad.service.SaleManager;
 			model1.addObject("serverTime", formattedDate );
 			return model1;
 		}
+		
+		 @RequestMapping(value="/login")
+		 	public ModelAndView  login(){
+		 		ModelAndView model = new ModelAndView("login");
+		 		
+		 		
+			 	    return model;
+		    
+		 	}  
+		  
+		
+			@RequestMapping(value="/checklogin",method = RequestMethod.POST)
+		 	public String  login(HttpSession session,@RequestParam(value="email", required=true) String  email,@RequestParam(value="password", required=true) String  password)   {	
+		    Account  account=new Account();
+		    account=saleManager.checkLogin(email,password);
+		 		 if (account != null) {
+		 			Admin admin=new Admin();
+		 			Log log = new Log();
+		 			log.account = account;
+		 			List<Admin> admins =  saleManager.getAdminsByAccountId(account.id);
+		 		
+		 			for (Admin ad :admins) {
+		 				admin=ad;
+		 			}
+		 			if( admin.id == 0 ) {
+		 				
+		 				log.role = "Customer";
+		 			}
+		 			else {
+		 				log.role = "Admin" ;
+		 			}
+		 			
+		 			session.setAttribute("log", log);
+			 		session.setMaxInactiveInterval(-1);
+			 		return "redirect:main";
+		        }
+		 		else {
+					return "redirect:notlogin";
+				}			
+		 		
+			}
+		   
+		   @RequestMapping(value="/main")
+			public String main(HttpSession session) {
+			   
+				Log log = (Log)session.getAttribute("log");
+				if(log != null) {
+					if(log.role == "Admin") {
+						
+						return "redirect:admin";
+					}else {
+						session.getCreationTime();
+						return "redirect:customer";
+					}
+				} 
+				else {
+					return "redirect:notlogin";
+				}			
+			}
+		   
+		   @RequestMapping(value="/admin")
+		   public ModelAndView adminpage(HttpSession session) {
+				Log log = (Log)session.getAttribute("log");
+				
+				
+				if(log != null && ( log.role == "Admin" )) {
+			        	ModelAndView model = new ModelAndView("admin");
+			            List<Product> products=saleManager.getAllProducts();
+			            List<Account> accounts=saleManager.getAllAccounts();
+			            List<Order> orders=saleManager.getAllOrders();
+				 	    model.addObject("log.role",log.role);
+				 	    model.addObject("products", products);
+				 	    model.addObject("accounts", accounts);
+				 	    model.addObject("orders", orders);
+				 	   
+				 	    return model;
+			        }
+				
+				else {
+			 		ModelAndView model2 = new ModelAndView("notlogin");
+			 		return model2;
+				}
+		 	}	
+		   @RequestMapping(value="/customer")
+		   public ModelAndView customerpage(HttpSession session) {
+				Log log = (Log)session.getAttribute("log");
+				if(log != null && ( log.role == "Customer" )) {
+			        	ModelAndView model = new ModelAndView("customer");
+				 	   
+				 	    model.addObject("log.role",log.role);
+				 	    return model;
+			        }
+				else {
+			 		ModelAndView model2 = new ModelAndView("notlogin");
+			 		return model2;
+				}
+			
+		 	}	   
+		   
+		   
+		   @RequestMapping(value="/notlogin")
+			public ModelAndView notlogin() {
+				ModelAndView model = new ModelAndView("notLoged");
+				return model;			
+			}
+		   @RequestMapping(value="/logout")
+			public String logout(HttpSession session) throws ParseException {
+				Log log = (Log) session.getAttribute("log");
+				if(log != null ) {
+				session.removeAttribute("log");
+				}
+				return "redirect:login";			
+			}
+		   
 		
 		@RequestMapping(value = "/customer", method = RequestMethod.GET)
 		public ModelAndView customer(HttpSession session) {
@@ -124,52 +243,11 @@ import com.mohamad.service.SaleManager;
 		
 		
 		
-		@RequestMapping(value = "/basket", method = RequestMethod.GET)
-		public ModelAndView basket(HttpSession session) {
-			
-		    
-			List<Product> allProducts=saleManager.getAllProducts();
-	        List<Product> productViews = new ArrayList<Product>();
-			Log log = (Log)session.getAttribute("log");
-			
-			
-			if(log == null ) {
-				
-				ModelAndView model3 = new ModelAndView("basket");
-				if(null != allProducts ) {	
-					for (Product product: allProducts) {
-						product.fileName=product.FirstImage(product.fileName);
-						Product productView=product;
-						productViews.add(productView);
-			        }
-				}
-		 	    model3.addObject("productViews",productViews);
-		 	 
-				return model3;
-			}
-			
-			if(log != null && ( log.role == "Customer" )) {
-				
-					ModelAndView model1 = new ModelAndView("basket");
-					if(null != allProducts ) {	
-						for (Product product: allProducts) {
-							product.fileName=product.FirstImage(product.fileName);
-							Product productView=product;
-							productViews.add(productView);
-				        }
-					}
-			 	    model1.addObject("productViews",productViews);
-			 	    model1.addObject("log.role",log.role);
-					return model1;
-				}
-			    else {
-				   ModelAndView model2 = new ModelAndView("notlogin");
-		 		return model2;
-			   }
-		}	
+		
 		
 		@RequestMapping(value="/index")
 		   public ModelAndView test() {	
+			
 		 	List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
 					ModelAndView model1 = new ModelAndView("index");
@@ -187,119 +265,7 @@ import com.mohamad.service.SaleManager;
 		
 	   
 	   
-	   @RequestMapping(value="/login")
-	 	public ModelAndView  login(){
-	 		ModelAndView model = new ModelAndView("login");
-	 		
-	 		
-		 	    return model;
-	    
-	 	}  
 	  
-	
-		@RequestMapping(value="/checklogin",method = RequestMethod.POST)
-	 	public String  login(HttpSession session,@RequestParam(value="email", required=true) String  email,@RequestParam(value="password", required=true) String  password)   {	
-	    Account  account=new Account();
-	    account=saleManager.checkLogin(email,password);
-	 		 if (account != null) {
-	 			Admin admin=new Admin();
-	 			Log log = new Log();
-	 			log.account = account;
-	 			List<Admin> admins =  saleManager.getAdminsByAccountId(account.id);
-	 		
-	 			for (Admin ad :admins) {
-	 				admin=ad;
-	 			}
-	 			if( admin.id == 0 ) {
-	 				
-	 				log.role = "Customer";
-	 			}
-	 			else {
-	 				log.role = "Admin" ;
-	 			}
-	 			
-	 			session.setAttribute("log", log);
-		 		session.setMaxInactiveInterval(-1);
-		 		return "redirect:main";
-	        }
-	 		else {
-				return "redirect:notlogin";
-			}			
-	 		
-		}
-	   
-	   @RequestMapping(value="/main")
-		public String main(HttpSession session) {
-		   
-			Log log = (Log)session.getAttribute("log");
-			if(log != null) {
-				if(log.role == "Admin") {
-					
-					return "redirect:admin";
-				}else {
-					session.getCreationTime();
-					return "redirect:customer";
-				}
-			} 
-			else {
-				return "redirect:notlogin";
-			}			
-		}
-	   
-	   @RequestMapping(value="/admin")
-	   public ModelAndView adminpage(HttpSession session) {
-			Log log = (Log)session.getAttribute("log");
-			
-			
-			if(log != null && ( log.role == "Admin" )) {
-		        	ModelAndView model = new ModelAndView("admin");
-		            List<Product> products=saleManager.getAllProducts();
-		            List<Account> accounts=saleManager.getAllAccounts();
-		            List<Order> orders=saleManager.getAllOrders();
-			 	    model.addObject("log.role",log.role);
-			 	    model.addObject("products", products);
-			 	    model.addObject("accounts", accounts);
-			 	    model.addObject("orders", orders);
-			 	   
-			 	    return model;
-		        }
-			
-			else {
-		 		ModelAndView model2 = new ModelAndView("notlogin");
-		 		return model2;
-			}
-	 	}	
-	   @RequestMapping(value="/customer")
-	   public ModelAndView customerpage(HttpSession session) {
-			Log log = (Log)session.getAttribute("log");
-			if(log != null && ( log.role == "Customer" )) {
-		        	ModelAndView model = new ModelAndView("customer");
-			 	   
-			 	    model.addObject("log.role",log.role);
-			 	    return model;
-		        }
-			else {
-		 		ModelAndView model2 = new ModelAndView("notlogin");
-		 		return model2;
-			}
-		
-	 	}	   
-	   
-	   
-	   @RequestMapping(value="/notlogin")
-		public ModelAndView notlogin() {
-			ModelAndView model = new ModelAndView("notLoged");
-			return model;			
-		}
-	   @RequestMapping(value="/logout")
-		public String logout(HttpSession session) throws ParseException {
-			Log log = (Log) session.getAttribute("log");
-			if(log != null ) {
-			session.removeAttribute("log");
-			}
-			return "redirect:login";			
-		}
-	   
 	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
 		  public String addaccount(@ModelAttribute("account") Account account) {
 			
@@ -312,28 +278,78 @@ import com.mohamad.service.SaleManager;
 	    }
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(@ModelAttribute("BASKET") Basket basket) {
-			
-			
 		    saleManager.addToBasket(basket);
-		
 			return "redirect:customer";
 	    }
 	   
+	   
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
-		  public String addtobasketasguest(@ModelAttribute("BASKET") Basket basket) {
+		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
 		 	
-		   List<Basket> elementsBasketForGuest = new ArrayList<Basket>();
-		   
-			for (Basket basket1 :elementsBasketForGuest) {
-				basket1=basket;
-				elementsBasketForGuest.add(basket1);
-				
-			}
-		  //  saleManager.addToBasket(basket);
-		    
-		
-			return "redirect:index";
+		    log.role="Guest";
+		    session.setAttribute("log", log);
+	 		session.setMaxInactiveInterval(-1);
+	 		
+	 		
+	 		return "redirect:index";
 	    }
+	   
+	 		/*
+		   List<Basket> elementsBasketForGuest = new ArrayList<Basket>();
+			for (Basket basket1 :elementsBasketForGuest) {
+				basket1=log.basket;
+				elementsBasketForGuest.add(basket1);
+			}
+		   saleManager.addToBasket(basket);
+		     */ 
+		
+		
+	   @SuppressWarnings("null")
+	@RequestMapping(value = "/basket", method = RequestMethod.GET)
+		public ModelAndView basket(HttpSession session) {
+		   
+			List<Product> allProducts=saleManager.getAllProducts();
+	        List<Product> productViews = new ArrayList<Product>();
+			Log log = (Log)session.getAttribute("log");
+			 
+			 if ( log == null ) {
+				  ModelAndView model4 = new ModelAndView("basketAvGuest");
+			 	  return model4;
+			 }
+					 
+			 if  (log != null && ( log.role == "Guest" )) {
+					ModelAndView model3 = new ModelAndView("basketAvGuest");
+					if(null != allProducts ) {	
+						for (Product product: allProducts) {
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							productViews.add(productView);
+				        }
+					}
+			 	    model3.addObject("productViews",productViews);
+					return model3;
+				  }
+			
+			if(log != null && ( log.role == "Customer" )) {
+				ModelAndView model1 = new ModelAndView("basket");
+				if(null != allProducts ) {	
+					for (Product product: allProducts) {
+						product.fileName=product.FirstImage(product.fileName);
+						Product productView=product;
+						productViews.add(productView);
+			        }
+				}
+		 	    model1.addObject("productViews",productViews);
+		 	    model1.addObject("log.role",log.role);
+				return model1;
+			}
+			 
+			  else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			   }
+		}
+	   
 	   @RequestMapping(value="/deleteorder")
 	    public String deleteorder(@RequestParam(value="id", required=true) int id) {
 	       saleManager.deleteOrde(id);

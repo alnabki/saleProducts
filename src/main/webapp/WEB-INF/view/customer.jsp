@@ -16,7 +16,7 @@
 
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
-        </div>
+</div>
         
         <br><br>
         <div>
@@ -49,7 +49,7 @@
                                        Price                  =  ${product.price} Kr <br>
                                        Quantity               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
-                                      <input type="submit" value="Add to cart"   /><br>
+                                      <input type="submit" value="Add to basket"   /><br>
                
                                        Description            =  ${product.description} <br> 
 				                      

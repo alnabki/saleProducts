@@ -14,6 +14,18 @@ public class  Log {
 	
 	
 	public Account account;
+	
+	public Basket basket;
+
+
+	public Basket getBasket() {
+		return basket;
+	}
+
+
+	public void setBasket(Basket basket) {
+		this.basket = basket;
+	}
 
 
 	public String getRole() {
