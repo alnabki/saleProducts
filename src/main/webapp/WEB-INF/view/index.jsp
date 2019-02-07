@@ -22,11 +22,7 @@
 <body background="<c:url value='/resources/images/background7.jpg'  />">
  <!-- <img  src="<c:url value="/resources/images/laptopBackground.png" />"/><br> -->
  
- <div align="right">
-          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
-        </div>
-        <br>
-
+ 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,15 +59,15 @@
 			    <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="basket" >  
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
 		                               S.No.                  =  ${status.index + 1} <br>
-                                          <input type="hidden" name="productId" value="${product.id}" />
+                                          <input type="hidden" name="productId"  value="${product.id}" />
                                           <input type="hidden" name="account.id" value="1"/>
-                                           <input type="hidden" name="price" value="${product.price}" />
+                                          <input type="hidden" name="price"      value="${product.price}" />
                                            
                                        Quantity in the Store  =  ${product.quantity} <br>
                                        Price                  =  ${product.price} Kr <br>
                                        Quantity               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
-                                      <input type="submit" value="Add to cart g"   /><br>
+                                      <input type="submit" value="Add to cart "   /><br>
                
                                        Description            =  ${product.description} <br> 
 				                      

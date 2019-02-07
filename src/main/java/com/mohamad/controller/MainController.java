@@ -127,7 +127,7 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 			
-		
+		    
 			List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
 			Log log = (Log)session.getAttribute("log");
@@ -144,7 +144,7 @@ import com.mohamad.service.SaleManager;
 			        }
 				}
 		 	    model3.addObject("productViews",productViews);
-		 	   
+		 	 
 				return model3;
 			}
 			
@@ -321,9 +321,16 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(@ModelAttribute("BASKET") Basket basket) {
-			
-			
-		    saleManager.addToBasket(basket);
+		 	
+		   List<Basket> elementsBasketForGuest = new ArrayList<Basket>();
+		   
+			for (Basket basket1 :elementsBasketForGuest) {
+				basket1=basket;
+				elementsBasketForGuest.add(basket1);
+				
+			}
+		  //  saleManager.addToBasket(basket);
+		    
 		
 			return "redirect:index";
 	    }
