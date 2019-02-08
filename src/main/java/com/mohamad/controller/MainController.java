@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
+import com.mohamad.model.BasketForGuest;
 import com.mohamad.model.Customer;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
@@ -288,24 +289,32 @@ import com.mohamad.service.SaleManager;
 		 	
 		    log.role="Guest";
 		    
-		    session.setAttribute("log", log);
-	 		session.setMaxInactiveInterval(-1);
+		   
+		   // List<Log> basketList= new ArrayList<Log>();
+		   // basketList.add(log);
+		   // session.setAttribute("basketList",basketList);
+	 		//session.setMaxInactiveInterval(-1);
+	 		
+	 		 session.setAttribute("log", log);
+	 		
 	 		
 	 		
 	 		return "redirect:index";
 	    }
 	   
-	 		/*
-		   List<Basket> elementsBasketForGuest = new ArrayList<Basket>();
-			for (Basket basket1 :elementsBasketForGuest) {
-				basket1=log.basket;
-				elementsBasketForGuest.add(basket1);
-			}
-		   saleManager.addToBasket(basket);
-		     */ 
-		
-		
-	   @SuppressWarnings("null")
+	 		
+		/*
+	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
+		public ModelAndView basketasguest(HttpSession session) {
+		///   BasketForGuest logs=(BasketForGuest) session.getAttribute("basketList");
+	     String moh="Mohamad";
+		 ModelAndView model =new ModelAndView("basketAvGuest");
+		 model.addObject("moh",moh);
+		// model.addObject("logs",logs);
+		return model; 
+	   
+	   }
+	   */
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		   
@@ -320,6 +329,8 @@ import com.mohamad.service.SaleManager;
 					 
 			 if  (log != null && ( log.role == "Guest" )) {
 					ModelAndView model3 = new ModelAndView("basketAvGuest");
+					
+					
 					if(null != allProducts ) {	
 						for (Product product: allProducts) {
 							product.fileName=product.FirstImage(product.fileName);
@@ -327,6 +338,7 @@ import com.mohamad.service.SaleManager;
 							productViews.add(productView);
 				        }
 					}
+				   
 			 	    model3.addObject("productViews",productViews);
 					return model3;
 				  }
