@@ -287,6 +287,7 @@ import com.mohamad.service.SaleManager;
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
 		 	
 		    log.role="Guest";
+		    
 		    session.setAttribute("log", log);
 	 		session.setMaxInactiveInterval(-1);
 	 		
