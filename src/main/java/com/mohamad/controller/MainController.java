@@ -4,9 +4,11 @@ package com.mohamad.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +16,7 @@ import java.util.Locale;
 import javax.annotation.Resource;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -247,7 +250,12 @@ import com.mohamad.service.SaleManager;
 		
 		
 		@RequestMapping(value="/index")
-		   public ModelAndView test() {	
+		   public ModelAndView test(HttpSession session) {
+			
+			int i = 0 ;
+			session.setAttribute("i",i);
+			i=i+1;
+			
 			
 		 	List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
@@ -287,15 +295,69 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
 		 	
-		    log.role="Guest";
+		   //List<Log> log[] = (List<Log>) new ArrayList<Log>();
+		   // Log log = (Log) session.getAttribute("log");
+		   log.role="Guest";
+		   int i ;
+			
+		   System.out.println("mohamad1");
+		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 10);
+		   System.out.println("mohamad2");
+		     i = (int) session.getAttribute("i");
+		    System.out.println("mohamad3");
+		    if (i!=0) {
+		    	  System.out.println("mohamad4(begin i!=0)");
+		    	  System.out.println("i="+ i);
+		    	i=i+1;
+		    	
+		    	Array.set(elementArray, i, log);
+		    	session.setAttribute("i",i);
+		    	  System.out.println("mohamad5");
+		    	session.setAttribute("p("+i+")",Array.get(elementArray,i));
+		    	System.out.println("mohamad5(end i!=0)");
+		    }
+		    else
+		    {
+		    	 System.out.println("i="+ i);
+		    	System.out.println("mohamad6(i=1 begin)");
+		    	session.setAttribute("p1",Array.get(elementArray,1));
+		    	i=i+1;
+		    	session.setAttribute("i",i);
+		    	System.out.println("mohamad6(i=1 end)");
+		    }
+		    	
+		        
+		      
+		        
+		     
 		    
-		   
+		        
+		      
+			     int j=0;
+			    while (  j <= i ) {
+			    	
+			    	 Log[] p = (Log[]) Array.newInstance(Log.class,10);
+			    	 Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
+				        System.out.println("begin while");
+				       Log x= (Log) Array.get(p, j);
+				       System.out.println("mohamad9");
+			           System.out.println(  "Type: " );
+				       
+			   j=j+1;
+			   System.out.println("mohamad end while");
+			    }
+		        
+		     //   for (Log x:logs) {
+		     //     System.out.println( "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
+		      
+		    
+		    
 		   // List<Log> basketList= new ArrayList<Log>();
 		   // basketList.add(log);
 		   // session.setAttribute("basketList",basketList);
 	 		//session.setMaxInactiveInterval(-1);
 	 		
-	 		 session.setAttribute("log", log);
+	 		
 	 		
 	 		
 	 		
@@ -303,18 +365,28 @@ import com.mohamad.service.SaleManager;
 	    }
 	   
 	 		
-		/*
+	
 	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {
-		///   BasketForGuest logs=(BasketForGuest) session.getAttribute("basketList");
+		   
+		   
+		   List <Log> xList;
+		    xList =new ArrayList<>( Arrays.asList((Log[])session.getAttribute("logs")));
+		   
+		    
+		    for (Log x:xList) {
+	            JOptionPane.showMessageDialog(null, "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
+	        }
+		    
+		 //  BasketForGuest logs=(BasketForGuest) session.getAttribute("logs");
 	     String moh="Mohamad";
 		 ModelAndView model =new ModelAndView("basketAvGuest");
 		 model.addObject("moh",moh);
-		// model.addObject("logs",logs);
+		//model.addObject("logs",logs);
 		return model; 
 	   
 	   }
-	   */
+	 
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		   

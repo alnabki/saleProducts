@@ -19,7 +19,7 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
-
+<!--  
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
 	   
@@ -60,8 +60,11 @@
 		        </c:forEach>
 		         </c:if>
 		          </div>
-		          	 
-		       
+		          	-->  
+		       <c:forEach var="log" items="${logs}" varStatus="status">
+		           22222222222222222 
+		          ${log.basket.price}
+		       </c:forEach>
 		      
 
 </body>
