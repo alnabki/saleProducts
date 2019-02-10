@@ -74,8 +74,9 @@ import com.mohamad.service.SaleManager;
 		
 		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public ModelAndView home(Locale locale, Model model) {
+		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
+			session.setAttribute("i",0);
 			ModelAndView model1 = new ModelAndView("index");
 			
 			Date date = new Date();
@@ -252,9 +253,9 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value="/index")
 		   public ModelAndView test(HttpSession session) {
 			
-			int i = 0 ;
-			session.setAttribute("i",i);
-			i=i+1;
+			
+			
+			
 			
 			
 		 	List<Product> allProducts=saleManager.getAllProducts();
@@ -294,96 +295,72 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
-		 	
-		   //List<Log> log[] = (List<Log>) new ArrayList<Log>();
-		   // Log log = (Log) session.getAttribute("log");
 		   log.role="Guest";
-		   int i ;
-			
-		   System.out.println("mohamad1");
 		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 10);
-		   System.out.println("mohamad2");
+		     int i ;
 		     i = (int) session.getAttribute("i");
-		    System.out.println("mohamad3");
 		    if (i!=0) {
 		    	  System.out.println("mohamad4(begin i!=0)");
-		    	  System.out.println("i="+ i);
 		    	i=i+1;
-		    	
+		        System.out.println("i="+ i);
 		    	Array.set(elementArray, i, log);
 		    	session.setAttribute("i",i);
-		    	  System.out.println("mohamad5");
 		    	session.setAttribute("p("+i+")",Array.get(elementArray,i));
 		    	System.out.println("mohamad5(end i!=0)");
 		    }
 		    else
 		    {
+		    	i=i+1;
 		    	 System.out.println("i="+ i);
 		    	System.out.println("mohamad6(i=1 begin)");
-		    	session.setAttribute("p1",Array.get(elementArray,1));
-		    	i=i+1;
+		    	Array.set(elementArray, 1, log);
+		    	session.setAttribute("p(1)",Array.get(elementArray,1));
 		    	session.setAttribute("i",i);
 		    	System.out.println("mohamad6(i=1 end)");
 		    }
 		    	
-		        
-		      
-		        
-		     
-		    
-		        
-		      
-			     int j=0;
+		        /*
+			     int j=1;
 			    while (  j <= i ) {
 			    	
-			    	 Log[] p = (Log[]) Array.newInstance(Log.class,10);
-			    	 Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
-				        System.out.println("begin while");
-				       Log x= (Log) Array.get(p, j);
-				       System.out.println("mohamad9");
-			           System.out.println(  "Type: " );
+			    	// Log[] p = (Log[]) Array.newInstance(Log.class,10);
+			    	// Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
+				        System.out.println("(begin while)");
+				     //  Log x= (Log) Array.get(p, j);
 				       
+			           System.out.println(  "result: " );
+			         //  System.out.println( "Name: " + x.basket.price );
 			   j=j+1;
-			   System.out.println("mohamad end while");
+			   System.out.println("(mohamad end while)");
 			    }
-		        
+		        */
 		     //   for (Log x:logs) {
-		     //     System.out.println( "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
-		      
-		    
-		    
-		   // List<Log> basketList= new ArrayList<Log>();
-		   // basketList.add(log);
-		   // session.setAttribute("basketList",basketList);
-	 		//session.setMaxInactiveInterval(-1);
-	 		
-	 		
-	 		
-	 		
-	 		
+		    //  System.out.println( "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
 	 		return "redirect:index";
 	    }
-	   
-	 		
 	
 	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {
+		   ModelAndView model =new ModelAndView("basketAvGuest");
+		   List<Log> logs = new ArrayList<Log>();
+		    int i = (int) session.getAttribute("i");
+		   int j=1;
+		   while (  j <= i ) {
+		       Log x=(Log) session.getAttribute("p("+j+")");
+		         logs.add(x);
+			        System.out.println("(begin while)");
+			       System.out.println( "j=: " + j );
+		           System.out.println(  "result: " );
+		     System.out.println( "Name: " +x.basket.quantityShop);
+		     j=j+1;
+		   System.out.println("(mohamad end while)");
+		    }
 		   
-		   
-		   List <Log> xList;
-		    xList =new ArrayList<>( Arrays.asList((Log[])session.getAttribute("logs")));
-		   
-		    
-		    for (Log x:xList) {
-	            JOptionPane.showMessageDialog(null, "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
-	        }
-		    
-		 //  BasketForGuest logs=(BasketForGuest) session.getAttribute("logs");
-	     String moh="Mohamad";
-		 ModelAndView model =new ModelAndView("basketAvGuest");
-		 model.addObject("moh",moh);
-		//model.addObject("logs",logs);
+		   model.addObject("logs",logs);
 		return model; 
+		
+		 // Log[] p = (Log[]) Array.newInstance(Log.class,10);
+		 // Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
 	   
 	   }
 	 

@@ -61,9 +61,9 @@
 		         </c:if>
 		          </div>
 		          	-->  
-		       <c:forEach var="log" items="${logs}" varStatus="status">
-		           22222222222222222 
-		          ${log.basket.price}
+		      <c:forEach var="log" items="${logs}" varStatus="status">
+		           
+		         ${log.basket.price}
 		       </c:forEach>
 		      
 
