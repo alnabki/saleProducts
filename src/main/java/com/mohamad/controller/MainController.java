@@ -36,8 +36,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
-import com.mohamad.model.BasketForGuest;
-import com.mohamad.model.Customer;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
@@ -297,45 +295,22 @@ import com.mohamad.service.SaleManager;
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
 		   log.role="Guest";
 		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 10);
-		     int i ;
-		     i = (int) session.getAttribute("i");
-		    if (i!=0) {
-		    	  System.out.println("mohamad4(begin i!=0)");
+		   int i ;
+		   i = (int) session.getAttribute("i");
+		   if (i!=0) {
 		    	i=i+1;
-		        System.out.println("i="+ i);
 		    	Array.set(elementArray, i, log);
 		    	session.setAttribute("i",i);
 		    	session.setAttribute("p("+i+")",Array.get(elementArray,i));
-		    	System.out.println("mohamad5(end i!=0)");
 		    }
 		    else
 		    {
 		    	i=i+1;
-		    	 System.out.println("i="+ i);
-		    	System.out.println("mohamad6(i=1 begin)");
 		    	Array.set(elementArray, 1, log);
 		    	session.setAttribute("p(1)",Array.get(elementArray,1));
 		    	session.setAttribute("i",i);
-		    	System.out.println("mohamad6(i=1 end)");
 		    }
 		    session.setAttribute("cust",log.role);
-		        /*
-			     int j=1;
-			    while (  j <= i ) {
-			    	
-			    	// Log[] p = (Log[]) Array.newInstance(Log.class,10);
-			    	// Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
-				        System.out.println("(begin while)");
-				     //  Log x= (Log) Array.get(p, j);
-				       
-			           System.out.println(  "result: " );
-			         //  System.out.println( "Name: " + x.basket.price );
-			   j=j+1;
-			   System.out.println("(mohamad end while)");
-			    }
-		        */
-		     //   for (Log x:logs) {
-		    //  System.out.println( "Name: " + x.getRole() + "Type: " + x.basket.price + "Weighting: " + x.basket.quantityShop);
 	 		return "redirect:index";
 	    }
 	
@@ -347,22 +322,15 @@ import com.mohamad.service.SaleManager;
 		   int j=1;
 		   while (  j <= i ) {
 		       Log x=(Log) session.getAttribute("p("+j+")");
-		         logs.add(x);
-			        System.out.println("(begin while)");
-			       System.out.println( "j=: " + j );
-		           System.out.println(  "result: " );
-		     System.out.println( "Name: " +x.basket.quantityShop);
-		     j=j+1;
-		   System.out.println("(mohamad end while)");
+		       logs.add(x);
+		       j=j+1;
 		    }
 		   String cust =  (String) session.getAttribute("cust");
 		   model.addObject("cust",cust);
 		   model.addObject("logs",logs);
 		return model; 
 		
-		 // Log[] p = (Log[]) Array.newInstance(Log.class,10);
-		 // Array.set(p, j, (Log[]) session.getAttribute("p("+j+")"));
-	   
+		
 	   }
 	 
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)

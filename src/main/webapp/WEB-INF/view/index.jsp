@@ -40,7 +40,7 @@
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
 		                               S.No.                  =  ${status.index + 1} <br>
                                           <input type="hidden" name="basket.productId"  value="${product.id}" />
-                                            <input type="hidden" name="role"  value="Guest" />
+                                          
                                           <input type="hidden" name="basket.price"      value="${product.price}" />
                                            
                                        Quantity in the Store  =  ${product.quantity} <br>

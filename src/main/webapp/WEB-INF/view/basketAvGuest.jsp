@@ -22,7 +22,7 @@
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
 	   
-	   <c:if test='${ log == null   }' >
+	   <c:if test='${ cust == null   }' >
 	   
 		   <table align="center" >
 		     <tr>
