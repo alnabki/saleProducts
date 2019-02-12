@@ -38,11 +38,12 @@
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="log" >  
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
-		                               S.No.                  =  ${status.index + 1} <br>
-                                          <input type="hidden" name="basket.productId"  value="${product.id}" />
-                                          
+		                               S.No.                  =  ${status.index + 1} 
+                                          <input type="hidden" name="basket.product.id"  value="${product.id}" />
+                                          <input type="hidden" name="basket.product.name"  value="${product.name}" />
+                                          <input type="hidden" name="basket.product.fileName"  value="${product.fileName}" />
                                           <input type="hidden" name="basket.price"      value="${product.price}" />
-                                           
+                                          
                                        Quantity in the Store  =  ${product.quantity} <br>
                                        Price                  =  ${product.price} Kr <br>
                                        Quantity               = <input type="number"  name="basket.quantityShop" value="${quantityShop}" required />

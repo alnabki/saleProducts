@@ -37,13 +37,14 @@
 	      <c:forEach var="log" items="${logs}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="gotockeckout"  method="post" modelAttribute="order" >  
 			                          
-		                             ${status.index + 1} = <br>
-		                           
-		                           
-                                        <h2 ><b><u> ${log.basket.productId} </u></b></h2>       Qty = <input type="number"  name="basket.quantityShop" value="${log.basket.quantityShop}"  />      Price  =  ${log.basket.price} Kr  <br>  
+		                             ${status.index + 1} =     <b><u> ${log.basket.product.name} </u></b>
+		                        
+		                            <img class="imageProductInBasket"  src="<c:url value="/resources/images/${log.basket.product.fileName}" />"/><br> <br>
+                                        
+                                              Qty = <input type="number"  name="basket.quantityShop" value="${log.basket.quantityShop}"  />      Price  =  ${log.basket.price} Kr  <br>  
                                         
 		                             
-		                                                        <input type="hidden" name="basket.productId" value="${log.basket.productId}" />
+		                                                        <input type="hidden" name="basket.product.id" value="${log.basket.product.id}" />
 		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
 			                                                   <br>
 		                                                         <input type="submit" value="Go to Checkout"   /><br><br>

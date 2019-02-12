@@ -1,12 +1,17 @@
 package com.mohamad.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 
 @Entity
@@ -24,8 +29,7 @@ public class Basket {
 
 
 
-	@Column(name="product_id")
-	 public int productId;
+	
 	
 	@Column(name="quantity_shop")
 	 public int quantityShop;
@@ -37,15 +41,20 @@ public class Basket {
 	@JoinColumn(name = "account_id", nullable = true)
 	public Account account;
 	
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = true)
+	public Product product;
 	
 	
 	
-	public int getProductId() {
-		return productId;
+	
+
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantityShop() {
