@@ -19,7 +19,6 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
-<!--  
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
 	   
@@ -33,18 +32,18 @@
 	       
 	   
 	    </c:if>
-	     <c:if test='${ log.role =="Guest"   }' >
+	     <c:if test='${ cust =="Guest"   }' >
 	      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
-	      <c:forEach var="product" items="${productViews}" varStatus="status">
+	      <c:forEach var="log" items="${logs}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="gotockeckout"  method="post" modelAttribute="order" >  
 			                          
 		                             ${status.index + 1} = <br>
-		                             <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/>
-		                            
-                                        <h2 ><b><u> ${product.name} </u></b></h2>       Qty = <input type="number"  name="quantity" value="${quantity}"  />      Price  =  ${product.price} Kr  <br>  
+		                           
+		                           
+                                        <h2 ><b><u> ${log.basket.productId} </u></b></h2>       Qty = <input type="number"  name="basket.quantityShop" value="${log.basket.quantityShop}"  />      Price  =  ${log.basket.price} Kr  <br>  
                                         
 		                             
-		                                                        <input type="hidden" name="product.id" value="${product.id}" />
+		                                                        <input type="hidden" name="basket.productId" value="${log.basket.productId}" />
 		                                                        <input type="hidden" name="account.id" value="${log.account.id}" />
 			                                                   <br>
 		                                                         <input type="submit" value="Go to Checkout"   /><br><br>
@@ -60,11 +59,10 @@
 		        </c:forEach>
 		         </c:if>
 		          </div>
-		          	-->  
-		      <c:forEach var="log" items="${logs}" varStatus="status">
-		           
-		         ${log.basket.price}
-		       </c:forEach>
+		          
+		          
+		          
+		    
 		      
 
 </body>

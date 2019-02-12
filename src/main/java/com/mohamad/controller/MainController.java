@@ -318,7 +318,7 @@ import com.mohamad.service.SaleManager;
 		    	session.setAttribute("i",i);
 		    	System.out.println("mohamad6(i=1 end)");
 		    }
-		    	
+		    session.setAttribute("cust",log.role);
 		        /*
 			     int j=1;
 			    while (  j <= i ) {
@@ -355,7 +355,8 @@ import com.mohamad.service.SaleManager;
 		     j=j+1;
 		   System.out.println("(mohamad end while)");
 		    }
-		   
+		   String cust =  (String) session.getAttribute("cust");
+		   model.addObject("cust",cust);
 		   model.addObject("logs",logs);
 		return model; 
 		
