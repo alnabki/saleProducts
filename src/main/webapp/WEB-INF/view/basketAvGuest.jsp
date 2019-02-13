@@ -22,7 +22,11 @@
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
 	   
-	   <c:if test='${ cust == null   }' >
+	   
+	   
+  
+	     
+	   <c:if test='${ i == 0   }' >
 	   
 		   <table align="center" >
 		     <tr>
@@ -32,10 +36,12 @@
 	       
 	   
 	    </c:if>
-	     <c:if test='${ cust =="Guest"   }' >
+	    
+	    
+	     <c:if test='${ i !=0   }' >
 	      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 	      <c:forEach var="log" items="${logs}" varStatus="status">
-			    <form:form id="usrform" name="getForm" action="gotockeckout"  method="post" modelAttribute="order" >  
+			    <form:form id="usrform" name="getForm" action="deleteelement"  method="post" modelAttribute="log" >  
 			                          
 		                             ${status.index + 1} =     <b><u> ${log.basket.product.name} </u></b>
 		                        
@@ -49,7 +55,7 @@
 			                                                   <br>
 		                                                         <input type="submit" value="Go to Checkout"   /><br><br>
 		                                                        
-		                                                         <td><a href="deleteorder?id=${order.id}">  Remove</a> </td>
+		                                                         <td><a href="deleteelement?id=${status.index + 1}">  Remove</a> </td>
                               <br>
                               
                               </form:form>
@@ -59,6 +65,7 @@
 	        
 		        </c:forEach>
 		         </c:if>
+		       
 		          </div>
 		          
 		          

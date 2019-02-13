@@ -251,11 +251,6 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value="/index")
 		   public ModelAndView test(HttpSession session) {
 			
-			
-			
-			
-			
-			
 		 	List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
 					ModelAndView model1 = new ModelAndView("index");
@@ -267,6 +262,7 @@ import com.mohamad.service.SaleManager;
 				        }
 					}
 			 	    model1.addObject("productViews",productViews);
+			 	    
 					return model1;
 	   }
 		
@@ -317,21 +313,55 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {
 		   ModelAndView model =new ModelAndView("basketAvGuest");
+		   boolean  cost=true;
 		   List<Log> logs = new ArrayList<Log>();
 		    int i = (int) session.getAttribute("i");
 		   int j=1;
 		   while (  j <= i ) {
+			  
 		       Log x=(Log) session.getAttribute("p("+j+")");
 		       logs.add(x);
 		       j=j+1;
-		    }
+		       
+		   }
 		   String cust =  (String) session.getAttribute("cust");
 		   model.addObject("cust",cust);
 		   model.addObject("logs",logs);
+		   model.addObject("cost",cost);
+		   model.addObject("i",i);
 		return model; 
 		
 		
 	   }
+	   @RequestMapping(value="/deleteelement")
+	    public ModelAndView deletelement(HttpSession session,@RequestParam(value="id", required=true) int id) {
+			 session.removeAttribute("p("+id+")");  
+			 int i =(int) session.getAttribute("i");
+			 ModelAndView model =new ModelAndView("basketAvGuest");
+			 List<Log> logs = new ArrayList<Log>();
+			 int j=1;
+			 boolean  cost=true;
+			 while (  j <= i ) {
+				  if(j!=id) {
+					   Log x=(Log) session.getAttribute("p("+j+")");
+				       logs.add(x);
+				       session.setAttribute("i",i-1);
+				       System.out.println("i with while if"+i);
+				  }
+				  j=j+1;
+			   }
+			 
+			 //if(i==0) {
+		    //	 cost=false;
+		    	// System.out.println("i efter if"+i);
+		    	// model.addObject("cost",cost)
+			
+		   //    }
+			
+		     model.addObject("logs",logs);
+		     model.addObject("i",i);
+			 return model; 
+	    }
 	 
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
@@ -386,6 +416,8 @@ import com.mohamad.service.SaleManager;
 	       saleManager.deleteOrde(id);
 	        return "redirect:basket";	 
 	    }
+	   
+	   
 		@RequestMapping(value="/addproduct")
 		public ModelAndView addproduct(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
