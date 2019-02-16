@@ -297,13 +297,13 @@ import com.mohamad.service.SaleManager;
 		    	i=i+1;
 		    	Array.set(elementArray, i, log);
 		    	session.setAttribute("i",i);
-		    	session.setAttribute("p("+i+")",Array.get(elementArray,i));
+		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
 		    }
 		    else
 		    {
 		    	i=i+1;
 		    	Array.set(elementArray, 1, log);
-		    	session.setAttribute("p(1)",Array.get(elementArray,1));
+		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
 		    	session.setAttribute("i",i);
 		    }
 		    session.setAttribute("cust",log.role);
@@ -313,21 +313,10 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {
 		   ModelAndView model =new ModelAndView("basketAvGuest");
-		   
-		  // Log log1 = (Log) session.getAttribute("p(1)");
-		  // System.out.println("log1.basket.product.name ="+log1.basket.product.name);
-		  // Log log2 = (Log) session.getAttribute("p(2)");
-		  // System.out.println("log2.basket.product.name ="+log2.basket.product.name);
-		   
 		   List<Log> logs = new ArrayList<Log>();
-		  
-		   
 		   int i = (int) session.getAttribute("i");
 		   int j=1;
-		   
-		   System.out.println("i-in the begin ogf basket ="+i);
-		   
-		   while (  j <= i ) {
+		   while (  j <= 100 ) {
 		       Log x=(Log) session.getAttribute("p("+j+")");
 		       logs.add(x);
 		       j=j+1;
@@ -336,52 +325,37 @@ import com.mohamad.service.SaleManager;
 		   model.addObject("i",i);
 		return model;
 	   }
+	   
+	   @RequestMapping(value="/deleteelement")
+	    public String deletelement(HttpSession session,@RequestParam(value="id", required=true) int id) {
+		  
+		 
+		   int i =(int) session.getAttribute("i");
+			  session.removeAttribute("p("+id+")");
+			  i=i-1;
+			  session.setAttribute("i",i);
+			  return "redirect:basketasgest";
+	   }
+	   /*
 	   @RequestMapping(value="/deleteelement")
 	    public ModelAndView deletelement(HttpSession session,@RequestParam(value="id", required=true) int id) {
 		   ModelAndView model =new ModelAndView("basketAvGuest");
 		   List<Log> logs = new ArrayList<Log>();
-		   
 			 int i =(int) session.getAttribute("i");
 			  session.removeAttribute("p("+id+")");
-		 /*
-			  int m=1;
-			  while(m<=i) {
-				  Log x1=(Log) session.getAttribute("p("+m+")");
-				  if (x1==null) {
-					  System.out.println("m="+m);
-					  int d=m+1;
-					  session.setAttribute("p("+m+")","p("+d+")");
-					  
-				  }
-				  m=m+1;
-			  }
-			 
-			*/
-			  int j=1;
-			 int counter=0;
-			 System.out.println("id ="+id);
-			 System.out.println("i ="+i);
+			 int j=1;
 			 while (  j <= i ) {
-				  if(j!=id) {
-					   Log x=(Log) session.getAttribute("p("+j+")");
-				       logs.add(x);
-				       System.out.println("j with while(deleteelement) if="+j);
-				  }
-				  else {
-					
-					  counter=counter+1;
-				  }
-				  j=j+1;
-				  System.out.println("j-             in the end while ="+j);
-			   }
-			 i=i-counter;
-			 System.out.println("i in the end ="+i);
+				   Log x=(Log) session.getAttribute("p("+id+")");
+			       logs.add(x);
+			       j=j+1;
+			 }
+			 i=i-1;
 		     session.setAttribute("i",i);
 		     model.addObject("logs",logs);
 		     model.addObject("i",i);
 			 return model; 
 	    }
-	 
+	 */
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		   

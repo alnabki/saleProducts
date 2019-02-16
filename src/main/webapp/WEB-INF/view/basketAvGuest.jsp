@@ -46,6 +46,7 @@
 			    <form:form id="usrform" name="getForm" action="deleteelement"  method="post" modelAttribute="log" >  
 			                          
 		                             ${status.index + 1} =     <b><u> ${log.basket.product.name} </u></b>
+		                             
 		                        
 		                            <img class="imageProductInBasket"  src="<c:url value="/resources/images/${log.basket.product.fileName}" />"/><br> <br>
                                         
@@ -57,7 +58,7 @@
 			                                                   <br>
 		                                                         <input type="submit" value="Go to Checkout"   /><br><br>
 		                                                        
-		                                                         <td><a href="deleteelement?id=${status.index + 1}">  Remove</a> </td>
+		                                                         <td><a href="deleteelement?id=${log.basket.product.id}">  Remove</a> </td>
                               <br>
                               
                               </form:form>
