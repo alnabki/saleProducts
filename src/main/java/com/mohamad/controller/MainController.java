@@ -308,28 +308,33 @@ import com.mohamad.service.SaleManager;
 		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
 		    	session.setAttribute("i",i);
 		    }
-		    session.setAttribute("cust",log.role);
+		    
 	 		return "redirect:index";
 	    }
 	
-	   @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
+    @SuppressWarnings("rawtypes")  
+	@RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {
 		   ModelAndView model =new ModelAndView("basketAvGuest");
+		   
 		   List<Log> logs = new ArrayList<Log>();
 		   int i = (int) session.getAttribute("i");
-		   int j=1;
-		   while (  j <= 100 ) {
-		       Log x=(Log) session.getAttribute("p("+j+")");
-		       logs.add(x);
-		       j=j+1;
-		   }
-		   model.addObject("logs",logs);
-		   model.addObject("i",i);
 		   
-		  
-
-	     
-		return model;
+				Enumeration keys = session.getAttributeNames();
+	            while (keys.hasMoreElements())
+	            {  
+	                String key = (String)keys.nextElement();
+	                System.out.println(key + ": " + session.getAttribute(key) );
+	               if (key.contentEquals("i")) {
+	            	   model.addObject("i",i);
+	               }
+	               else {
+	            	   Log x=(Log) session.getAttribute(""+key+"");
+		 		        logs.add(x);
+	               }
+	            }
+	       model.addObject("logs",logs);
+		   return model;
 	   }
 	   
 	   @RequestMapping(value="/deleteelement")
@@ -338,6 +343,7 @@ import com.mohamad.service.SaleManager;
 		 
 		   int i =(int) session.getAttribute("i");
 			  session.removeAttribute("p("+id+")");
+			
 			  i=i-1;
 			  session.setAttribute("i",i);
 			  return "redirect:basketasgest";
