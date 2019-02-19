@@ -295,6 +295,30 @@ import com.mohamad.service.SaleManager;
 		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 10);
 		   int i ;
 		   i = (int) session.getAttribute("i");
+		   
+		   
+		   
+		   Enumeration keys = session.getAttributeNames();
+           while (keys.hasMoreElements())
+           {  
+               String key = (String)keys.nextElement();
+               System.out.println(key + ": " + session.getAttribute(key) );
+              if (key.contentEquals("i")) {
+           	     
+              }
+              else {
+           	   Log x=(Log) session.getAttribute(""+key+"");
+           	     if (x.basket.product.id == log.basket.product.id){
+           	    	 log.basket.quantityShop=log.basket.quantityShop+x.basket.quantityShop;
+           	    	 i=i-1;
+           	     }
+           	     else {
+           	    	 System.out.println("no thing to add");
+           	     }
+              }
+           }
+		   
+		   
 		   if (i!=0) {
 		    	i=i+1;
 		    	Array.set(elementArray, i, log);
