@@ -292,11 +292,9 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
 		   log.role="Guest";
-		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 10);
+		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 1000);
 		   int i ;
 		   i = (int) session.getAttribute("i");
-		   
-		   
 		   
 		   Enumeration keys = session.getAttributeNames();
            while (keys.hasMoreElements())
@@ -310,7 +308,7 @@ import com.mohamad.service.SaleManager;
            	   Log x=(Log) session.getAttribute(""+key+"");
            	     if (x.basket.product.id == log.basket.product.id){
            	    	 log.basket.quantityShop=log.basket.quantityShop+x.basket.quantityShop;
-           	    	 i=i-1;
+           	    	 i=i+log.basket.quantityShop;
            	     }
            	     else {
            	    	 System.out.println("no thing to add");
@@ -320,14 +318,14 @@ import com.mohamad.service.SaleManager;
 		   
 		   
 		   if (i!=0) {
-		    	i=i+1;
+		    	i=log.basket.getQuantityShop()+i;
 		    	Array.set(elementArray, i, log);
 		    	session.setAttribute("i",i);
 		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
 		    }
 		    else
 		    {
-		    	i=i+1;
+		    	i=log.basket.getQuantityShop();
 		    	Array.set(elementArray, 1, log);
 		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
 		    	session.setAttribute("i",i);
@@ -363,12 +361,14 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value="/deleteelement")
 	    public String deletelement(HttpSession session,@RequestParam(value="id", required=true) int id) {
-		  
-		 
 		   int i =(int) session.getAttribute("i");
+		   Log x=(Log) session.getAttribute("p("+id+")");
+		   i=i- x.basket.quantityShop;
+		   
+		  
 			  session.removeAttribute("p("+id+")");
-			
-			  i=i-1;
+			  
+			 // i=i-1;
 			  session.setAttribute("i",i);
 			  return "redirect:basketasgest";
 	   }
