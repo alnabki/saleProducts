@@ -35,13 +35,13 @@ body {
    tr:nth-child(even) {background-color: #ffffff;}
    
    .imageProduct { 
-    width:15%;
+    width:5%;
   height: auto;
     
     
    }
    .imageProduct1 { 
-      width:100%;
+      width:15%;
       height: auto;
    }
    

@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -284,6 +285,7 @@ import com.mohamad.service.SaleManager;
 		  public String addtobasket(@ModelAttribute("BASKET") Basket basket) {
 		    saleManager.addToBasket(basket);
 			return "redirect:customer";
+			
 	    }
 	   
 	   
@@ -323,6 +325,10 @@ import com.mohamad.service.SaleManager;
 		   }
 		   model.addObject("logs",logs);
 		   model.addObject("i",i);
+		   
+		  
+
+	     
 		return model;
 	   }
 	   

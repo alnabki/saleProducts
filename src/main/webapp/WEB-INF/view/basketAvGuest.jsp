@@ -30,7 +30,7 @@
 	   
 		   <table align="center" >
 		     <tr>
-		       <td align="center">  you don't add any thing to basket</td>
+		       <td align="center">  you don't have any thing in the basket</td>
 		      </tr>
 		   </table>
 	       
