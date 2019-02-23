@@ -108,7 +108,7 @@ public class Product  {
 		 List<String> imageNames = new ArrayList<String>();
 		 if(fileName != null && !fileName.isEmpty()) {
 		    	String test = fileName; 
-		    	test= test.replaceAll("[\\[\\],(){}]p","");  
+		    	test= test.replaceAll("[\\[\\],(){}]","");  
 		    	String[] arr = test.split(" ");  
 		     
 		    	for ( String imageName : arr) {
