@@ -40,21 +40,24 @@
 			                          
 		                             
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
-		                               S.No.                  =  ${status.index + 1} <br>
-                                          <input type="hidden" name="productId" value="${product.id}" />
-                                          <input type="hidden" name="account.id" value="${log.account.id}" />
-                                           <input type="hidden" name="price" value="${product.price}" />
-                                           
-                                       Quantity in the Store  =  ${product.quantity} <br>
-                                       Price                  =  ${product.price} Kr <br>
-                                       Quantity               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
+		                              <b>S.No.</b>                  =  ${status.index + 1} <br>
+		                              
+                                      <input type="hidden" name="product.id"  value="${product.id}" />
+                                      <input type="hidden" name="product.name"  value="${product.name}" />
+                                      <input type="hidden" name="product.fileName"  value="${product.fileName}" />
+                                      <input type="hidden" name="price"      value="${product.price}" />
+                                      <input type="hidden" name="account.id" value="${log.account.id}" />
+                                      
+                                      <b>Quantity in the Store</b>  =  ${product.quantity} <br>
+                                      <b>Price </b>                 =  ${product.price} Kr <br>
+                                      <b>Quantity</b>               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
                                       <input type="submit" value="Add to basket"   /><br>
                
-                                       Description            =  ${product.description} <br> 
+                                      
 				                      
                                       <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
-                                     
+                                       <b>Description</b>        =  ${product.description} <br> 
                     </form:form>
          ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
 					     

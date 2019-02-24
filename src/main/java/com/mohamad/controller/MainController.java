@@ -60,7 +60,7 @@ import com.mohamad.service.SaleManager;
 		
 	@Resource(name = "saleManager")
 	    private SaleManager saleManager;
-	
+	    private int itemNummberInBasket=0;
 		
 		private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 		
@@ -180,6 +180,8 @@ import com.mohamad.service.SaleManager;
 			 		return model2;
 				}
 		 	}	
+		   
+		   /*
 		   @RequestMapping(value="/customer")
 		   public ModelAndView customerpage(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
@@ -193,8 +195,10 @@ import com.mohamad.service.SaleManager;
 			 		ModelAndView model2 = new ModelAndView("notlogin");
 			 		return model2;
 			    }
-		 	}	   
+		 	}
 		   
+		   
+		*/
 		   
 		   @RequestMapping(value="/notlogin")
 			public ModelAndView notlogin() {
@@ -219,7 +223,6 @@ import com.mohamad.service.SaleManager;
 	        List<Product> productViews = new ArrayList<Product>();
 			Log log = (Log)session.getAttribute("log");
 			if(log != null && ( log.role == "Customer" )) {
-				
 					ModelAndView model1 = new ModelAndView("customer");
 					if(null != allProducts ) {	
 						for (Product product: allProducts) {
@@ -237,6 +240,8 @@ import com.mohamad.service.SaleManager;
 		 		return model2;
 			   }
 		}
+		
+		
 		@RequestMapping(value="/index")
 		   public ModelAndView test(HttpSession session) {
 			
@@ -266,12 +271,56 @@ import com.mohamad.service.SaleManager;
 			return "redirect:index";
 	    }
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
-		  public String addtobasket(@ModelAttribute("BASKET") Basket basket) {
+		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
+		   
 		    saleManager.addToBasket(basket);
+		  
+		    itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
+		    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+		    session.setAttribute("i",itemNummberInBasket);
+		    
 			return "redirect:customer";
 			
 	    }
 	   
+	   @RequestMapping(value = "/basket", method = RequestMethod.GET)
+		public ModelAndView basket(HttpSession session) {
+		   
+			//List<Product> allProducts=saleManager.getAllProducts();
+		    List<Basket> baskets=saleManager.getAllBaskets();
+	        List<Basket> basketViews = new ArrayList<Basket>();
+			Log log = (Log)session.getAttribute("log");
+			int i = (int)session.getAttribute("i");
+			
+			if(log != null && ( log.role == "Customer" )) {
+				ModelAndView model1 = new ModelAndView("basket");
+				if(null != baskets ) {	
+					for (Basket basket: baskets) {
+						basket.product.fileName=basket.product.FirstImage(basket.product.fileName);
+						Basket basketView=basket;
+						basketViews.add(basketView);
+			        }
+				}
+		 	    model1.addObject("productViews",basketViews);
+		 	    model1.addObject("log.role",log.role);
+		 	   model1.addObject("i",i);
+				return model1;
+			}
+			  else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			   }
+		}
+	   @RequestMapping(value="/deleteitemfromBasket")
+	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id) {
+		 //  int i =(int) session.getAttribute("i");
+		  saleManager.deleteBasketById(id);
+		   //Basket basket=saleManager.getBasketById(id);
+		  // i=i-basket.quantityShop;
+		   
+		  //session.setAttribute("i",i);
+		   return "redirect:basket";
+	   }
 	   @SuppressWarnings("rawtypes")
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
@@ -367,53 +416,7 @@ import com.mohamad.service.SaleManager;
 			 return model; 
 	    }
 	 */
-	@RequestMapping(value = "/basket", method = RequestMethod.GET)
-		public ModelAndView basket(HttpSession session) {
-		   
-			List<Product> allProducts=saleManager.getAllProducts();
-	        List<Product> productViews = new ArrayList<Product>();
-			Log log = (Log)session.getAttribute("log");
-			 
-			 if ( log == null ) {
-				  ModelAndView model4 = new ModelAndView("basketAvGuest");
-			 	  return model4;
-			 }
-					 
-			 if  (log != null && ( log.role == "Guest" )) {
-					ModelAndView model3 = new ModelAndView("basketAvGuest");
-					
-					
-					if(null != allProducts ) {	
-						for (Product product: allProducts) {
-							product.fileName=product.FirstImage(product.fileName);
-							Product productView=product;
-							productViews.add(productView);
-				        }
-					}
-				   
-			 	    model3.addObject("productViews",productViews);
-					return model3;
-				  }
-			
-			if(log != null && ( log.role == "Customer" )) {
-				ModelAndView model1 = new ModelAndView("basket");
-				if(null != allProducts ) {	
-					for (Product product: allProducts) {
-						product.fileName=product.FirstImage(product.fileName);
-						Product productView=product;
-						productViews.add(productView);
-			        }
-				}
-		 	    model1.addObject("productViews",productViews);
-		 	    model1.addObject("log.role",log.role);
-				return model1;
-			}
-			 
-			  else {
-				   ModelAndView model2 = new ModelAndView("notlogin");
-		 		return model2;
-			   }
-		}
+	
 	   
 	   @RequestMapping(value="/deleteorder")
 	    public String deleteorder(@RequestParam(value="id", required=true) int id) {

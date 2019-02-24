@@ -14,34 +14,34 @@ public interface SaleManager  {
 	public void addAccount(Account account);
 	void updateAccount(Account account);
 	public List<Account> getAllAccounts();
-	public void deleteAccount(Integer accountId);
+	public void deleteAccount(int accountId);
 	
 	public void addAdmin(Admin admin);
 	public List<Admin> getAllAdmins();
-	public void deleteAdmin(Integer adminId);
+	public void deleteAdmin(int adminId);
 	public void updateAdmin(Admin admin);
 	
 	public void addProduct(Product product);
 	public List<Product> getAllProducts();
-	public void deleteProduct(Integer productId);
+	public void deleteProduct(int productId);
 	public void updateProduct(Product product);
 	public Product getProduct(int id);
 	
 	public void addCustomer(Customer customer);
 	public List<Customer> getAllCustomers();
-	public void deleteCustomer(Integer customerId);
+	public void deleteCustomer(int customerId);
 	public void updateCustomer(Customer customer);
 	public Account checkLogin(String username, String password);
 	public List<Admin> getAdminsByAccountId(int accountId);
 	
 	public void addOrder(Order order);
 	public List<Order> getAllOrders();
-	public void deleteOrde(Integer orderId);
+	public void deleteOrde(int orderId);
 	public void updateOrder(Order order);
 	
 	public void addToBasket(Basket basket);
 	public List<Basket> getAllBaskets();
-	public void deleteBasketById(Integer basketId);
+	public void deleteBasketById(int basketId);
 	public void updateBasket(Basket basket);
 	public Basket getBasketById(int id);
 	

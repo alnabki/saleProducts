@@ -40,7 +40,7 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Account").list();
 	}
 	@Transactional
-	public void deleteAccount(Integer accountId) {
+	public void deleteAccount(int accountId) {
 		Account account = (Account) sessionFactory.getCurrentSession().load(
 				Account.class, accountId);
         if (null != account) {
@@ -74,7 +74,7 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Admin").list();
 	}
 	@Transactional
-	public void deleteAdmin(Integer adminId) {
+	public void deleteAdmin(int adminId) {
 		Admin admin = (Admin) sessionFactory.getCurrentSession().load(
 				Admin.class, adminId);
         if (null != admin) {
@@ -126,7 +126,7 @@ public class DaoImpl implements Dao  {
 		}
 	
 	@Transactional
-	public void deleteProduct(Integer productId) {
+	public void deleteProduct(int productId) {
 		Product product = (Product) sessionFactory.getCurrentSession().load(
 				Product.class, productId);
         if (null != product) {
@@ -163,7 +163,7 @@ public class DaoImpl implements Dao  {
 	}
 	
 	@Transactional
-	public void deleteCustomer(Integer customerId) {
+	public void deleteCustomer(int customerId) {
 		Customer customer = (Customer) sessionFactory.getCurrentSession().load(
 				Customer.class, customerId);
         if (null != customer) {
@@ -248,7 +248,7 @@ public class DaoImpl implements Dao  {
 		return this.sessionFactory.getCurrentSession().createQuery("from Order").list();
 	}
 	@Transactional
-	public void deleteOrde(Integer orderId) {
+	public void deleteOrde(int orderId) {
 		Order order = (Order) sessionFactory.getCurrentSession().load(
 				Order.class, orderId);
         if (null != order) {
@@ -298,7 +298,7 @@ public class DaoImpl implements Dao  {
 			}
 		
 		@Transactional
-		public void deleteBasketById(Integer basketId) {
+		public void deleteBasketById(int basketId) {
 			Basket basket = (Basket) sessionFactory.getCurrentSession().load(
 					Basket.class, basketId);
 	        if (null != basket) {
