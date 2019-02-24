@@ -75,7 +75,7 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-			session.setAttribute("i",0);
+		    session.setAttribute("i",0);
 			ModelAndView model1 = new ModelAndView("index");
 			
 			Date date = new Date();
@@ -319,6 +319,7 @@ import com.mohamad.service.SaleManager;
 		   List<Log> logs = new ArrayList<Log>();
 		   int i = (int) session.getAttribute("i");
 				Enumeration keys = session.getAttributeNames();
+				int sum=0;
 	            while (keys.hasMoreElements()) {
 	                String key = (String)keys.nextElement();
 	                System.out.println(key + ": " + session.getAttribute(key) );
@@ -327,10 +328,13 @@ import com.mohamad.service.SaleManager;
 	                }
 	                else {
 	            	    Log x=(Log) session.getAttribute(""+key+"");
+	            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
+	            	    sum=sum+x.itemPrice;
 		 		        logs.add(x);
 	                }
 	            }
 	       model.addObject("logs",logs);
+	       model.addObject("sum",sum);
 		   return model;
 	   }
 	   
