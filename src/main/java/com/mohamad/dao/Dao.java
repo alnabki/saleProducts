@@ -45,5 +45,6 @@ public interface Dao {
 	public void deleteBasketById(int basketId);
 	public void updateBasket(Basket basket);
 	public Basket getBasketById(int id);
+	public List<Basket> getBasketByAccountId(int accountId);
 	
 }

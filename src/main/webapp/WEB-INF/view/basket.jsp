@@ -18,7 +18,7 @@
 </div>
 
 <div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (# items)<b></b></i></h1>
+	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
 	   
 	   <c:if test='${ i == 0 }' >
 	   
@@ -41,9 +41,10 @@
 			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br> <br>
 	                                     Qty = <input id="quantityShop" type="number"   name="quantityShop" value="${basket.quantityShop}" oninput="calculate()" />    
 	                                       Price  =  ${basket.price} Kr   
-	                                       Request Total =  ######## Kr    <br> 
+	                                       Request Total = ${basket.itemRequest} Kr    <br> 
 	                                     
 	                                    <!--   the cost = <i id="result"></i>  -->
+	                                     <input type="hidden" id="id" name="id" value="${basket.id}"  />
 	                                     <input type="hidden" id="price" name="price" value="${basket.price}" oninput="calculate()" />
 	                                     <input type="hidden" name="product.id" value="${basket.product.id}" />
 	                                     <input type="hidden" name="account.id" value="${basket.account.id}" /> <br>
@@ -55,7 +56,7 @@
 		      </c:forEach>
 		      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 	   
-		        The Total = #####  Kr
+		        The Total =  ${sum}  Kr
 	   </c:if>
 		       </div>
 

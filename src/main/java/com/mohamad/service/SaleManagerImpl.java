@@ -140,5 +140,9 @@ public class SaleManagerImpl implements SaleManager {
 				return dao.getBasketById(id);
 			}
 			
+			public List<Basket> getBasketByAccountId(int accountId){
+				return dao.getBasketByAccountId(accountId);
+				
+			}
 	}
 

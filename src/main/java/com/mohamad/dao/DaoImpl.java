@@ -21,6 +21,8 @@ import com.mohamad.model.Product;
 
 
 
+
+
 @Repository
 public class DaoImpl implements Dao  {
 	
@@ -305,7 +307,18 @@ public class DaoImpl implements Dao  {
 	        	this.sessionFactory.getCurrentSession().delete(basket);
 	        }
 	    }
-
+	   
+		/*
+		public void deleteBasketById(int basketId) {
+			Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    Basket basket = (Basket) session.get(Basket.class, basketId);
+		    if(null != basket) {
+		        session.delete(basket);
+		    }
+		    session.getTransaction().commit();
+		}  
+		*/
 		@Transactional
 		public void updateBasket(Basket basket) {
 			 Session session = sessionFactory.getCurrentSession();
@@ -319,6 +332,24 @@ public class DaoImpl implements Dao  {
 			            session.getTransaction().rollback();
 			        }
 			
+			}
+		
+		@Transactional
+		@SuppressWarnings("unchecked")
+		public List<Basket> getBasketByAccountId(int accountId) {
+				Session session = sessionFactory.getCurrentSession();
+			    session.beginTransaction();
+			    List<Basket> baskets = null;
+			    try {
+			        System.out.println("IN LIST");
+			        baskets = (List<Basket>)session.createQuery("from Basket where account_id="+accountId).list();
+			        System.out.println("IN LIST");
+			    } catch (HibernateException e) {
+			        e.printStackTrace();
+			        session.getTransaction().rollback();
+			    }
+			// session.getTransaction().commit();
+			    return baskets;
 			}
 		
 	

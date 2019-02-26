@@ -260,25 +260,44 @@ import com.mohamad.service.SaleManager;
 					return model1;
 	   }
 		
-	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
-		  public String addaccount(@ModelAttribute("account") Account account) {
-			
-			Account account1= new Account();
-			 account1.username="Mohamad";
-			 account1.password="123";
-		    saleManager.addAccount(account);
-		
-			return "redirect:index";
-	    }
+	   
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
 		   
-		    saleManager.addToBasket(basket);
-		  
-		    itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
-		    System.out.println("itemNummberInBasket"+itemNummberInBasket);
-		    session.setAttribute("i",itemNummberInBasket);
+		    List<Basket>  baskets= new ArrayList<Basket>();
 		    
+		    Log log=(Log) session.getAttribute("log");
+		    System.out.println("account_id="+log.account.id);
+		    baskets=saleManager.getBasketByAccountId(log.account.id);
+		    System.out.println("baskets="+baskets);
+		    if ( baskets.isEmpty()) {
+		    	saleManager.addToBasket(basket);
+			    itemNummberInBasket=basket.quantityShop;
+			    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+			    session.setAttribute("i",itemNummberInBasket);
+			   
+		    }
+		    else {
+		    	 boolean itemNotExist=true;
+                 for(Basket basket1 : baskets) {
+			    	
+			    	if(basket1.product.id == basket.product.id) {
+			    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
+			    		saleManager.updateBasket(basket1);
+			    		itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
+					    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+						session.setAttribute("i",itemNummberInBasket);
+						itemNotExist=false;
+						
+			    	}
+                 }
+		    	 if(itemNotExist) {
+		    		saleManager.addToBasket(basket);
+				    itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
+				    System.out.println("itemNummberInBasket="+itemNummberInBasket);
+				    session.setAttribute("i",itemNummberInBasket);
+		    	 }
+	    	}
 			return "redirect:customer";
 			
 	    }
@@ -286,7 +305,7 @@ import com.mohamad.service.SaleManager;
 	   @RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		   
-			//List<Product> allProducts=saleManager.getAllProducts();
+			
 		    List<Basket> baskets=saleManager.getAllBaskets();
 	        List<Basket> basketViews = new ArrayList<Basket>();
 			Log log = (Log)session.getAttribute("log");
@@ -294,16 +313,27 @@ import com.mohamad.service.SaleManager;
 			
 			if(log != null && ( log.role == "Customer" )) {
 				ModelAndView model1 = new ModelAndView("basket");
-				if(null != baskets ) {	
+				int sum=0;
+				if(null != baskets ) {
+					
 					for (Basket basket: baskets) {
-						basket.product.fileName=basket.product.FirstImage(basket.product.fileName);
-						Basket basketView=basket;
-						basketViews.add(basketView);
+						System.out.println("basket.account.id="+basket.account.id);
+						System.out.println("log.basket.account.id="+log.account.id);
+						if(basket.account.id==log.account.id) {
+						   basket.product.fileName=basket.product.FirstImage(basket.product.fileName);
+						   Basket basketView=basket;
+						   basketViews.add(basketView);
+						   basket.itemRequest =basket.quantityShop * basket.price;
+		            	    sum=sum+basket.itemRequest;
+						  
+						}
+						
 			        }
 				}
 		 	    model1.addObject("productViews",basketViews);
 		 	    model1.addObject("log.role",log.role);
 		 	   model1.addObject("i",i);
+		 	  model1.addObject("sum",sum);
 				return model1;
 			}
 			  else {
@@ -313,6 +343,7 @@ import com.mohamad.service.SaleManager;
 		}
 	   @RequestMapping(value="/deleteitemfromBasket")
 	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id) {
+		   System.out.println("id="+id);
 		 //  int i =(int) session.getAttribute("i");
 		  saleManager.deleteBasketById(id);
 		   //Basket basket=saleManager.getBasketById(id);
@@ -424,7 +455,16 @@ import com.mohamad.service.SaleManager;
 	        return "redirect:basket";	 
 	    }
 	   
-	   
+	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
+		  public String addaccount(@ModelAttribute("account") Account account) {
+			
+			Account account1= new Account();
+			 account1.username="Mohamad";
+			 account1.password="123";
+		    saleManager.addAccount(account);
+		
+			return "redirect:index";
+	    }
 		@RequestMapping(value="/addproduct")
 		public ModelAndView addproduct(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");

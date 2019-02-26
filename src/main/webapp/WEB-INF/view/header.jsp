@@ -31,7 +31,7 @@
 		    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 		        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		            <li class="nav-item active">
-		                 <a class="active" href="/saleProducts/"><i class="fa fa-fw fa-home"></i> Home</a> 
+		                 <a class="active" href="customer"><i class="fa fa-fw fa-home"></i> Home</a> 
 		            </li>
 		            
 		            <li class="nav-item active">

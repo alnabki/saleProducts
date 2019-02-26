@@ -52,7 +52,7 @@
                                       <b>Price </b>                 =  ${product.price} Kr <br>
                                       <b>Quantity</b>               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
-                                      <input type="submit" value="Add to basket"   /><br>
+                                      <input type="submit" value="Add to basket as Customer"   /><br>
                
                                       
 				                      

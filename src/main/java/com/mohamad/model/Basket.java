@@ -1,5 +1,6 @@
 package com.mohamad.model;
 
+import java.beans.Transient;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 
@@ -19,6 +20,11 @@ import javax.persistence.Table;
 public class Basket {
 	
 	
+	
+	
+	
+	
+
 	@Id
     @GeneratedValue
     
@@ -91,7 +97,17 @@ public class Basket {
 		this.account = account;
 	}
 
+	@Column(name="request_price")
+	 public int itemRequest;
+	 
 	
+		public int getItemRequest() {
+			return itemRequest;
+		}
+
+		public void setItemRequest(int itemRequest) {
+			this.itemRequest = itemRequest;
+		}
 
 	
 	
