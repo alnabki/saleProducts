@@ -12,6 +12,7 @@ public class  Log {
 	
 	public String role;
 	
+	public int  numberOfTheItemsInTheBasket;
 	
 	public Account account;
 	
@@ -56,6 +57,16 @@ public class  Log {
 
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
+	}
+
+
+	public int getNumberOfTheItemsInTheBasket() {
+		return numberOfTheItemsInTheBasket;
+	}
+
+
+	public void setNumberOfTheItemsInTheBasket(int numberOfTheItemsInTheBasket) {
+		this.numberOfTheItemsInTheBasket = numberOfTheItemsInTheBasket;
 	}
 
 	}

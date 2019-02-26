@@ -217,11 +217,25 @@ import com.mohamad.service.SaleManager;
 		
 		@RequestMapping(value = "/customer", method = RequestMethod.GET)
 		public ModelAndView customer(HttpSession session) {
-			
-		
+			Log log = (Log)session.getAttribute("log");
+			 List<Basket> baskets=saleManager.getAllBaskets();
+			int counter=0;
+			 if(null != baskets ) {
+					for (Basket basket: baskets) {
+						
+						if(basket.account.id==log.account.id) {
+			                counter=counter+basket.quantityShop;
+						}
+					}
+					log.numberOfTheItemsInTheBasket=counter;
+			 }
+			 else {
+				 log.numberOfTheItemsInTheBasket=counter;
+			 }
 			List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
-			Log log = (Log)session.getAttribute("log");
+			
+			
 			if(log != null && ( log.role == "Customer" )) {
 					ModelAndView model1 = new ModelAndView("customer");
 					if(null != allProducts ) {	
@@ -233,6 +247,7 @@ import com.mohamad.service.SaleManager;
 					}
 			 	    model1.addObject("productViews",productViews);
 			 	    model1.addObject("log.role",log.role);
+			 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 					return model1;
 				}
 			    else {
@@ -265,37 +280,32 @@ import com.mohamad.service.SaleManager;
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
 		   
 		    List<Basket>  baskets= new ArrayList<Basket>();
-		    
 		    Log log=(Log) session.getAttribute("log");
-		    System.out.println("account_id="+log.account.id);
 		    baskets=saleManager.getBasketByAccountId(log.account.id);
-		    System.out.println("baskets="+baskets);
 		    if ( baskets.isEmpty()) {
 		    	saleManager.addToBasket(basket);
-			    itemNummberInBasket=basket.quantityShop;
-			    System.out.println("itemNummberInBasket"+itemNummberInBasket);
-			    session.setAttribute("i",itemNummberInBasket);
+			    log.numberOfTheItemsInTheBasket=basket.quantityShop;  
+			    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 			   
 		    }
 		    else {
 		    	 boolean itemNotExist=true;
                  for(Basket basket1 : baskets) {
-			    	
 			    	if(basket1.product.id == basket.product.id) {
 			    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
 			    		saleManager.updateBasket(basket1);
-			    		itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
-					    System.out.println("itemNummberInBasket"+itemNummberInBasket);
-						session.setAttribute("i",itemNummberInBasket);
+			    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+					                                                    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+						session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 						itemNotExist=false;
 						
 			    	}
                  }
 		    	 if(itemNotExist) {
 		    		saleManager.addToBasket(basket);
-				    itemNummberInBasket=basket.quantityShop +itemNummberInBasket;
-				    System.out.println("itemNummberInBasket="+itemNummberInBasket);
-				    session.setAttribute("i",itemNummberInBasket);
+		    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+				                                 System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
+				    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 		    	 }
 	    	}
 			return "redirect:customer";
@@ -315,7 +325,6 @@ import com.mohamad.service.SaleManager;
 				ModelAndView model1 = new ModelAndView("basket");
 				int sum=0;
 				if(null != baskets ) {
-					
 					for (Basket basket: baskets) {
 						System.out.println("basket.account.id="+basket.account.id);
 						System.out.println("log.basket.account.id="+log.account.id);
@@ -325,6 +334,7 @@ import com.mohamad.service.SaleManager;
 						   basketViews.add(basketView);
 						   basket.itemRequest =basket.quantityShop * basket.price;
 		            	    sum=sum+basket.itemRequest;
+		            	 
 						  
 						}
 						
@@ -332,7 +342,8 @@ import com.mohamad.service.SaleManager;
 				}
 		 	    model1.addObject("productViews",basketViews);
 		 	    model1.addObject("log.role",log.role);
-		 	   model1.addObject("i",i);
+		 	 
+		 	  model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 		 	  model1.addObject("sum",sum);
 				return model1;
 			}

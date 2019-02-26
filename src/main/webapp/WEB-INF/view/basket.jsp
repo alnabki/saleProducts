@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-         <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <style><%@include file="/resources/css/mystyle.css"%></style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<style><%@include file="/resources/css/mystyle.css"%></style>
 <title> Login</title>
 </head>
 <body background="<c:url value='/resources/images/background7.jpg'  />">
@@ -16,11 +18,14 @@
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
+		  
+	       
+     
 
 <div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
+	    <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket })items<b></b></i></h1>
 	   
-	   <c:if test='${ i == 0 }' >
+	   <c:if test='${ log.numberOfTheItemsInTheBasket == 0 }' >
 	   
 		   <table align="center" >
 		     <tr>
@@ -31,7 +36,7 @@
 	   
 	    </c:if>
 	  
-	     <c:if test='${ i !=0   }' >
+	     <c:if test='${ log.numberOfTheItemsInTheBasket !=0   }' >
 	      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
 		      
