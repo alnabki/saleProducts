@@ -23,7 +23,7 @@
 </div>
 
 <div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (As Guest)<b></b></i></h1>
+	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
 	   
 	
 	   
