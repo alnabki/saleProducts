@@ -16,39 +16,30 @@
 <body background="<c:url value='/resources/images/background7.jpg'  />">
 
 <div align="right">
-          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+     <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 		  
-	       
-     
-
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket })items<b></b></i></h1>
 	   
 	   <c:if test='${ log.numberOfTheItemsInTheBasket == 0 }' >
-	   
 		   <table align="center" >
 		     <tr>
 		       <td align="center">  you don't have any thing in the basket</td>
 		      </tr>
 		   </table>
-	       
-	   
 	    </c:if>
-	  
+	    
 	     <c:if test='${ log.numberOfTheItemsInTheBasket !=0   }' >
-	      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+	                ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
-		      
-		          
 				     <form:form id="usrform" name="getForm" action="deleteitemfromBasket"  method="post" modelAttribute="basket" > 
 			                             ${status.index + 1} =     <b><u> ${basket.product.name} </u></b>
 			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br> <br>
 	                                     Qty = <input id="quantityShop" type="number"   name="quantityShop" value="${basket.quantityShop}" oninput="calculate()" />    
-	                                       Price  =  ${basket.price} Kr   
-	                                       Request Total = ${basket.itemRequest} Kr    <br> 
-	                                     
-	                                    <!--   the cost = <i id="result"></i>  -->
+	                                     Price  =  ${basket.price} Kr   
+	                                     Request Total = ${basket.itemRequest} Kr    <br> 
+	                                     <!--   the cost = <i id="result"></i>  -->
 	                                     <input type="hidden" id="id" name="id" value="${basket.id}"  />
 	                                     <input type="hidden" id="price" name="price" value="${basket.price}" oninput="calculate()" />
 	                                     <input type="hidden" name="product.id" value="${basket.product.id}" />
@@ -57,13 +48,11 @@
 	                                     <a href="deleteitemfromBasket?id=${basket.id}">  Remove</a> <br>
 	                 </form:form>
 	                  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> 
-		          
 		      </c:forEach>
-		      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	   
-		        The Total =  ${sum}  Kr
+		      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      <b>The Total =  ${sum}  Kr</b>
 	   </c:if>
-		       </div>
+</div>
 
 </body>
 </html>

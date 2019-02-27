@@ -286,7 +286,6 @@ import com.mohamad.service.SaleManager;
 		    	saleManager.addToBasket(basket);
 			    log.numberOfTheItemsInTheBasket=basket.quantityShop;  
 			    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
-			   
 		    }
 		    else {
 		    	 boolean itemNotExist=true;
@@ -314,8 +313,6 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
-		   
-			
 		    List<Basket> baskets=saleManager.getAllBaskets();
 	        List<Basket> basketViews = new ArrayList<Basket>();
 			Log log = (Log)session.getAttribute("log");
@@ -334,10 +331,7 @@ import com.mohamad.service.SaleManager;
 						   basketViews.add(basketView);
 						   basket.itemRequest =basket.quantityShop * basket.price;
 		            	    sum=sum+basket.itemRequest;
-		            	 
-						  
 						}
-						
 			        }
 				}
 		 	    model1.addObject("productViews",basketViews);
