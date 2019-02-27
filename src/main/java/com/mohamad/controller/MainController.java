@@ -368,8 +368,8 @@ import com.mohamad.service.SaleManager;
            while (keys.hasMoreElements()) {
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
-               if (key.contentEquals("i")) {
-           	     
+               if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+            	   System.out.println("har=" );
                }
                else {
            	         Log x=(Log) session.getAttribute(""+key+"");
@@ -408,7 +408,7 @@ import com.mohamad.service.SaleManager;
 	            while (keys.hasMoreElements()) {
 	                String key = (String)keys.nextElement();
 	                System.out.println(key + ": " + session.getAttribute(key) );
-	                if (key.contentEquals("i")) {
+	                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
 	            	    model.addObject("i",i);
 	                }
 	                else {
