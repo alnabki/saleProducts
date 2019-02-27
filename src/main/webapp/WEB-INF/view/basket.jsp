@@ -45,7 +45,7 @@
 	                                     <input type="hidden" name="product.id" value="${basket.product.id}" />
 	                                     <input type="hidden" name="account.id" value="${basket.account.id}" /> <br>
 	                                     <input type="submit" value="Go to Checkout"   /><br>
-	                                     <a href="deleteitemfromBasket?id=${basket.id}">  Remove</a> <br>
+	                                     <a href="deleteitemfromBasket?id=${basket.id}&quantityShop=${basket.quantityShop}">  Remove</a> <br>
 	                 </form:form>
 	                  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> 
 		      </c:forEach>

@@ -15,6 +15,7 @@ public interface Dao {
 	void updateAccount(Account account);
 	public List<Account> getAllAccounts();
 	public void deleteAccount(int accountId);
+	public Account getAccountById(int id);
 	
 	public void addAdmin(Admin admin);
 	public List<Admin> getAllAdmins();
@@ -25,7 +26,7 @@ public interface Dao {
 	public List<Product> getAllProducts();
 	public void deleteProduct(int productId);
 	public void updateProduct(Product product);
-	public Product getProduct(int id);
+	public Product getProductById(int id);
 	
 	public void addCustomer(Customer customer);
 	public List<Customer> getAllCustomers();
@@ -46,5 +47,6 @@ public interface Dao {
 	public void updateBasket(Basket basket);
 	public Basket getBasketById(int id);
 	public List<Basket> getBasketByAccountId(int accountId);
+	public List<Basket> getBasketByProductIdAccountId(int productId, int accountId);
 	
 }

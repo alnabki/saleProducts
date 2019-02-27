@@ -41,7 +41,9 @@ public class SaleManagerImpl implements SaleManager {
 				dao.deleteAccount( accountId);
 			}
 			
-			
+			public Account  getAccountById(int id) {
+				return dao.getAccountById(id);
+			}
 			
 			
 			
@@ -73,8 +75,8 @@ public class SaleManagerImpl implements SaleManager {
 			public void updateProduct(Product product) {
 				dao.updateProduct(product);
 			}
-			public Product getProduct(int id) {
-				return dao.getProduct(id);
+			public Product getProductById(int id) {
+				return dao.getProductById(id);
 			}
 		
 			
@@ -130,8 +132,8 @@ public class SaleManagerImpl implements SaleManager {
 			public List<Basket> getAllBaskets(){
 				return dao.getAllBaskets();
 			}
-			public void deleteBasketById(int productId){
-				dao.deleteProduct( productId);
+			public void deleteBasketById(int basketId){
+				dao.deleteBasketById( basketId);
 			}
 			public void updateBasket(Basket basket) {
 				dao.updateBasket(basket);
@@ -143,6 +145,9 @@ public class SaleManagerImpl implements SaleManager {
 			public List<Basket> getBasketByAccountId(int accountId){
 				return dao.getBasketByAccountId(accountId);
 				
+			}
+			public List<Basket> getBasketByProductIdAccountId(int productId, int accountId){
+			    return dao.getBasketByProductIdAccountId( productId,  accountId);
 			}
 	}
 

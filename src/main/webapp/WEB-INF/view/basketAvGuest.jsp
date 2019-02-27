@@ -24,20 +24,13 @@
 
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
-	   
-	
-	   
-
 	     
 	   <c:if test='${ i == 0 && log == null  }' >
-	   
 		   <table align="center" >
 		     <tr>
 		       <td align="center">  you don't have any thing in the basket</td>
 		      </tr>
 		   </table>
-	       
-	   
 	    </c:if>
 	    
 	    

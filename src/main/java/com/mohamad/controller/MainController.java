@@ -347,15 +347,12 @@ import com.mohamad.service.SaleManager;
 			   }
 		}
 	   @RequestMapping(value="/deleteitemfromBasket")
-	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id) {
-		   System.out.println("id="+id);
-		 //  int i =(int) session.getAttribute("i");
+	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id,@RequestParam(value="quantityShop", required=true) int quantityShop) {
+		  Log log =(Log) session.getAttribute("log");
 		  saleManager.deleteBasketById(id);
-		   //Basket basket=saleManager.getBasketById(id);
-		  // i=i-basket.quantityShop;
-		   
-		  //session.setAttribute("i",i);
-		   return "redirect:basket";
+		  log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket-quantityShop;
+		  session.setAttribute("log",log);
+		  return "redirect:basket";
 	   }
 	   @SuppressWarnings("rawtypes")
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
@@ -520,7 +517,7 @@ import com.mohamad.service.SaleManager;
 		@SuppressWarnings("null")
 		@RequestMapping(value="/getproduct")
 	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
-	        Product product = saleManager.getProduct(id);
+	        Product product = saleManager.getProductById(id);
 	    	System.out.println("name= "+ product.name);
 	    	  ModelAndView model = new ModelAndView("editProduct");
 	    	  
@@ -701,7 +698,7 @@ import com.mohamad.service.SaleManager;
 		        Log log = (Log)session.getAttribute("log");
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("editProduct2");
-						Product product=saleManager.getProduct(id);
+						Product product=saleManager.getProductById(id);
 					    model.addObject("fileNames",fileNames);
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);
