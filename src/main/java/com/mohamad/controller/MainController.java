@@ -354,6 +354,26 @@ import com.mohamad.service.SaleManager;
 		  session.setAttribute("log",log);
 		  return "redirect:basket";
 	   }
+	   
+	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "update" })
+	    public String updateitemfrombasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
+		   
+		   Basket oldBasket=saleManager.getBasketById(basket.id);
+		   saleManager.updateBasket(basket);
+		   Log log=(Log) session.getAttribute("log");
+		   if(oldBasket.quantityShop >= basket.quantityShop) {
+		       log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket-(oldBasket.quantityShop-basket.quantityShop);
+		   }
+		   if(oldBasket.quantityShop <= basket.quantityShop) {
+			   log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket+(basket.quantityShop-oldBasket.quantityShop);
+		   }
+		   session.setAttribute("log", log);
+		   
+			return"redirect:basket";
+		   
+		   
+	   }
+	  
 	   @SuppressWarnings("rawtypes")
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
