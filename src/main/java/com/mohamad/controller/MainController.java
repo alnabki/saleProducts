@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.Locale;
 import javax.annotation.Resource;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -181,24 +181,6 @@ import com.mohamad.service.SaleManager;
 				}
 		 	}	
 		   
-		   /*
-		   @RequestMapping(value="/customer")
-		   public ModelAndView customerpage(HttpSession session) {
-				Log log = (Log)session.getAttribute("log");
-				if(log != null && ( log.role == "Customer" )) {
-			        	ModelAndView model = new ModelAndView("customer");
-				 	   
-				 	    model.addObject("log.role",log.role);
-				 	    return model;
-			        }
-				else {
-			 		ModelAndView model2 = new ModelAndView("notlogin");
-			 		return model2;
-			    }
-		 	}
-		   
-		   
-		*/
 		   
 		   @RequestMapping(value="/notlogin")
 			public ModelAndView notlogin() {
@@ -357,10 +339,7 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "update" })
 	    public String updateitemfrombasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
-<<<<<<< HEAD
-=======
-		   
->>>>>>> mohamad2
+
 		   Basket oldBasket=saleManager.getBasketById(basket.id);
 		   saleManager.updateBasket(basket);
 		   Log log=(Log) session.getAttribute("log");
@@ -371,14 +350,12 @@ import com.mohamad.service.SaleManager;
 			   log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket+(basket.quantityShop-oldBasket.quantityShop);
 		   }
 		   session.setAttribute("log", log);
-<<<<<<< HEAD
-			return"redirect:basket";
-=======
+
 		   
 			return"redirect:basket";
 		   
 		   
->>>>>>> mohamad2
+
 	   }
 	  
 	   @SuppressWarnings("rawtypes")
@@ -394,11 +371,9 @@ import com.mohamad.service.SaleManager;
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
                if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
-<<<<<<< HEAD
-            	                       System.out.println("har=" );
-=======
+
             	   System.out.println("har=" );
->>>>>>> mohamad2
+
                }
                else {
            	         Log x=(Log) session.getAttribute(""+key+"");
