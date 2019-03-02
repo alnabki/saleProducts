@@ -357,6 +357,10 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "update" })
 	    public String updateitemfrombasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
+<<<<<<< HEAD
+=======
+		   
+>>>>>>> mohamad2
 		   Basket oldBasket=saleManager.getBasketById(basket.id);
 		   saleManager.updateBasket(basket);
 		   Log log=(Log) session.getAttribute("log");
@@ -367,7 +371,14 @@ import com.mohamad.service.SaleManager;
 			   log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket+(basket.quantityShop-oldBasket.quantityShop);
 		   }
 		   session.setAttribute("log", log);
+<<<<<<< HEAD
 			return"redirect:basket";
+=======
+		   
+			return"redirect:basket";
+		   
+		   
+>>>>>>> mohamad2
 	   }
 	  
 	   @SuppressWarnings("rawtypes")
@@ -383,7 +394,11 @@ import com.mohamad.service.SaleManager;
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
                if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+<<<<<<< HEAD
             	                       System.out.println("har=" );
+=======
+            	   System.out.println("har=" );
+>>>>>>> mohamad2
                }
                else {
            	         Log x=(Log) session.getAttribute(""+key+"");
