@@ -31,7 +31,7 @@
 		    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 		        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		            <li class="nav-item active">
-		                 <a class="active" href="/saleProducts/"><i class="fa fa-fw fa-home"></i> Home</a> 
+		                 <a class="active" href="customer"><i class="fa fa-fw fa-home"></i> Home</a> 
 		            </li>
 		            
 		            <li class="nav-item active">
@@ -49,7 +49,7 @@
 	            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	        </form>
 	       
-		              <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket <button > basket</button>   </a> 
+		              <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket${log.numberOfTheItemsInTheBasket } <button > basket</button>   </a> 
 		     		   </nav>
        </c:if>
      
@@ -89,7 +89,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-          <a    href="basketasgest">  <i class="fa fa-fw fa-cart" > </i> Basket ${i }<button > basket</button>   </a>
+          <a    href="basketasgest">  <i class="fa fa-fw fa-cart" > </i> Baskett ${i }<button > basket</button>   </a>
     </div>
 </nav>
 		   
