@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.Locale;
 import javax.annotation.Resource;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -181,24 +181,6 @@ import com.mohamad.service.SaleManager;
 				}
 		 	}	
 		   
-		   /*
-		   @RequestMapping(value="/customer")
-		   public ModelAndView customerpage(HttpSession session) {
-				Log log = (Log)session.getAttribute("log");
-				if(log != null && ( log.role == "Customer" )) {
-			        	ModelAndView model = new ModelAndView("customer");
-				 	   
-				 	    model.addObject("log.role",log.role);
-				 	    return model;
-			        }
-				else {
-			 		ModelAndView model2 = new ModelAndView("notlogin");
-			 		return model2;
-			    }
-		 	}
-		   
-		   
-		*/
 		   
 		   @RequestMapping(value="/notlogin")
 			public ModelAndView notlogin() {
@@ -347,16 +329,35 @@ import com.mohamad.service.SaleManager;
 			   }
 		}
 	   @RequestMapping(value="/deleteitemfromBasket")
-	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id) {
-		   System.out.println("id="+id);
-		 //  int i =(int) session.getAttribute("i");
+	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id,@RequestParam(value="quantityShop", required=true) int quantityShop) {
+		  Log log =(Log) session.getAttribute("log");
 		  saleManager.deleteBasketById(id);
-		   //Basket basket=saleManager.getBasketById(id);
-		  // i=i-basket.quantityShop;
-		   
-		  //session.setAttribute("i",i);
-		   return "redirect:basket";
+		  log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket-quantityShop;
+		  session.setAttribute("log",log);
+		  return "redirect:basket";
 	   }
+	   
+	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "update" })
+	    public String updateitemfrombasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
+
+		   Basket oldBasket=saleManager.getBasketById(basket.id);
+		   saleManager.updateBasket(basket);
+		   Log log=(Log) session.getAttribute("log");
+		   if(oldBasket.quantityShop >= basket.quantityShop) {
+		       log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket-(oldBasket.quantityShop-basket.quantityShop);
+		   }
+		   if(oldBasket.quantityShop <= basket.quantityShop) {
+			   log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket+(basket.quantityShop-oldBasket.quantityShop);
+		   }
+		   session.setAttribute("log", log);
+
+		   
+			return"redirect:basket";
+		   
+		   
+
+	   }
+	  
 	   @SuppressWarnings("rawtypes")
 	   @RequestMapping(value = "/addtobasketasguest" ,method = RequestMethod.POST)
 		  public String addtobasketasguest(HttpSession session,@ModelAttribute("log") Log log) {
@@ -364,29 +365,35 @@ import com.mohamad.service.SaleManager;
 		   Log[] elementArray = (Log[]) Array.newInstance(Log.class, 1000);
 		   int i ;
 		   i = (int) session.getAttribute("i");
+		
 	       Enumeration keys = session.getAttributeNames();
            while (keys.hasMoreElements()) {
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
                if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+
             	   System.out.println("har=" );
+
                }
                else {
            	         Log x=(Log) session.getAttribute(""+key+"");
 	           	     if (x.basket.product.id == log.basket.product.id){
-	           	    	 log.basket.quantityShop=log.basket.quantityShop+x.basket.quantityShop;
 	           	    	 i=i+log.basket.quantityShop;
+	           	    	 log.basket.quantityShop=log.basket.quantityShop+x.basket.quantityShop;
+	           	    	session.setAttribute("i",i);
+	           	    	
 	           	     }
 	           	     else {
 	           	    	 System.out.println("no thing to add");
            	         }
                }
            }
-		   if (i!=0) {
+		   if (i!=0 ) {
 		    	i=log.basket.getQuantityShop()+i;
 		    	Array.set(elementArray, i, log);
 		    	session.setAttribute("i",i);
 		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
+		    	
 		   }
 		    else {
 		    	i=log.basket.getQuantityShop();
@@ -416,6 +423,7 @@ import com.mohamad.service.SaleManager;
 	            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
 	            	    sum=sum+x.itemPrice;
 		 		        logs.add(x);
+		 		      // model.addObject("i",i);
 	                }
 	            }
 	       model.addObject("logs",logs);
@@ -431,6 +439,33 @@ import com.mohamad.service.SaleManager;
 		   session.removeAttribute("p("+id+")");
 		   session.setAttribute("i",i);
 		   return "redirect:basketasgest";
+	   }
+	   
+	   @RequestMapping(value="/gotochekout&updateforguest", method = RequestMethod.POST,params = { "updateForGuest" })
+	   public String gotochekoutandupdateforguest (HttpSession session,@ModelAttribute("Log") Log log) { 
+		   int i =(int) session.getAttribute("i");
+		   System.out.println("here11");
+		   Log x=(Log) session.getAttribute("p("+log.basket.product.id+")");
+		   System.out.println("here12");
+		  //
+		   if(x.basket.quantityShop >= log.basket.quantityShop) {
+		       i=i-(x.basket.quantityShop-log.basket.quantityShop);
+		       System.out.println("x.basket.quantityShop="+x.basket.quantityShop);
+		       System.out.println("log.basket.quantityShop="+log.basket.quantityShop);
+		       System.out.println("here11="+i);
+		       x.basket.quantityShop=log.basket.quantityShop;
+		   }
+		   else {
+			   i=i+(log.basket.quantityShop-x.basket.quantityShop);
+			   System.out.println("here11="+i);
+			   x.basket.quantityShop=log.basket.quantityShop;
+		   }
+		   
+		   session.setAttribute("i",i);
+		   session.setAttribute("p("+log.basket.product.id+")",x);
+		  
+		   return "redirect:basketasgest";
+		
 	   }
 	   /*
 	   @RequestMapping(value="/deleteelement")
@@ -520,7 +555,7 @@ import com.mohamad.service.SaleManager;
 		@SuppressWarnings("null")
 		@RequestMapping(value="/getproduct")
 	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
-	        Product product = saleManager.getProduct(id);
+	        Product product = saleManager.getProductById(id);
 	    	System.out.println("name= "+ product.name);
 	    	  ModelAndView model = new ModelAndView("editProduct");
 	    	  
@@ -701,7 +736,7 @@ import com.mohamad.service.SaleManager;
 		        Log log = (Log)session.getAttribute("log");
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("editProduct2");
-						Product product=saleManager.getProduct(id);
+						Product product=saleManager.getProductById(id);
 					    model.addObject("fileNames",fileNames);
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);

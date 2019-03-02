@@ -23,6 +23,8 @@ import com.mohamad.model.Product;
 
 
 
+
+
 @Repository
 public class DaoImpl implements Dao  {
 	
@@ -34,6 +36,22 @@ public class DaoImpl implements Dao  {
 	@Transactional
 	public void addAccount(Account account) {
 		this.sessionFactory.getCurrentSession().save(account);
+	}
+	@Transactional
+	public Account getAccountById(int id) {
+	    Session session = sessionFactory.getCurrentSession();
+	    Account account=null;
+	    System.out.println("IN GetIteam");
+	    try {
+	        System.out.println("IN GetIteam");
+	        session.beginTransaction();
+	        account = (Account) session.get(Account.class, id);
+	    } catch (HibernateException e) {
+	        e.printStackTrace();
+	        session.getTransaction().rollback();
+	    }
+	   //session.getTransaction().commit();
+	    return account;
 	}
 	
 	@Transactional
@@ -106,7 +124,7 @@ public class DaoImpl implements Dao  {
 	}
 
 	@Transactional
-	public Product getProduct(int id) {
+	public Product getProductById(int id) {
 	    Session session = sessionFactory.getCurrentSession();
 	    Product product=null;
 	    System.out.println("IN GetIteam");
@@ -276,7 +294,8 @@ public class DaoImpl implements Dao  {
 		public void addToBasket(Basket basket) {
 			this.sessionFactory.getCurrentSession().save(basket);
 		}
-
+        
+		
 		@Transactional
 		public Basket getBasketById(int id) {
 		    Session session = sessionFactory.getCurrentSession();
@@ -291,8 +310,31 @@ public class DaoImpl implements Dao  {
 		        session.getTransaction().rollback();
 		    }
 		   //session.getTransaction().commit();
+		   
+		    
 		    return basket;
 		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<Basket> getBasketByProductIdAccountId(int productId, int accountId) {
+			Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    List<Basket> baskets = null;
+		    try {
+		        System.out.println("IN LIST");
+		        baskets = (List<Basket>)session.createQuery("from Basket WHERE (product_id ="+ productId + " and status = 'New') or (product_id ="+ productId + " and account_id = "+accountId+")").list();
+		
+		    } catch (HibernateException e) {
+		        e.printStackTrace();
+		        session.getTransaction().rollback();
+		    }
+		    session.getTransaction().commit();
+		    return baskets;
+		}
+		
+		
+		
 		@Transactional
 		@SuppressWarnings("unchecked")    
 		public List<Basket> getAllBaskets() {
@@ -301,24 +343,18 @@ public class DaoImpl implements Dao  {
 		
 		@Transactional
 		public void deleteBasketById(int basketId) {
+			System.out.println("har delete-1");
 			Basket basket = (Basket) sessionFactory.getCurrentSession().load(
 					Basket.class, basketId);
+			System.out.println("har delete0");
 	        if (null != basket) {
+	        	System.out.println("har delete1");
 	        	this.sessionFactory.getCurrentSession().delete(basket);
 	        }
+	    	System.out.println("har delete2");
 	    }
 	   
-		/*
-		public void deleteBasketById(int basketId) {
-			Session session = sessionFactory.getCurrentSession();
-		    session.beginTransaction();
-		    Basket basket = (Basket) session.get(Basket.class, basketId);
-		    if(null != basket) {
-		        session.delete(basket);
-		    }
-		    session.getTransaction().commit();
-		}  
-		*/
+		
 		@Transactional
 		public void updateBasket(Basket basket) {
 			 Session session = sessionFactory.getCurrentSession();
@@ -351,6 +387,7 @@ public class DaoImpl implements Dao  {
 			// session.getTransaction().commit();
 			    return baskets;
 			}
+		
 		
 	
 	}

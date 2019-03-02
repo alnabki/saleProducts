@@ -47,25 +47,22 @@
                <c:forEach var="fileName" items="${fileNames}" varStatus="status">
 	                 <img class="imageProduct"  src="<c:url value="/resources/images/${fileName}" />"/>
 	           </c:forEach>
-	           
-	            <table id="fileTable">
-	                <tr>
-	                   <td><input id="addFile" type="button" value="Add File" /></td>
-	                </tr>   
-	                <tr>
-	                    <td><input name="files[0]" type="file" /></td>
-	                </tr>
-	        
-	                <tr>
-	                    <td><input name="files[1]" type="file" /></td>
-	                </tr>
-	                
-	            </table>
-	                 <c:forEach items="${files}" var="file">
-                       - ${file} <br>
-                    </c:forEach>
-                    
-                      <input type="submit"  name="savefiles" value="upload"/> 
+		            <table id="fileTable">
+		                <tr>
+		                   <td><input id="addFile" type="button" value="Add File" /></td>
+		                </tr>   
+		                <tr>
+		                    <td><input name="files[0]" type="file" /></td>
+		                </tr>
+		        
+		                <tr>
+		                    <td><input name="files[1]" type="file" /></td>
+		                </tr>
+		            </table>
+	                    <c:forEach items="${files}" var="file">
+                           - ${file} <br>
+                        </c:forEach>
+                     <input type="submit"  name="savefiles" value="upload"/> 
                         
                </form:form>  
               

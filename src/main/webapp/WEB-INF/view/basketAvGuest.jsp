@@ -24,20 +24,13 @@
 
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
-	   
-	
-	   
-
 	     
 	   <c:if test='${ i == 0 && log == null  }' >
-	   
 		   <table align="center" >
 		     <tr>
 		       <td align="center">  you don't have any thing in the basket</td>
 		      </tr>
 		   </table>
-	       
-	   
 	    </c:if>
 	    
 	    
@@ -46,18 +39,20 @@
 		      <c:forEach var="log" items="${logs}" varStatus="status">
 		      
 		           <c:if test='${ log !=null }' >
-				     <form:form id="usrform" name="getForm" action="deleteelement"  method="post" modelAttribute="log" > 
+				     <form:form id="usrform" name="getForm" action="gotochekout&updateforguest"  method="post" modelAttribute="log" enctype="multipart/form-data"> 
 			                             ${status.index + 1} =     <b><u> ${log.basket.product.name} </u></b>
 			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${log.basket.product.fileName}" />"/><br> <br>
-	                                     Qty = <input id="quantityShop" type="number"   name="basket.quantityShop" value="${log.basket.quantityShop}" oninput="calculate()" />    
+	                                     Qty = <input id="quantityShop" type="number"   name="basket.quantityShop" value="${log.basket.quantityShop}" oninput="calculate()" />
+	                                      <input type="submit" name="updateForGuest"  value="Change"   /><br>    
 	                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Price  =  ${log.basket.price} Kr   
 	                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Request Total =  ${log.itemPrice} Kr    <br> 
 	                                     
 	                                    <!--   the cost = <i id="result"></i>  -->
 	                                     <input type="hidden" id="price" name="basket.price" value="${log.basket.price}" oninput="calculate()" />
 	                                     <input type="hidden" name="basket.product.id" value="${log.basket.product.id}" />
-	                                     <input type="hidden" name="account.id" value="${log.account.id}" /> <br>
-	                                     <input type="submit" value="Go to Checkout"   /><br>
+	                                    
+	                                     <input type="submit" name="gotocheckoutforguest"  value="Go to Checkout"   /><br>
+	                                        <input type="submit" name="updateForGuest"  value="Change"   /><br>    
 	                                     <a href="deleteelement?id=${log.basket.product.id}">  Remove</a> <br>
 	                 </form:form>
 	                  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> 
