@@ -19,7 +19,7 @@
 </head>
 
 
-<body background="<c:url value='/resources/images/background7.jpg'  />">
+<body>
  <!-- <img  src="<c:url value="/resources/images/laptopBackground.png" />"/><br> -->
  
 
