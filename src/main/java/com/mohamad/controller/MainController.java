@@ -75,7 +75,7 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		    session.setAttribute("i",0);
+		   // session.setAttribute("i",0);
 			ModelAndView model1 = new ModelAndView("index");
 			
 			Date date = new Date();
@@ -367,6 +367,7 @@ import com.mohamad.service.SaleManager;
 		   i = (int) session.getAttribute("i");
 		
 	       Enumeration keys = session.getAttributeNames();
+	       boolean check=false;
            while (keys.hasMoreElements()) {
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
@@ -381,29 +382,32 @@ import com.mohamad.service.SaleManager;
 	           	    	 i=i+log.basket.quantityShop;
 	           	    	 log.basket.quantityShop=log.basket.quantityShop+x.basket.quantityShop;
 	           	    	session.setAttribute("i",i);
-	           	    	
+	           	    	Array.set(elementArray, i, log);
+	           	    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
+	    		    	check=true;
 	           	     }
 	           	     else {
 	           	    	 System.out.println("no thing to add");
            	         }
                }
            }
-		   if (i!=0 ) {
-		    	i=log.basket.getQuantityShop()+i;
-		    	Array.set(elementArray, i, log);
-		    	session.setAttribute("i",i);
-		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
-		    	
-		   }
-		    else {
-		    	i=log.basket.getQuantityShop();
-		    	Array.set(elementArray, 1, log);
-		    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
-		    	session.setAttribute("i",i);
-		    }
-	 		return "redirect:index";
-	    }
-	
+           if( check==false) {
+				  if (i!=0 ) {
+				    	i=log.basket.getQuantityShop()+i;
+				    	Array.set(elementArray, i, log);
+				    	session.setAttribute("i",i);
+				    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,i));
+				    	
+				   }
+				  else  {
+				    	i=log.basket.getQuantityShop();
+				    	Array.set(elementArray, 1, log);
+				    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
+				    	session.setAttribute("i",i);
+				    }
+			    }
+           return "redirect:index";
+	   }
     @SuppressWarnings("rawtypes")  
 	@RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
 		public ModelAndView basketasguest(HttpSession session) {

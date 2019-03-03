@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Login</title>
 </head>
-<body background="<c:url value='/resources/images/background7.jpg'  />">
+<body> 
  <!-- <img  src="<c:url value="/resources/images/laptopBackground.png" />"/><br> -->
 
 <div align="right">

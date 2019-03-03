@@ -16,7 +16,7 @@
 <style><%@include file="/resources/css/mystyle.css"%></style>
 </head>
 
- <body background="<c:url value='/resources/images/background7.jpg'  />">
+ <body> 
  
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

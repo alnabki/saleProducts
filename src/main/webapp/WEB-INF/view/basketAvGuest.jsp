@@ -28,7 +28,7 @@
 	   <c:if test='${ i == 0 && log == null  }' >
 		   <table align="center" >
 		     <tr>
-		       <td align="center">  you don't have any thing in the basket</td>
+		       <td align="center">  you don't have anything in the basket</td>
 		      </tr>
 		   </table>
 	    </c:if>
@@ -50,9 +50,8 @@
 	                                    <!--   the cost = <i id="result"></i>  -->
 	                                     <input type="hidden" id="price" name="basket.price" value="${log.basket.price}" oninput="calculate()" />
 	                                     <input type="hidden" name="basket.product.id" value="${log.basket.product.id}" />
-	                                    
+	                                     
 	                                     <input type="submit" name="gotocheckoutforguest"  value="Go to Checkout"   /><br>
-	                                        <input type="submit" name="updateForGuest"  value="Change"   /><br>    
 	                                     <a href="deleteelement?id=${log.basket.product.id}">  Remove</a> <br>
 	                 </form:form>
 	                  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br> 
