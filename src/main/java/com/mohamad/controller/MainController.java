@@ -167,20 +167,22 @@ import com.mohamad.service.SaleManager;
 			}
 		   
 		   @RequestMapping(value="/maineftershop")
-			public ModelAndView maineftershop(HttpSession session) {
+			public String maineftershop(HttpSession session) {
 					
-						ModelAndView model =new ModelAndView("basketEfterLogin");
+						
 						 Log log=(Log) session.getAttribute("log");
 						   List<Log> logs = new ArrayList<Log>();
 						   int i = (int) session.getAttribute("i");
 						   System.out.println("i="+i);
+						   log.numberOfTheItemsInTheBasket=i;
+						   session.setAttribute("log", log);
 								Enumeration keys = session.getAttributeNames();
 								int sum=0;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
 					                System.out.println(key + ": " + session.getAttribute(key) );
 					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")) {
-					            	    model.addObject("i",i);
+					            	
 					                }
 					                else {
 					                	 System.out.println("here sum="+sum );
@@ -193,10 +195,9 @@ import com.mohamad.service.SaleManager;
 						 		        logs.add(x);
 					                }
 					            }
-					       model.addObject("logs",logs);
-					       model.addObject("sum",sum);
-					       System.out.println("finish" );
-						return model;
+					      
+					  
+						return "redirect:basket";
 					}
 		
 		   
@@ -523,26 +524,7 @@ import com.mohamad.service.SaleManager;
 		   return "redirect:basketasgest";
 		
 	   }
-	   /*
-	   @RequestMapping(value="/deleteelement")
-	    public ModelAndView deletelement(HttpSession session,@RequestParam(value="id", required=true) int id) {
-		   ModelAndView model =new ModelAndView("basketAvGuest");
-		   List<Log> logs = new ArrayList<Log>();
-			 int i =(int) session.getAttribute("i");
-			  session.removeAttribute("p("+id+")");
-			 int j=1;
-			 while (  j <= i ) {
-				   Log x=(Log) session.getAttribute("p("+id+")");
-			       logs.add(x);
-			       j=j+1;
-			 }
-			 i=i-1;
-		     session.setAttribute("i",i);
-		     model.addObject("logs",logs);
-		     model.addObject("i",i);
-			 return model; 
-	    }
-	 */
+	  
 	
 	   
 	   @RequestMapping(value="/deleteorder")

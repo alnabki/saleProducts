@@ -16,7 +16,7 @@
 </head>
 <body onload="calculate()">
 
-id=${i}
+
 
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
