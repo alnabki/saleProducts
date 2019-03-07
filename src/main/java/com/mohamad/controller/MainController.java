@@ -154,11 +154,6 @@ import com.mohamad.service.SaleManager;
 			 			
 				 		return "redirect:customer";
 			 			}
-						
-						
-						
-						
-					
 					}
 				} 
 				else {
@@ -168,8 +163,6 @@ import com.mohamad.service.SaleManager;
 		   
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
-					
-						
 						 Log log=(Log) session.getAttribute("log");
 						   List<Log> logs = new ArrayList<Log>();
 						   int i = (int) session.getAttribute("i");
@@ -185,18 +178,12 @@ import com.mohamad.service.SaleManager;
 					            	
 					                }
 					                else {
-					                	 System.out.println("here sum="+sum );
 					            	    Log x=(Log) session.getAttribute(""+key+"");
 					            	   Basket basket= x.basket;
 					            	   basket.account=log.account;
 					            	    saleManager.addToBasket(basket);
-					            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
-					            	    sum=sum+x.itemPrice;
-						 		        logs.add(x);
 					                }
 					            }
-					      
-					  
 						return "redirect:basket";
 					}
 		
@@ -488,15 +475,7 @@ import com.mohamad.service.SaleManager;
 		   session.setAttribute("i",i);
 		   return "redirect:basketasgest";
 	   }
-	   @RequestMapping(value="/deleteelementefterlogin")
-	    public String deletelementefterlogin(HttpSession session,@RequestParam(value="id", required=true) int id) {
-		   int i =(int) session.getAttribute("i");
-		   Log x=(Log) session.getAttribute("p("+id+")");
-		   i=i- x.basket.quantityShop;
-		   session.removeAttribute("p("+id+")");
-		   session.setAttribute("i",i);
-		   return "redirect:maineftershop";
-	   }
+	  
 	   
 	   @RequestMapping(value="/gotochekout&updateforguest", method = RequestMethod.POST,params = { "updateForGuest" })
 	   public String gotochekoutandupdateforguest (HttpSession session,@ModelAttribute("Log") Log log) { 
