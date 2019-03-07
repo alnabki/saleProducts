@@ -16,7 +16,7 @@
 </head>
 <body onload="calculate()">
 
-
+id=${i}
 
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
@@ -50,9 +50,9 @@
 	                                    <!--   the cost = <i id="result"></i>  -->
 	                                     <input type="hidden" id="price" name="basket.price" value="${log.basket.price}" />
 	                                     <input type="hidden" name="basket.product.id" value="${log.basket.product.id}" />
-	                                     
+	                                     <input type="hidden" name="basket.account.id" value="${log.basket.account.id}" /> <br>
 	                                     <input type="submit" name="gotocheckoutforguest"  value="Pay only this seller"   /><br>
-	                                     <a href="deleteelement?id=${log.basket.product.id}">  Remove</a> <br>
+	                                     <a href="deleteelementefterlogin?id=${log.basket.product.id}">  Remove</a> <br>
 	                 </form:form>
 	                ____________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
 		          </c:if>
