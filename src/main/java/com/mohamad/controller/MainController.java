@@ -75,7 +75,7 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		   // session.setAttribute("i",0);
+		  session.setAttribute("i",0);
 			ModelAndView model1 = new ModelAndView("index");
 			
 			Date date = new Date();
@@ -99,14 +99,48 @@ import com.mohamad.service.SaleManager;
 		}
 		
 		 @RequestMapping(value="/login")
-		 	public ModelAndView  login(){
+		 	public ModelAndView  login(HttpSession session){
 		 		ModelAndView model = new ModelAndView("login");
 		 		
 		 		
 			 	    return model;
 		    
 		 	}  
-		  
+		 
+		 /*
+		 @RequestMapping(value="/loginwithorder")
+		 	public ModelAndView  loginwithorder(HttpSession session){
+		 		ModelAndView model = new ModelAndView("loginWithOrder");
+		 		 
+				   List<Log> logs = new ArrayList<Log>();
+				   int i = (int) session.getAttribute("i");
+		        	Enumeration keys = session.getAttributeNames();
+						int sum=0;
+			            while (keys.hasMoreElements()) {
+			                String key = (String)keys.nextElement();
+			                System.out.println(key + ": " + session.getAttribute(key) );
+			                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+			            	    model.addObject("i",i);
+			                }
+			                else {
+			            	    Log x=(Log) session.getAttribute(""+key+"");
+			            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
+			            	    sum=sum+x.itemPrice;
+				 		        logs.add(x);
+				 		      // model.addObject("i",i);
+			                }
+			            }
+			       model.addObject("logs",logs);
+			       model.addObject("sum",sum);
+			      
+				   return model;
+		    
+		 	} 
+		 
+		  */
+			   
+		 
+		 
 		
 			@RequestMapping(value="/checklogin",method = RequestMethod.POST)
 		 	public String  login(HttpSession session,@RequestParam(value="email", required=true) String  email,@RequestParam(value="password", required=true) String  password)   {	
@@ -149,13 +183,59 @@ import com.mohamad.service.SaleManager;
 						return "redirect:admin";
 					}else {
 						session.getCreationTime();
-						return "redirect:customer";
+						int i=(int) session.getAttribute("i");
+		 				if(i!=0) {
+			 				
+			 				return "redirect:maineftershop";
+			 				
+			 			}
+			 			else {
+			 			
+				 		return "redirect:customer";
+			 			}
+						
+						
+						
+						
+					
 					}
 				} 
 				else {
 					return "redirect:notlogin";
 				}			
 			}
+		   
+		   @RequestMapping(value="/maineftershop")
+			public ModelAndView maineftershop(HttpSession session) {
+					
+						ModelAndView model =new ModelAndView("basketEfterLogin");
+						   List<Log> logs = new ArrayList<Log>();
+						   int i = (int) session.getAttribute("i");
+								Enumeration keys = session.getAttributeNames();
+								int sum=0;
+					            while (keys.hasMoreElements()) {
+					                String key = (String)keys.nextElement();
+					                System.out.println(key + ": " + session.getAttribute(key) );
+					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")) {
+					            	    model.addObject("i",i);
+					            	    System.out.println("here i="+i );
+					                }
+					                else {
+					                	 System.out.println("here sum="+sum );
+					            	    Log x=(Log) session.getAttribute(""+key+"");
+					            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
+					            	    sum=sum+x.itemPrice;
+						 		        logs.add(x);
+						 		      // model.addObject("i",i);
+						 		       System.out.println("here sum="+sum );
+					                }
+					            }
+					       model.addObject("logs",logs);
+					       model.addObject("sum",sum);
+					       System.out.println("finish" );
+						return model;
+					}
+		
 		   
 		   @RequestMapping(value="/admin")
 		   public ModelAndView adminpage(HttpSession session) {
