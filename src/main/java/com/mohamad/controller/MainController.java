@@ -8,16 +8,12 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
-
 import javax.annotation.Resource;
-
 import javax.servlet.http.HttpSession;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,15 +41,6 @@ import com.mohamad.service.SaleManager;
 
 
 
-
-
-
-
-
-
-
-
-
 	@Controller
 	public class MainController {
 	@Autowired
@@ -70,14 +57,11 @@ import com.mohamad.service.SaleManager;
 		
 		
 		
-		
-		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
 		  session.setAttribute("i",0);
 			ModelAndView model1 = new ModelAndView("index");
-			
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 			String formattedDate = dateFormat.format(date);
@@ -99,7 +83,7 @@ import com.mohamad.service.SaleManager;
 		 @RequestMapping(value="/login")
 		 	public ModelAndView  login(HttpSession session){
 		 		ModelAndView model = new ModelAndView("login");
-			 	    return model;
+			 	return model;
 		 	}  
 		 
 		
@@ -160,21 +144,20 @@ import com.mohamad.service.SaleManager;
 					return "redirect:notlogin";
 				}			
 			}
-		   
+		  
+			@SuppressWarnings({ "unused", "rawtypes" })
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
 					    Log log=(Log) session.getAttribute("log");
+					
 						List<Log> logs = new ArrayList<Log>();
 						int i = (int) session.getAttribute("i");
 						System.out.println("i="+i);
 						log.numberOfTheItemsInTheBasket=i;
 						session.setAttribute("log", log);
-				        Enumeration keys = session.getAttributeNames();
-								
+						Enumeration keys = session.getAttributeNames();
 						List<Basket>  baskets= new ArrayList<Basket>();
 						baskets=saleManager.getBasketByAccountId(log.account.id);
-						
-						
 								int sum=0;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
@@ -186,29 +169,27 @@ import com.mohamad.service.SaleManager;
 					            	   Log x=(Log) session.getAttribute(""+key+"");
 					            	   Basket basket= x.basket;
 					            	   basket.account=log.account;
-					            	   
 					            	    session.removeAttribute(""+key+"");
 					            	    if ( baskets.isEmpty()) {
 					            	    	 saleManager.addToBasket(basket);
 					            	    }
 					            	    
-					            	    else {
+					            	    else {                     // for colection the items in the basket before login and efetr
 											 boolean itemNotExist=true;
 							                 for(Basket basket1 : baskets) {
 										    	if(basket1.product.id == basket.product.id) {
 										    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
 										    		saleManager.updateBasket(basket1);
 										    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
-												                                                    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+												    System.out.println("itemNummberInBasket"+itemNummberInBasket);
 													session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 													itemNotExist=false;
-													
 										    	}
 							                 }
 									    	 if(itemNotExist) {
 									    		saleManager.addToBasket(basket);
 									    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
-											                                 System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
+											    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
 											    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 									    	 }
 									    	
@@ -224,7 +205,6 @@ import com.mohamad.service.SaleManager;
 		   public ModelAndView adminpage(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
 				
-				
 				if(log != null && ( log.role == "Admin" )) {
 			        	ModelAndView model = new ModelAndView("admin");
 			            List<Product> products=saleManager.getAllProducts();
@@ -234,16 +214,13 @@ import com.mohamad.service.SaleManager;
 				 	    model.addObject("products", products);
 				 	    model.addObject("accounts", accounts);
 				 	    model.addObject("orders", orders);
-				 	   
 				 	    return model;
 			        }
-				
 				else {
 			 		ModelAndView model2 = new ModelAndView("notlogin");
 			 		return model2;
 				}
 		 	}	
-		   
 		   
 		   @RequestMapping(value="/notlogin")
 			public ModelAndView notlogin() {
@@ -263,24 +240,23 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/customer", method = RequestMethod.GET)
 		public ModelAndView customer(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
-			 List<Basket> baskets=saleManager.getAllBaskets();
+			List<Basket> baskets=saleManager.getAllBaskets();
 			int counter=0;
-			 if(null != baskets ) {
-					for (Basket basket: baskets) {
-						
-						if(basket.account.id==log.account.id) {
-			                counter=counter+basket.quantityShop;
-						}
+			if(null != baskets ) {
+				for (Basket basket: baskets) {
+					
+					if(basket.account.id==log.account.id) {
+		                counter=counter+basket.quantityShop;
 					}
-					log.numberOfTheItemsInTheBasket=counter;
+				}
+				log.numberOfTheItemsInTheBasket=counter;
 			 }
 			 else {
-				 log.numberOfTheItemsInTheBasket=counter;
+			    log.numberOfTheItemsInTheBasket=counter;
 			 }
 			List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
-			
-			
+	        
 			if(log != null && ( log.role == "Customer" )) {
 					ModelAndView model1 = new ModelAndView("customer");
 					if(null != allProducts ) {	
@@ -294,36 +270,32 @@ import com.mohamad.service.SaleManager;
 			 	    model1.addObject("log.role",log.role);
 			 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 					return model1;
-				}
-			    else {
-				   ModelAndView model2 = new ModelAndView("notlogin");
-		 		return model2;
-			   }
+			}
+		    else {
+			    ModelAndView model2 = new ModelAndView("notlogin");
+	 		return model2;
+		   }
 		}
 		
 		
 		@RequestMapping(value="/index")
 		   public ModelAndView test(HttpSession session) {
-			
 		 	List<Product> allProducts=saleManager.getAllProducts();
 	        List<Product> productViews = new ArrayList<Product>();
-					ModelAndView model1 = new ModelAndView("index");
-					if(null != allProducts ) {	
-						for (Product product: allProducts) {
-							product.fileName=product.FirstImage(product.fileName);
-							Product productView=product;
-							productViews.add(productView);
-				        }
-					}
-			 	    model1.addObject("productViews",productViews);
-			 	    
-					return model1;
+				ModelAndView model1 = new ModelAndView("index");
+				if(null != allProducts ) {	
+					for (Product product: allProducts) {
+						product.fileName=product.FirstImage(product.fileName);
+						Product productView=product;
+						productViews.add(productView);
+			        }
+				}
+		 	    model1.addObject("productViews",productViews);
+				return model1;
 	   }
-		
 	   
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
-		   
 		    List<Basket>  baskets= new ArrayList<Basket>();
 		    Log log=(Log) session.getAttribute("log");
 		    baskets=saleManager.getBasketByAccountId(log.account.id);
@@ -342,7 +314,6 @@ import com.mohamad.service.SaleManager;
 					                                                    System.out.println("itemNummberInBasket"+itemNummberInBasket);
 						session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 						itemNotExist=false;
-						
 			    	}
                  }
 		    	 if(itemNotExist) {
@@ -353,10 +324,10 @@ import com.mohamad.service.SaleManager;
 		    	 }
 	    	}
 			return "redirect:customer";
-			
 	    }
 	   
-	   @RequestMapping(value = "/basket", method = RequestMethod.GET)
+    @SuppressWarnings("unused")
+	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		    List<Basket> baskets=saleManager.getAllBaskets();
 	        List<Basket> basketViews = new ArrayList<Basket>();
@@ -375,22 +346,22 @@ import com.mohamad.service.SaleManager;
 						   Basket basketView=basket;
 						   basketViews.add(basketView);
 						   basket.itemRequest =basket.quantityShop * basket.price;
-		            	    sum=sum+basket.itemRequest;
+		            	   sum=sum+basket.itemRequest;
 						}
 			        }
 				}
 		 	    model1.addObject("productViews",basketViews);
 		 	    model1.addObject("log.role",log.role);
-		 	 
-		 	  model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
-		 	  model1.addObject("sum",sum);
+		 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+		 	    model1.addObject("sum",sum);
 				return model1;
 			}
-			  else {
+			else {
 				   ModelAndView model2 = new ModelAndView("notlogin");
 		 		return model2;
-			   }
+			}
 		}
+	   
 	   @RequestMapping(value="/deleteitemfromBasket")
 	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id,@RequestParam(value="quantityShop", required=true) int quantityShop) {
 		  Log log =(Log) session.getAttribute("log");
@@ -402,7 +373,6 @@ import com.mohamad.service.SaleManager;
 	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "update" })
 	    public String updateitemfrombasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
-
 		   Basket oldBasket=saleManager.getBasketById(basket.id);
 		   saleManager.updateBasket(basket);
 		   Log log=(Log) session.getAttribute("log");
@@ -413,12 +383,7 @@ import com.mohamad.service.SaleManager;
 			   log.numberOfTheItemsInTheBasket=log.numberOfTheItemsInTheBasket+(basket.quantityShop-oldBasket.quantityShop);
 		   }
 		   session.setAttribute("log", log);
-
-		   
 			return"redirect:basket";
-		   
-		   
-
 	   }
 	  
 	   @SuppressWarnings("rawtypes")
@@ -435,9 +400,7 @@ import com.mohamad.service.SaleManager;
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
                if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
-
             	   System.out.println("har=" );
-
                }
                else {
            	         Log x=(Log) session.getAttribute(""+key+"");
@@ -452,7 +415,7 @@ import com.mohamad.service.SaleManager;
 	           	     else {
 	           	    	 System.out.println("no thing to add");
            	         }
-               }
+              }
            }
            if( check==false) {
 				  if (i!=0 ) {
@@ -467,8 +430,8 @@ import com.mohamad.service.SaleManager;
 				    	Array.set(elementArray, 1, log);
 				    	session.setAttribute("p("+log.basket.product.id+")",Array.get(elementArray,1));
 				    	session.setAttribute("i",i);
-				    }
-			    }
+				  }
+			 }
            return "redirect:index";
 	   }
     @SuppressWarnings("rawtypes")  
@@ -490,7 +453,7 @@ import com.mohamad.service.SaleManager;
 	            	    x.itemPrice =x.basket.quantityShop * x.basket.price;
 	            	    sum=sum+x.itemPrice;
 		 		        logs.add(x);
-		 		      // model.addObject("i",i);
+		 		        // model.addObject("i",i);
 	                }
 	            }
 	       model.addObject("logs",logs);
@@ -507,7 +470,6 @@ import com.mohamad.service.SaleManager;
 		   session.setAttribute("i",i);
 		   return "redirect:basketasgest";
 	   }
-	  
 	   
 	   @RequestMapping(value="/gotochekout&updateforguest", method = RequestMethod.POST,params = { "updateForGuest" })
 	   public String gotochekoutandupdateforguest (HttpSession session,@ModelAttribute("Log") Log log) { 
@@ -515,7 +477,7 @@ import com.mohamad.service.SaleManager;
 		   System.out.println("here11");
 		   Log x=(Log) session.getAttribute("p("+log.basket.product.id+")");
 		   System.out.println("here12");
-		  //
+		 
 		   if(x.basket.quantityShop >= log.basket.quantityShop) {
 		       i=i-(x.basket.quantityShop-log.basket.quantityShop);
 		       System.out.println("x.basket.quantityShop="+x.basket.quantityShop);
@@ -528,30 +490,24 @@ import com.mohamad.service.SaleManager;
 			   System.out.println("here11="+i);
 			   x.basket.quantityShop=log.basket.quantityShop;
 		   }
-		   
 		   session.setAttribute("i",i);
 		   session.setAttribute("p("+log.basket.product.id+")",x);
-		  
 		   return "redirect:basketasgest";
-		
 	   }
-	  
-	
 	   
 	   @RequestMapping(value="/deleteorder")
 	    public String deleteorder(@RequestParam(value="id", required=true) int id) {
 	       saleManager.deleteOrde(id);
-	        return "redirect:basket";	 
+	       return "redirect:basket";	 
 	    }
 	   
 	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
 		  public String addaccount(@ModelAttribute("account") Account account) {
 			
 			Account account1= new Account();
-			 account1.username="Mohamad";
-			 account1.password="123";
+		    account1.username="Mohamad";
+		    account1.password="123";
 		    saleManager.addAccount(account);
-		
 			return "redirect:index";
 	    }
 		@RequestMapping(value="/addproduct")
@@ -562,17 +518,13 @@ import com.mohamad.service.SaleManager;
 					List<Product> products= saleManager.getAllProducts();
 					List<Product> productViews=new ArrayList<Product>();
 					if(null != products ) {	
-						
 						for (Product product: products) {
 							product.fileName=product.FirstImage(product.fileName);
 							Product productView=product;
-							  System.out.println( productView.name);
-							  System.out.println( productView.name);
 							productViews.add(productView);
 				        }
 						model.addObject("productViews",productViews);
 					}
-					
 			        model.addObject("products", products);	
 			 	    model.addObject("log.role",log.role);
 			 	    return model;
@@ -593,7 +545,6 @@ import com.mohamad.service.SaleManager;
 		     }
 		       System.out.println(product.id);
 		       saleManager.updateProduct(product);
-	         
 		     return model;		     	
 	    }
 		@RequestMapping(value="/deleteproduct")
@@ -601,7 +552,7 @@ import com.mohamad.service.SaleManager;
 	       saleManager.deleteProduct(id);
 	        return "redirect:addproduct";	 
 	    }
-		@SuppressWarnings("null")
+		
 		@RequestMapping(value="/getproduct")
 	    public ModelAndView getproduct(@RequestParam(value="id", required=true) int id) {
 	        Product product = saleManager.getProductById(id);
@@ -613,7 +564,6 @@ import com.mohamad.service.SaleManager;
 	    	 imageNames=product.CleanNameImage(product.fileName);
 	    	 model.addObject("imageNames",imageNames);
 	    	}
-	     
 	        model.addObject("product", product);
 	        return model;	 
 	    }
@@ -627,8 +577,7 @@ import com.mohamad.service.SaleManager;
 				 	    model.addObject("log.role",log.role);
 				 	    model.addObject("orders", orders);
 				 	    return model;
-			     }
-				
+			    }
 				else {
 			    	ModelAndView model2 = new ModelAndView("notlogin");
 					return model2;
@@ -638,26 +587,20 @@ import com.mohamad.service.SaleManager;
 		   public ModelAndView viewallproducts(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
 				if(log != null && ( log.role == "Admin" )) {
-			        	ModelAndView model = new ModelAndView("viewAllProducts");
-			            List<Product> allProducts=saleManager.getAllProducts();
-			            List<Product> productViews = new ArrayList<Product>();
-			            
-						if(null != allProducts ) {	
-							
-							for (Product product: allProducts) {
-								product.fileName=product.FirstImage(product.fileName);
-								Product productView=product;
-								  System.out.println( productView.name);
-								  System.out.println( productView.name);
-								productViews.add(productView);
-					        }
-							
-						}
-				 	    model.addObject("log.role",log.role);
-				 	   model.addObject("productViews",productViews);
-				 	    return model;
-			     }
-				
+		        	ModelAndView model = new ModelAndView("viewAllProducts");
+		            List<Product> allProducts=saleManager.getAllProducts();
+		            List<Product> productViews = new ArrayList<Product>();
+					if(null != allProducts ) {	
+						for (Product product: allProducts) {
+							product.fileName=product.FirstImage(product.fileName);
+							Product productView=product;
+							productViews.add(productView);
+				        }
+					}
+			 	    model.addObject("log.role",log.role);
+			 	    model.addObject("productViews",productViews);
+			 	    return model;
+			    }
 				else {
 			    	ModelAndView model2 = new ModelAndView("notlogin");
 					return model2;
@@ -667,12 +610,12 @@ import com.mohamad.service.SaleManager;
 		   public ModelAndView manageAccounts(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
 				if(log != null && ( log.role == "Admin" )) {
-			        	ModelAndView model = new ModelAndView("manageCustomers");
-			            List<Account> accounts=saleManager.getAllAccounts();
-				 	    model.addObject("log.role",log.role);
-				 	    model.addObject("accounts", accounts);
-				 	    return model;
-			     }
+		        	ModelAndView model = new ModelAndView("manageCustomers");
+		            List<Account> accounts=saleManager.getAllAccounts();
+			 	    model.addObject("log.role",log.role);
+			 	    model.addObject("accounts", accounts);
+			 	    return model;
+			    }
 				else {
 			    	ModelAndView model2 = new ModelAndView("notlogin");
 					return model2;
@@ -682,8 +625,7 @@ import com.mohamad.service.SaleManager;
 		    public String deleteaccount(@RequestParam(value="id", required=true) int id) {
 		       saleManager.deleteAccount(id);
 		        return "redirect:managecustomers";	 
-		    }
-		 
+		  }
 		 
 		 @RequestMapping(value = "/addproduct" ,method = RequestMethod.POST)
 		 public String addproduct(@ModelAttribute("product") Product product,@Validated Product product1, BindingResult bindingResult) {
@@ -696,29 +638,22 @@ import com.mohamad.service.SaleManager;
 		    saleManager.addProduct(product1);
 		    return "redirect:addproduct";
 	        }
-			
 		}
 		 
 		 @RequestMapping(value = "/upload", method = RequestMethod.GET)
 		    public String DisplayForm() {
 		        return "addProduct";
 		    }
-		 
-		    @SuppressWarnings("null")
+		  
 			@RequestMapping(value = "/savefiles&update", method = RequestMethod.POST,params = { "savefiles" })
 		    public ModelAndView crunchifySave(HttpSession session,@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
 		            
 		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
 		        List<String> fileNames = new ArrayList<String>();
-		       
 		        if (null != saleFiles && saleFiles.size() > 0) {
 		            for (MultipartFile multipartFile : saleFiles) {
-		 
 		                String fileName = multipartFile.getOriginalFilename();
-		                   System.out.println(fileName);
-		                   System.out.println(saveDirectory);
-		                  
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                   //  Handle files.content - multipartFile.getInputStream();
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
@@ -732,52 +667,41 @@ import com.mohamad.service.SaleManager;
 				if(log != null &&  log.role == "Admin" ) {	
 			        	ModelAndView model = new ModelAndView("addProduct2");
 						List<Product> products= saleManager.getAllProducts();
-						  List<Product> productViews = new ArrayList<Product>();
+					    List<Product> productViews = new ArrayList<Product>();
 						if(null != products ) {	
-							
 							for (Product product: products) {
 								product.fileName=product.FirstImage(product.fileName);
 								Product productView=product;
-								  System.out.println( productView.name);
-								  System.out.println( productView.name);
 								productViews.add(productView);
 					        }
 							model.addObject("productViews",productViews);
 						}
-						
-						 model.addObject("fileNames",fileNames);	
+					    model.addObject("fileNames",fileNames);	
 				        model.addObject("products", products);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;
-			        }
-				
+			    }
 				else {
 			 		ModelAndView model2 = new ModelAndView("notLoged");
 			 		return model2;
 				}
-		        
 		    }
-		    @SuppressWarnings("null")
+			
 			@RequestMapping(value = "/savefiles&update", method = RequestMethod.POST,params = { "update" })
 		    public ModelAndView crunchifyEdit(HttpSession session,@RequestParam(value="id", required=true) int id,@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
-		            
 		        String saveDirectory = "c:/Users/mohammad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
 		        List<String> fileNames = new ArrayList<String>();
-		       
 		        if (null != saleFiles && saleFiles.size() > 0) {
 		            for (MultipartFile multipartFile : saleFiles) {
-		 
 		                String fileName = multipartFile.getOriginalFilename();
 		                   System.out.println(fileName);
 		                   System.out.println(saveDirectory);
-		                  
 		                if (!"".equalsIgnoreCase(fileName)) {
 		                    // Handle file content - multipartFile.getInputStream()
 		                    multipartFile.transferTo(new File(saveDirectory + fileName));
 		                    fileNames.add(fileName);
 		                    System.out.println(fileName);
-		                   
 		                }
 		            }
 		        }
@@ -790,11 +714,10 @@ import com.mohamad.service.SaleManager;
 				        model.addObject("product", product);	
 				 	    model.addObject("log.role",log.role);
 				 	    return model;
-			        }
+			    }
 				else {
 			 		ModelAndView model2 = new ModelAndView("notLoged");
 			 		return model2;
 				}
-		        
 		    }
 	}
