@@ -163,13 +163,18 @@ import com.mohamad.service.SaleManager;
 		   
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
-						 Log log=(Log) session.getAttribute("log");
-						   List<Log> logs = new ArrayList<Log>();
-						   int i = (int) session.getAttribute("i");
-						   System.out.println("i="+i);
-						   log.numberOfTheItemsInTheBasket=i;
-						   session.setAttribute("log", log);
-								Enumeration keys = session.getAttributeNames();
+					    Log log=(Log) session.getAttribute("log");
+						List<Log> logs = new ArrayList<Log>();
+						int i = (int) session.getAttribute("i");
+						System.out.println("i="+i);
+						log.numberOfTheItemsInTheBasket=i;
+						session.setAttribute("log", log);
+				        Enumeration keys = session.getAttributeNames();
+								
+						List<Basket>  baskets= new ArrayList<Basket>();
+						baskets=saleManager.getBasketByAccountId(log.account.id);
+						
+						
 								int sum=0;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
@@ -178,16 +183,43 @@ import com.mohamad.service.SaleManager;
 					            	
 					                }
 					                else {
-					            	    Log x=(Log) session.getAttribute(""+key+"");
+					            	   Log x=(Log) session.getAttribute(""+key+"");
 					            	   Basket basket= x.basket;
 					            	   basket.account=log.account;
-					            	    saleManager.addToBasket(basket);
+					            	   
+					            	    session.removeAttribute(""+key+"");
+					            	    if ( baskets.isEmpty()) {
+					            	    	 saleManager.addToBasket(basket);
+					            	    }
+					            	    
+					            	    else {
+											 boolean itemNotExist=true;
+							                 for(Basket basket1 : baskets) {
+										    	if(basket1.product.id == basket.product.id) {
+										    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
+										    		saleManager.updateBasket(basket1);
+										    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+												                                                    System.out.println("itemNummberInBasket"+itemNummberInBasket);
+													session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+													itemNotExist=false;
+													
+										    	}
+							                 }
+									    	 if(itemNotExist) {
+									    		saleManager.addToBasket(basket);
+									    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+											                                 System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
+											    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+									    	 }
+									    	
+										}
 					                }
 					            }
-						return "redirect:basket";
-					}
-		
-		   
+					            session.setAttribute("i", 0);
+					            return "redirect:basket";
+		   }
+						
+						
 		   @RequestMapping(value="/admin")
 		   public ModelAndView adminpage(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
