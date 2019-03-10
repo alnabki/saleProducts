@@ -30,7 +30,8 @@
           <table >
 		      <tr>
 		          <th>S.No.    </th>
-		          <th> Name    </th>
+		          <th> First Name    </th>
+		          <th> Last Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
 		          <th> Age     </th>
@@ -44,7 +45,8 @@
 		      <tr >
 	              <td> ${status.index + 1}   </td>
 	                 <input type='hidden'   name="id"            value = '${account.id}'/>
-	             <td><input type='text'     name="name"          value = '${account.username}'      required/></td>
+	             <td><input type='text'     name="firstName"          value = '${account.firstName}'      required/></td>
+	              <td><input type='text'     name="lastName"          value = '${account.lastName}'      required/></td>
 	             <td><input type='text'     name="email"         value = '${account.email}'    required/></td>    
 	             <td><input type='password' name="password"      value = '${account.password}' required/></td>
 	             <td><input type='text'     name="age"           value = '${account.age}'      required/></td>

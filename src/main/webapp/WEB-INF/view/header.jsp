@@ -38,7 +38,7 @@
 		                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>  
 		            </li>
 		             <li class="nav-item active">
-		              <a href="logout"> <i class="fa fa-fw fa-user"> </i> ${log.account.username } <button> Logout</button>   </a> 
+		              <a href="logout"> <i class="fa fa-fw fa-user"> </i> ${log.account.firstName } ${log.account.lastName } <button> Logout</button>   </a> 
 		             </li>
 		             
 		        </ul>

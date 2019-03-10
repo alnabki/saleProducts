@@ -46,7 +46,7 @@
       <br><br><br><br>  
     <div id="login">
                 <h1 >   Hello </h1>
-			    <p1><b> Sign in to website or <a href ="greatAccount"><u>create an account</u></b></a></p1>
+			    <p1><b> Sign in to website or <a href ="greataccount"><u>create an account</u></b></a></p1>
 	           	
 	</div>
 	

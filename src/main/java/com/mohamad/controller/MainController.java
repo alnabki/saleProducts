@@ -61,6 +61,7 @@ import com.mohamad.service.SaleManager;
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
 		  session.setAttribute("i",0);
+		  session.removeAttribute("log");
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -293,6 +294,33 @@ import com.mohamad.service.SaleManager;
 		 	    model1.addObject("productViews",productViews);
 				return model1;
 	   }
+		
+		@RequestMapping(value="/greataccount")
+		 	public ModelAndView  greataccount(HttpSession session){
+		 		ModelAndView model = new ModelAndView("greatAccount");
+			 	return model;
+		 	}  
+		@RequestMapping(value="/greatnewaccount")
+	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
+	 		//ModelAndView model = new ModelAndView("greatAccount");
+	 		saleManager.addAccount(account);
+	 		  account=saleManager.checkLogin(account.email,account.password);
+	 		 if (account != null) {
+	 			Log log = new Log();
+	 			log.account = account;
+	 			log.role = "Customer";
+	 			session.setAttribute("log", log);
+		 		session.setMaxInactiveInterval(-1);
+		 		
+	 		 }
+	 		else {
+				return "redirect:notlogin";
+			}		
+	 		  
+	 		return "redirect:maineftershop";
+	 	}  
+		
+		 	
 	   
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
@@ -505,7 +533,8 @@ import com.mohamad.service.SaleManager;
 		  public String addaccount(@ModelAttribute("account") Account account) {
 			
 			Account account1= new Account();
-		    account1.username="Mohamad";
+		    account1.firstName="Mohamad";
+		    account1.lastName="alnabki";
 		    account1.password="123";
 		    saleManager.addAccount(account);
 			return "redirect:index";
