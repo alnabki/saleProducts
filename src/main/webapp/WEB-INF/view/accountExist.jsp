@@ -20,9 +20,11 @@
 </div>
 
 <div align="center" color-text="red">
-<h1>  An account already exists with the email address ########</h1>
-<p1>If you forgot te password click to forget password below</p1>
-
+ <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big><br>
+  An account already exists with the email address=<big><b> ${acc.email }</b></big> <br>
+  If you forgot te password click to forget password below       <br>
+  <a href="forgetpassword"  >forget password</a>
+                   	
 </div>
 
  <div id= "positionIndex" >

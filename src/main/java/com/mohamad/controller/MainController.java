@@ -160,7 +160,7 @@ import com.mohamad.service.SaleManager;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
 					                System.out.println(key + ": " + session.getAttribute(key) );
-					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")) {
+					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {
 					            	
 					                }
 					                else {
@@ -301,14 +301,17 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value="/accountexist")
 	 	public ModelAndView  accountexist(HttpSession session){
 	 		ModelAndView model = new ModelAndView("accountExist");
+	 		Account acc=(Account) session.getAttribute("acc");
+	 		model.addObject("acc",acc);
 		 	return model;
 	 	}
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
 	 		//ModelAndView model = new ModelAndView("greatAccount");
 		
-			 Account Acc=saleManager.checkLogin(account.email,account.password);
-			 if(   Acc==null) {
+			 Account acc=saleManager.checkLogin(account.email,account.password);
+			 session.setAttribute("acc", acc);
+			 if(   acc==null) {
 			 		saleManager.addAccount(account);
 			 		account=saleManager.checkLogin(account.email,account.password);
 			 		if (account != null) {
@@ -330,9 +333,17 @@ import com.mohamad.service.SaleManager;
 			 }
 	 }
 	 	  
-		
+		@RequestMapping(value="/forgetpassword")
+	 	public ModelAndView  forgetpassword(HttpSession session){
+	 		ModelAndView model = new ModelAndView("submitEmail");
+		 	return model;
+	 	}  
 		 	
-	   
+		@RequestMapping(value="/sendnewpasswordbyemail")
+	 	public ModelAndView  sendnewpasswordbyemail(HttpSession session){
+	 		ModelAndView model = new ModelAndView("passwordSent");
+		 	return model;
+	 	}  
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
 		    List<Basket>  baskets= new ArrayList<Basket>();
@@ -438,7 +449,7 @@ import com.mohamad.service.SaleManager;
            while (keys.hasMoreElements()) {
                String key = (String)keys.nextElement();
                System.out.println(key + ": " + session.getAttribute(key) );
-               if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+               if ( key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")|| key.contentEquals("acc")) {
             	   System.out.println("har=" );
                }
                else {
@@ -484,7 +495,7 @@ import com.mohamad.service.SaleManager;
 	            while (keys.hasMoreElements()) {
 	                String key = (String)keys.nextElement();
 	                System.out.println(key + ": " + session.getAttribute(key) );
-	                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")) {
+	                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i")|| key.contentEquals("acc")) {
 	            	    model.addObject("i",i);
 	                }
 	                else {
