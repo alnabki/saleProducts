@@ -97,7 +97,6 @@ import com.mohamad.service.SaleManager;
 		 			Log log = new Log();
 		 			log.account = account;
 		 			List<Admin> admins =  saleManager.getAdminsByAccountId(account.id);
-		 		
 		 			for (Admin ad :admins) {
 		 				admin=ad;
 		 			}
@@ -106,18 +105,15 @@ import com.mohamad.service.SaleManager;
 		 				log.role = "Customer";
 		 			}
 		 			else {
-		 			
 		 				log.role = "Admin" ;
 		 			}
-		 			
 		 			session.setAttribute("log", log);
 			 		session.setMaxInactiveInterval(-1);
 			 		return "redirect:main";
 		        }
 		 		else {
 					return "redirect:notlogin";
-				}			
-		 		
+				}
 			}
 		   
 		   @RequestMapping(value="/main")
@@ -301,25 +297,39 @@ import com.mohamad.service.SaleManager;
 		 		ModelAndView model = new ModelAndView("greatAccount");
 			 	return model;
 		 	}  
+		
+		@RequestMapping(value="/accountexist")
+	 	public ModelAndView  accountexist(HttpSession session){
+	 		ModelAndView model = new ModelAndView("accountExist");
+		 	return model;
+	 	}
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
 	 		//ModelAndView model = new ModelAndView("greatAccount");
-	 		saleManager.addAccount(account);
-	 		  account=saleManager.checkLogin(account.email,account.password);
-	 		 if (account != null) {
-	 			Log log = new Log();
-	 			log.account = account;
-	 			log.role = "Customer";
-	 			session.setAttribute("log", log);
-		 		session.setMaxInactiveInterval(-1);
-		 		
-	 		 }
-	 		else {
-				return "redirect:notlogin";
-			}		
-	 		  
-	 		return "redirect:maineftershop";
-	 	}  
+		
+			 Account Acc=saleManager.checkLogin(account.email,account.password);
+			 if(   Acc==null) {
+			 		saleManager.addAccount(account);
+			 		account=saleManager.checkLogin(account.email,account.password);
+			 		if (account != null) {
+			 			Log log = new Log();
+			 			log.account = account;
+			 			log.role = "Customer";
+			 			session.setAttribute("log", log);
+				 		session.setMaxInactiveInterval(-1);
+				 		
+			 		}
+			 		else {
+						return "redirect:notlogin";
+					}		
+					
+			 		return "redirect:maineftershop";
+			 }
+			 else {
+					return "redirect:accountexist ";
+			 }
+	 }
+	 	  
 		
 		 	
 	   

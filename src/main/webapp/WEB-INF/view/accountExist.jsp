@@ -19,7 +19,11 @@
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
+<div align="center" color-text="red">
+<h1>  An account already exists with the email address ########</h1>
+<p1>If you forgot te password click to forget password below</p1>
 
+</div>
 
  <div id= "positionIndex" >
 		<form:form name="gratAccount" method="post" action="greatnewaccount" modelAttribute="account">
