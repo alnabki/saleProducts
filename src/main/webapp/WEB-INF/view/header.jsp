@@ -48,8 +48,9 @@
 	             <i class="fa fa-fw fa-search"></i><input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
 	            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	        </form>
-	       
-		              <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket${log.numberOfTheItemsInTheBasket } <button > basket</button>   </a> 
+	                   <div >
+		              <a   href="basket">   <button class="btn btn-outline-success my-2 my-sm-0" >Basket(${log.numberOfTheItemsInTheBasket })</button>    </a> 
+		     		  </div>
 		     		   </nav>
        </c:if>
      
@@ -89,7 +90,8 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-          <a    href="basketasgest">  <i class="fa fa-fw fa-cart" > </i> Basket ${i }<button > basket</button>   </a>
+         
+          <a   href="basketasgest">   <button class="btn btn-outline-success my-2 my-sm-0" >Basket(${i })</button>    </a>
     </div>
 </nav>
 		   
@@ -120,7 +122,8 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-          <a   href="basket"> <i class="fa fa-fw fa-cart" > </i> Basket  ${i }<button > basket</button>   </a>
+         
+           <a   href="basket">   <button class="btn btn-outline-success my-2 my-sm-0" >Basket(${i })</button>    </a> 
     </div>
 </nav>
 		   

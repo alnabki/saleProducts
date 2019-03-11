@@ -99,7 +99,10 @@ body {
   top: 20%;
   margin: 20px;
 }
-
+#basketWord{
+	
+	text-color : black;
+}
 
 .tab {
 margin-left: 40em;
