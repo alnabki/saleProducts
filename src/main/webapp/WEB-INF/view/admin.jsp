@@ -52,7 +52,7 @@
           <table  >
 		      <tr>
 		          <th>S.No.    </th>
-		          <th> Name    </th>
+		          <th>Full Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
 		          <th> Age     </th>
@@ -65,7 +65,7 @@
 	          <c:forEach var="account" items="${accounts}" varStatus="status">
 		      <tr >
 	              <td> ${status.index + 1}   </td>
-	              <td> ${account.username}      </td>
+	              <td> ${account.firstName} ${account.lastName}     </td>
 	              <td> ${account.email}     </td>
 	              <td> ${account.password}  </td>
 	              <td> ${account.age}       </td>
@@ -91,7 +91,7 @@
 		       <c:forEach var="order" items="${orders}" varStatus="status"> 
 		          <tr >
 		             <td> ${status.index + 1}       </td>
-		             <td> ${order.account.username }   </td>
+		             <td> ${order.account.firstName }   </td>
 		             <td> ${order.product.name }    </td>
 		             <td> ${order.quantity }    </td>
 		              <td> ${order.ordersDate }    </td>
