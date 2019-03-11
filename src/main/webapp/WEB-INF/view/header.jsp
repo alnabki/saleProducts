@@ -60,7 +60,7 @@
      <c:if test='${ log.role =="Admin"   }' >
             <div class="navbar">
 				  <a class="active" href="admin"><i class="fa fa-fw fa-home"></i> Home</a> 
-				   <a href="logout"><i class="fa fa-fw fa-user"> </i> ${log.account.username } <button> Logout</button>   </a> 
+				   <a href="logout"><i class="fa fa-fw fa-user"> </i> ${log.account.firstName } ${log.account.lastName }[Admin Account] <button> Logout</button>   </a> 
 		    </div>
 		   
      </c:if>

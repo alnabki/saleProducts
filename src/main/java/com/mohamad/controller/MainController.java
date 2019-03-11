@@ -106,6 +106,7 @@ import com.mohamad.service.SaleManager;
 		 				log.role = "Customer";
 		 			}
 		 			else {
+		 				
 		 				log.role = "Admin" ;
 		 			}
 		 			
