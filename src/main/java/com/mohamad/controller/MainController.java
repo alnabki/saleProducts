@@ -308,8 +308,8 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
 	 		//ModelAndView model = new ModelAndView("greatAccount");
-		
-			 Account acc=saleManager.checkLogin(account.email,account.password);
+			Account acc=saleManager.checkEmail(account.email);
+			 //Account acc=saleManager.checkLogin(account.email,account.password);
 			 session.setAttribute("acc", acc);
 			 if(   acc==null) {
 			 		saleManager.addAccount(account);
@@ -323,7 +323,7 @@ import com.mohamad.service.SaleManager;
 				 		
 			 		}
 			 		else {
-						return "redirect:notlogin";
+						return "redirect:accountexist";
 					}		
 					
 			 		return "redirect:maineftershop";
