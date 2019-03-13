@@ -23,6 +23,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mohamad.model.Account;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
+import com.mohamad.model.CrunchifyEmailAPI;
 import com.mohamad.model.SaleFileUpload;
 import com.mohamad.model.Log;
 import com.mohamad.model.Order;
@@ -353,6 +356,46 @@ import com.mohamad.service.SaleManager;
 	 		ModelAndView model = new ModelAndView("passwordSent");
 		 	return model;
 	 	}  
+		
+		@SuppressWarnings("resource")
+		
+			@RequestMapping(value="/sendnewpasswordbyemail",method=RequestMethod.POST)
+			 	public ModelAndView  sendnewpasswordbyemail(HttpSession session){
+				Account acc=(Account) session.getAttribute("acc");
+				
+				
+				 if(acc.email.equals("alnabki@yahoo.com"))
+		            {
+					System.out.println("here1");
+					// Spring Bean file you specified in /src/main/resources folder
+						String crunchifyConfFile = "sale-servlet.xml";
+						System.out.println("here2");
+						ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
+						System.out.println("here3");
+						// @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
+						CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
+						String toAddr = acc.email;
+						String fromAddr = "mohalnabki@gmail.com";
+				 
+						// email subject
+						String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
+				 
+						// email body
+						String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
+						crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
+						
+					} 
+		              
+		         
+		            else
+		            {
+
+		            }
+		            ModelAndView model = new ModelAndView("passwordSent");
+				 	return model;
+				
+			}
+		
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)
 		  public String addtobasket(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
 		    List<Basket>  baskets= new ArrayList<Basket>();
