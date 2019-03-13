@@ -368,7 +368,7 @@ import com.mohamad.service.SaleManager;
 		            {
 					System.out.println("here1");
 					// Spring Bean file you specified in /src/main/resources folder
-						String crunchifyConfFile = "sale-servlet.xml";
+						String crunchifyConfFile = "crunchify-bean.xml";
 						System.out.println("here2");
 						ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
 						System.out.println("here3");
@@ -376,14 +376,14 @@ import com.mohamad.service.SaleManager;
 						CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
 						String toAddr = acc.email;
 						String fromAddr = "mohalnabki@gmail.com";
-				 
+						System.out.println("here4");
 						// email subject
 						String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
 				 
 						// email body
 						String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
 						crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
-						
+						System.out.println("here5");
 					} 
 		              
 		         
