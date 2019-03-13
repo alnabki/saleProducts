@@ -235,7 +235,36 @@ public class DaoImpl implements Dao  {
        }
 
 	
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public Account checkEmail(String email) {
+		    Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    Account account=new Account();
+		    List<Account> accounts = null;
+		    try {
+		        System.out.println("IN LIST");
+		        accounts = (List<Account>)session.createQuery("from Account ").list();
+		        outer:
+		        for(Account acc:accounts) {
+			    	if(acc.email.equals(email) /*&& acc.password.equals(password)*/ ) {
+			    		account=acc;
+			    		System.out.println("IN LIST");
+			    		break outer;
+			        }
+			    	else {
+			    		account=null;
+			    	}
+		        }
+		    }
+   	 catch (HibernateException e) {
+	        e.printStackTrace();
+	        session.getTransaction().rollback();
+	    }
+	  //  session.getTransaction().commit();	  
+	    return account;
+       }
+
 	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Admin> getAdminsByAccountId(int accountId) {

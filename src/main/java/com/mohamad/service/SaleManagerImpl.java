@@ -103,6 +103,9 @@ public class SaleManagerImpl implements SaleManager {
 			public Account checkLogin(String username, String password) {
 				return dao.checkLogin(username,password);
 			}
+			public Account checkEmail(String email) {
+				return dao.checkEmail(email);
+			}
 			public List<Admin> getAdminsByAccountId(int accountId){
 			   return dao.getAdminsByAccountId(accountId);
 			}

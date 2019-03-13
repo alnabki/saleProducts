@@ -43,27 +43,40 @@
         </form>
     </div>
 </nav>
-        
-        <div id= "positionIndex" >
-           <br>
-			    <h1>Login</h1>
-			<br>
-				<form:form name="login" method="post" action="checklogin" modelAttribute="account">
-				             Email:<br>
-				             <span>
-				             <input class="loginUserName" id="userid" name="email" type="text" value="" maxlength="64"   value='${account.email}'><br>
-				            </span>
-				            <span>
-				             password:<br>
-				              <input class="loginUserPass" id="pass-Loginid" name="password" type="password" value="" maxlength="64"   value='${account.password}'>
-				          
-				            </span>
-				              <input  type="submit" value="login"/> 
-				     
-			     </form:form>
-        </div>
+      <br><br><br><br>  
+    <div id="login">
+                <h1 >   Hello </h1>
+			    <p1><b> Sign in to website or <a href ="greataccount"><u>create an account</u></b></a></p1>
+	           	
+	</div>
+	
+	 
+	<div id= "positionIndex" >
+		<form:form name="login" method="post" action="checklogin" modelAttribute="account">
+		             Email:<br>
+		             <span>
+		             <input class="loginUserName" id="userid" name="email" type="text" value="" maxlength="64"   value='${account.email}'><br>
+		            </span>
+		            <span>
+		             password:<br>
+		              <input class="loginUserPass" id="pass-Loginid" name="password" type="password" value="" maxlength="64"   value='${account.password}'>
+		          
+		            </span>
+		              <input  type="submit" value="login"/> 
+		     
+	     </form:form>
+	    </div>
+	   
+	    
+	    <br><br><br><br><br><br><br><br><br>
+	     <div align="center">
+		    <div2    id="login1" >
+				 <a href="index"> Continue as Guest</a>
+			</div2> 
+	    </div> 		
+     
+     
       
-
 </body>
 
 </html>

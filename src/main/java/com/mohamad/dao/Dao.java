@@ -33,6 +33,7 @@ public interface Dao {
 	public void deleteCustomer(int customerId);
 	public void updateCustomer(Customer customer);
 	public Account checkLogin(String username, String password);
+	public Account checkEmail(String email);
 	public List<Admin> getAdminsByAccountId(int accountId);
 	
 	public void addOrder(Order order);

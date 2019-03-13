@@ -23,6 +23,7 @@
     
     <context:annotation-config />
     <context:component-scan base-package="com.mohamad.controller" />
+   
 	
  
  
@@ -91,5 +92,6 @@
     <property name="maxUploadSize" value="20848820" />
     </bean>
     
+      
  
 </beans>

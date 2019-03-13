@@ -33,7 +33,7 @@
 
  <div id="positionIndex" >
 	    <h1  align="center"><i>Products for sale<b></b></i></h1>
-	    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+	      __________________________________________________________________________________________________________________________________________
 	      
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasket"  method="post" modelAttribute="basket" >  
@@ -52,15 +52,15 @@
                                       <b>Price </b>                 =  ${product.price} Kr <br>
                                       <b>Quantity</b>               = <input type="number"  name="quantityShop" value="${quantityShop}" required />
                                     
-                                      <input type="submit" value="Add to basket as Customer"   /><br>
+                                      <input type="submit" value="Add to basket "   /><br>
                
                                       
 				                      
                                       <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
                                        <b>Description</b>        =  ${product.description} <br> 
                     </form:form>
-         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>                     
-					     
+           __________________________________________________________________________________________________________________________________________
+	    			     
 		          
 		        </c:forEach>
 		       </div>

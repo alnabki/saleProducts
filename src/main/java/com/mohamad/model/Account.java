@@ -22,8 +22,11 @@ import javax.persistence.Table;
 	@Column (name="id")
 	public int id;
 	
-	@Column (name="username")
-    public String username;
+	@Column (name="first_name")
+    public String firstName;
+	
+	@Column (name="last_name")
+    public String lastName;
     
 	@Column (name="password")
     public String password;
@@ -46,6 +49,25 @@ import javax.persistence.Table;
 	@Column (name="city")
 	public String city;
 	
+	
+	
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -114,13 +136,7 @@ import javax.persistence.Table;
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 
 	public String getPassword() {
 		return password;

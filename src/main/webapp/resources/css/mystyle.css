@@ -82,6 +82,28 @@ body {
   top: 150px;
    
 }
+
+#login{
+	text-align: center;
+  left:100px;
+  top: 150px;
+	
+}
+#login1{
+ 
+  background-color:lightgrey;
+   border: 1px solid black;
+  height: 20%;
+  width: 23%;
+  left: 20%;
+  top: 20%;
+  margin: 20px;
+}
+#basketWord{
+	
+	text-color : black;
+}
+
 .tab {
 margin-left: 40em;
 padding-top:1em;
