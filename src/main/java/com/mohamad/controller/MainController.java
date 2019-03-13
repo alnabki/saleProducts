@@ -2,6 +2,9 @@ package com.mohamad.controller;
 
 
 
+
+
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -12,6 +15,8 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
+
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -298,13 +303,7 @@ import com.mohamad.service.SaleManager;
 			 	return model;
 		 	}  
 		
-		@RequestMapping(value="/accountexist")
-	 	public ModelAndView  accountexist(HttpSession session){
-	 		ModelAndView model = new ModelAndView("accountExist");
-	 		Account acc=(Account) session.getAttribute("acc");
-	 		model.addObject("acc",acc);
-		 	return model;
-	 	}
+		
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
 	 		//ModelAndView model = new ModelAndView("greatAccount");
@@ -320,7 +319,6 @@ import com.mohamad.service.SaleManager;
 			 			log.role = "Customer";
 			 			session.setAttribute("log", log);
 				 		session.setMaxInactiveInterval(-1);
-				 		
 			 		}
 			 		else {
 						return "redirect:accountexist";
@@ -332,7 +330,15 @@ import com.mohamad.service.SaleManager;
 					return "redirect:accountexist ";
 			 }
 	 }
-	 	  
+		
+		@RequestMapping(value="/accountexist")
+	 	public ModelAndView  accountexist(HttpSession session){
+	 		ModelAndView model = new ModelAndView("accountExist");
+	 		Account acc=(Account) session.getAttribute("acc");
+	 		model.addObject("acc",acc);
+		 	return model;
+	 	}  
+		
 		@RequestMapping(value="/forgetpassword")
 	 	public ModelAndView  forgetpassword(HttpSession session){
 	 		ModelAndView model = new ModelAndView("submitEmail");
@@ -340,7 +346,10 @@ import com.mohamad.service.SaleManager;
 	 	}  
 		 	
 		@RequestMapping(value="/sendnewpasswordbyemail")
-	 	public ModelAndView  sendnewpasswordbyemail(HttpSession session){
+	 	public ModelAndView  sendnewpasswordbyemail(){
+			
+			//Account acc=(Account) session.getAttribute("acc");
+			
 	 		ModelAndView model = new ModelAndView("passwordSent");
 		 	return model;
 	 	}  
