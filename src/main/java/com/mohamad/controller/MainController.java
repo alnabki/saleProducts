@@ -358,42 +358,40 @@ import com.mohamad.service.SaleManager;
 	 	}  
 		
 		@SuppressWarnings("resource")
-		
 			@RequestMapping(value="/sendnewpasswordbyemail",method=RequestMethod.POST)
-			 	public ModelAndView  sendnewpasswordbyemail(HttpSession session){
+			 	public ModelAndView  sendnewpasswordbyemail(HttpSession session,@ModelAttribute("Account") Account account){
+			   ModelAndView model = new ModelAndView("passwordSent");
 				Account acc=(Account) session.getAttribute("acc");
-				
-				
-				 if(acc.email.equals("alnabki@yahoo.com"))
+				 if(acc.email.equals(account.email))
 		            {
-					System.out.println("here1");
+					
 					// Spring Bean file you specified in /src/main/resources folder
 						String crunchifyConfFile = "crunchify-bean.xml";
-						System.out.println("here2");
 						ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
-						System.out.println("here3");
+						
 						// @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
 						CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
+						
 						String toAddr = acc.email;
 						String fromAddr = "mohalnabki@gmail.com";
-						System.out.println("here4");
+						
 						// email subject
-						String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
+						String subject = "Hey.. This email sent for correct password";
 				 
 						// email body
-						String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
+						String body = "your email="+acc.email+"     "+
+								"your password="+acc.password+"";
 						crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
-						System.out.println("here5");
+						String msg=" ";
+						 model.addObject("msg",msg);
 					} 
-		              
-		         
 		            else
 		            {
-
+		            	String msg="Please, Write correct email";
+		            	 model.addObject("msg",msg);
 		            }
-		            ModelAndView model = new ModelAndView("passwordSent");
+				   
 				 	return model;
-				
 			}
 		
 	   @RequestMapping(value = "/addtobasket" ,method = RequestMethod.POST)

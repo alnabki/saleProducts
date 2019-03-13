@@ -18,16 +18,38 @@
 <div align="right">
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
- 
+  <c:if test='${msg =="Please, Write correct email"   }' >
+    
+     <div align="center" text-color="red">
+     
+      
+       <h1>${msg}</h1>
+       <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big><br>
+       Write your email to send correct password</b></big> <br>
+       <br>
+  
+                   	<form:form name="gratAccount" method="post" action="sendnewpasswordbyemail" modelAttribute="account">
+                    <span>
+		             Email Address:<br>
+		             <input class="GreatEmail"  name="email" type="text" value="" maxlength="64"   value='${account.email}'><br>
+		             <input   type="submit" value="submit"/>
+		            </span>
+		            
+                    </form:form>
+</div>
+  </c:if>
+  
+<c:if test='${msg == " "   }'>
 <div align="center" text-color="red">
 <h1>forget password</h1>
  <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big><br><br>
  <big><b>The password has been sent</b></big> <br>.
- <big><b>Try to Login by using the new password  <br><a href="login" >Login</a></b></big> <br>
+ <big><b>Try to Login by using the correct password  <br><a href="login" >Login</a></b></big> <br>
+ 
     <br>         	
 </div>
 
- 
+ </c:if>
  
 </body>
 </html>
