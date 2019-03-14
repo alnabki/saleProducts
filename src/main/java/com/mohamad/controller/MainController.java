@@ -53,23 +53,21 @@ import com.mohamad.service.SaleManager;
 	public class MainController {
 	@Autowired
 		
-	@Resource(name = "saleManager")
-	    private SaleManager saleManager;
+	    
+		private SaleManager saleManager;
 	    private int itemNummberInBasket=0;
-		
-		private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-		
-		/**
-		 * Simply selects the home view to render by returning its name.
-		 */
-		
-		
+	    @Resource(name = "saleManager")		
+	    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+				
+				/**
+				 * Simply selects the home view to render by returning its name.
+				 */
 		
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		  session.setAttribute("i",0);
-		  session.removeAttribute("log");
+		    //session.setAttribute("i",0);
+		    //session.removeAttribute("log");
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -94,7 +92,6 @@ import com.mohamad.service.SaleManager;
 		 		ModelAndView model = new ModelAndView("login");
 			 	return model;
 		 	}  
-		 
 		
 			@RequestMapping(value="/checklogin",method = RequestMethod.POST)
 		 	public String  login(HttpSession session,@RequestParam(value="email", required=true) String  email,@RequestParam(value="password", required=true) String  password)   {	
@@ -130,19 +127,15 @@ import com.mohamad.service.SaleManager;
 				Log log = (Log)session.getAttribute("log");
 				if(log != null) {
 					if(log.role == "Admin") {
-						
 						return "redirect:admin";
-					}else {
+					}else{
 						session.getCreationTime();
 						int i=(int) session.getAttribute("i");
 		 				if(i!=0) {
-			 				
 			 				return "redirect:maineftershop";
-			 				
 			 			}
 			 			else {
-			 			
-				 		return "redirect:customer";
+				 	   	    return "redirect:customer";
 			 			}
 					}
 				} 
@@ -151,11 +144,10 @@ import com.mohamad.service.SaleManager;
 				}			
 			}
 		  
-			@SuppressWarnings({ "unused", "rawtypes" })
+		   @SuppressWarnings({ "unused", "rawtypes" })
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
 					    Log log=(Log) session.getAttribute("log");
-					
 						List<Log> logs = new ArrayList<Log>();
 						int i = (int) session.getAttribute("i");
 						System.out.println("i="+i);
@@ -168,8 +160,7 @@ import com.mohamad.service.SaleManager;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
 					                System.out.println(key + ": " + session.getAttribute(key) );
-					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {
-					            	
+					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {	
 					                }
 					                else {
 					            	   Log x=(Log) session.getAttribute(""+key+"");
@@ -179,7 +170,6 @@ import com.mohamad.service.SaleManager;
 					            	    if ( baskets.isEmpty()) {
 					            	    	 saleManager.addToBasket(basket);
 					            	    }
-					            	    
 					            	    else {                     // for collection the items in the basket before login and after
 											 boolean itemNotExist=true;
 							                 for(Basket basket1 : baskets) {
@@ -198,19 +188,17 @@ import com.mohamad.service.SaleManager;
 											    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
 											    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 									    	 }
-									    	
 										}
 					                }
 					            }
-					            session.setAttribute("i", 0);
-					            return "redirect:basket";
+			           session.setAttribute("i", 0);
+			           return "redirect:basket";
 		   }
 						
 						
 		   @RequestMapping(value="/admin")
 		   public ModelAndView adminpage(HttpSession session) {
 				Log log = (Log)session.getAttribute("log");
-				
 				if(log != null && ( log.role == "Admin" )) {
 			        	ModelAndView model = new ModelAndView("admin");
 			            List<Product> products=saleManager.getAllProducts();
@@ -242,7 +230,13 @@ import com.mohamad.service.SaleManager;
 				return "redirect:login";			
 			}
 		   
-		
+		   
+		   
+		   
+		/*
+		 * Customer Process
+		 */
+		   
 		@RequestMapping(value = "/customer", method = RequestMethod.GET)
 		public ModelAndView customer(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
@@ -283,7 +277,6 @@ import com.mohamad.service.SaleManager;
 		   }
 		}
 		
-		
 		@RequestMapping(value="/index")
 		   public ModelAndView test(HttpSession session) {
 		 	List<Product> allProducts=saleManager.getAllProducts();
@@ -298,14 +291,13 @@ import com.mohamad.service.SaleManager;
 				}
 		 	    model1.addObject("productViews",productViews);
 				return model1;
-	   }
+	    }
 		
-		@RequestMapping(value="/greataccount")
+	    @RequestMapping(value="/greataccount")
 		 	public ModelAndView  greataccount(HttpSession session){
 		 		ModelAndView model = new ModelAndView("greatAccount");
 			 	return model;
 		 	}  
-		
 		
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
@@ -350,9 +342,7 @@ import com.mohamad.service.SaleManager;
 		 	
 		@RequestMapping(value="/sendnewpasswordbyemail")
 	 	public ModelAndView  sendnewpasswordbyemail(){
-			
 			//Account acc=(Account) session.getAttribute("acc");
-			
 	 		ModelAndView model = new ModelAndView("passwordSent");
 		 	return model;
 	 	}  
@@ -362,9 +352,8 @@ import com.mohamad.service.SaleManager;
 			 	public ModelAndView  sendnewpasswordbyemail(HttpSession session,@ModelAttribute("Account") Account account){
 			   ModelAndView model = new ModelAndView("passwordSent");
 				Account acc=(Account) session.getAttribute("acc");
-				 if(acc.email.equals(account.email))
-		            {
-					
+				 if(acc.email.equals(account.email)){
+					 
 					// Spring Bean file you specified in /src/main/resources folder
 						String crunchifyConfFile = "crunchify-bean.xml";
 						ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
@@ -424,16 +413,15 @@ import com.mohamad.service.SaleManager;
 		    	 }
 	    	}
 			return "redirect:customer";
-	    }
+	   }
 	   
-    @SuppressWarnings("unused")
-	@RequestMapping(value = "/basket", method = RequestMethod.GET)
+       @SuppressWarnings("unused")
+	   @RequestMapping(value = "/basket", method = RequestMethod.GET)
 		public ModelAndView basket(HttpSession session) {
 		    List<Basket> baskets=saleManager.getAllBaskets();
 	        List<Basket> basketViews = new ArrayList<Basket>();
 			Log log = (Log)session.getAttribute("log");
 			int i = (int)session.getAttribute("i");
-			
 			if(log != null && ( log.role == "Customer" )) {
 				ModelAndView model1 = new ModelAndView("basket");
 				int sum=0;
@@ -460,7 +448,7 @@ import com.mohamad.service.SaleManager;
 				   ModelAndView model2 = new ModelAndView("notlogin");
 		 		return model2;
 			}
-		}
+	   }
 	   
 	   @RequestMapping(value="/deleteitemfromBasket")
 	    public String deleteitemfromBasket(HttpSession session,@RequestParam(value="id", required=true) int id,@RequestParam(value="quantityShop", required=true) int quantityShop) {
@@ -534,9 +522,10 @@ import com.mohamad.service.SaleManager;
 			 }
            return "redirect:index";
 	   }
-    @SuppressWarnings("rawtypes")  
-	@RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
-		public ModelAndView basketasguest(HttpSession session) {
+	   
+       @SuppressWarnings("rawtypes")  
+       @RequestMapping(value = "/basketasgest", method = RequestMethod.GET)
+	   public ModelAndView basketasguest(HttpSession session) {
 		   ModelAndView model =new ModelAndView("basketAvGuest");
 		   List<Log> logs = new ArrayList<Log>();
 		   int i = (int) session.getAttribute("i");
@@ -577,7 +566,6 @@ import com.mohamad.service.SaleManager;
 		   System.out.println("here11");
 		   Log x=(Log) session.getAttribute("p("+log.basket.product.id+")");
 		   System.out.println("here12");
-		 
 		   if(x.basket.quantityShop >= log.basket.quantityShop) {
 		       i=i-(x.basket.quantityShop-log.basket.quantityShop);
 		       System.out.println("x.basket.quantityShop="+x.basket.quantityShop);
@@ -601,6 +589,26 @@ import com.mohamad.service.SaleManager;
 	       return "redirect:basket";	 
 	    }
 	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   /*
+	    *    Administrator Process 
+	    */
+	   
+	   
 	   @RequestMapping(value = "/addaccount" ,method = RequestMethod.POST)
 		  public String addaccount(@ModelAttribute("account") Account account) {
 			
@@ -611,6 +619,7 @@ import com.mohamad.service.SaleManager;
 		    saleManager.addAccount(account);
 			return "redirect:index";
 	    }
+	   
 		@RequestMapping(value="/addproduct")
 		public ModelAndView addproduct(HttpSession session) {
 			Log log = (Log)session.getAttribute("log");
