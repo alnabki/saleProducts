@@ -180,13 +180,13 @@ import com.mohamad.service.SaleManager;
 					            	    	 saleManager.addToBasket(basket);
 					            	    }
 					            	    
-					            	    else {                     // for colection the items in the basket before login and efetr
+					            	    else {                     // for collection the items in the basket before login and after
 											 boolean itemNotExist=true;
 							                 for(Basket basket1 : baskets) {
 										    	if(basket1.product.id == basket.product.id) {
 										    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
 										    		saleManager.updateBasket(basket1);
-										    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+										    		log.numberOfTheItemsInTheBasket=basket1.quantityShop +log.numberOfTheItemsInTheBasket;
 												    System.out.println("itemNummberInBasket"+itemNummberInBasket);
 													session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 													itemNotExist=false;
