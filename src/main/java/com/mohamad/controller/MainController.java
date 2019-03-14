@@ -51,12 +51,13 @@ import com.mohamad.service.SaleManager;
 
 	@Controller
 	public class MainController {
+		
 	@Autowired
 		
-	    
+	 @Resource(name = "saleManager")	
 		private SaleManager saleManager;
 	    private int itemNummberInBasket=0;
-	    @Resource(name = "saleManager")		
+	   	
 	    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 				
 				/**
@@ -66,8 +67,8 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		    session.setAttribute("i",0);
-		    session.removeAttribute("log");
+		   // session.setAttribute("i",0);
+		   // session.removeAttribute("log");
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -148,6 +149,7 @@ import com.mohamad.service.SaleManager;
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
 					    Log log=(Log) session.getAttribute("log");
+					
 						List<Log> logs = new ArrayList<Log>();
 						int i = (int) session.getAttribute("i");
 						System.out.println("i="+i);
@@ -160,7 +162,8 @@ import com.mohamad.service.SaleManager;
 					            while (keys.hasMoreElements()) {
 					                String key = (String)keys.nextElement();
 					                System.out.println(key + ": " + session.getAttribute(key) );
-					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {	
+					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {
+					            	
 					                }
 					                else {
 					            	   Log x=(Log) session.getAttribute(""+key+"");
@@ -170,13 +173,14 @@ import com.mohamad.service.SaleManager;
 					            	    if ( baskets.isEmpty()) {
 					            	    	 saleManager.addToBasket(basket);
 					            	    }
-					            	    else {                     // for collection the items in the basket before login and after
+					            	    
+					            	    else {                     // for colection the items in the basket before login and efetr
 											 boolean itemNotExist=true;
 							                 for(Basket basket1 : baskets) {
 										    	if(basket1.product.id == basket.product.id) {
-										    		basket1.quantityShop=basket.quantityShop+basket1.quantityShop;
+										    		basket1.quantityShop=basket1.quantityShop+basket.quantityShop;
 										    		saleManager.updateBasket(basket1);
-										    		log.numberOfTheItemsInTheBasket=basket1.quantityShop +log.numberOfTheItemsInTheBasket;
+										    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
 												    System.out.println("itemNummberInBasket"+itemNummberInBasket);
 													session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 													itemNotExist=false;
@@ -188,11 +192,12 @@ import com.mohamad.service.SaleManager;
 											    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
 											    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 									    	 }
+									    	
 										}
 					                }
 					            }
-			           session.setAttribute("i", 0);
-			           return "redirect:basket";
+					            session.setAttribute("i", 0);
+					            return "redirect:basket";
 		   }
 						
 						

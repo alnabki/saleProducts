@@ -80,9 +80,24 @@ body {
   position: relative;
   left:100px;
   top: 150px;
+  margin:50 px;
    
 }
 
+#positioncheckOrder{
+  position: relative;
+  left:100px;
+  top: 150px;
+  margin:20 px;
+	
+}
+#positionContinueToPay{
+  position: relative;
+  left:700px;
+  top: 50px;
+  margin:50 px;
+	
+}
 #login{
 	text-align: center;
   left:100px;
