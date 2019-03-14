@@ -20,17 +20,10 @@
 </div>
 		  
 <div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></h1>
+         <h1  align="center"><i>Check your order</i></h1>
+	    <p  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></p>
 	   
-	   <c:if test='${ log.numberOfTheItemsInTheBasket == 0 }' >
-		   <table align="center" >
-		     <tr>
-		       <td align="center">  you don't have any thing in the basket</td>
-		      </tr>
-		   </table>
-	    </c:if>
 	    
-	     <c:if test='${ log.numberOfTheItemsInTheBasket !=0   }' >
 	                ____________________________________________________________________________________________________________________________
 	    
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
@@ -47,7 +40,7 @@
 	                                     <input type="hidden" id="price" name="price" value="${basket.price}" oninput="calculate()" />
 	                                     <input type="hidden" name="product.id" value="${basket.product.id}" />
 	                                     <input type="hidden" name="account.id" value="${basket.account.id}" /> <br>
-	                                     <input type="submit" name="payforthisitem" value="Pay for this item"   /><br>
+	                                    
 	                                     <a href="deleteitemfromBasket?id=${basket.id}&quantityShop=${basket.quantityShop}">  Remove</a> <br>
 	                 </form:form>
 	                    ____________________________________________________________________________________________________________________________
@@ -61,8 +54,8 @@
 	    
 	           <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		     
-	           <a href="gotocheckout" ><button>go to checkout</button>  </a>
-	   </c:if>
+	           <a href="checkout" ><button>Continue to Pay</button>  </a>
+	
 </div>
 
 </body>

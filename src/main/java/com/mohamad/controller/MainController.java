@@ -66,8 +66,8 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		    //session.setAttribute("i",0);
-		    //session.removeAttribute("log");
+		    session.setAttribute("i",0);
+		    session.removeAttribute("log");
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -560,7 +560,7 @@ import com.mohamad.service.SaleManager;
 		   return "redirect:basketasgest";
 	   }
 	   
-	   @RequestMapping(value="/gotochekout&updateforguest", method = RequestMethod.POST,params = { "updateForGuest" })
+	   @RequestMapping(value="/gotocheckout&updateforguest", method = RequestMethod.POST,params = { "updateForGuest" })
 	   public String gotochekoutandupdateforguest (HttpSession session,@ModelAttribute("Log") Log log) { 
 		   int i =(int) session.getAttribute("i");
 		   System.out.println("here11");
@@ -593,10 +593,68 @@ import com.mohamad.service.SaleManager;
 	   
 	   
 	   
+		   /*
+		    *  Checkout For Customer
+		    */
+	      
+	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "payforthisitem" })
+	    public String payforthisitem(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
+		   
+		   
+		   
+		  return null; 
+	   }
 	   
 	   
+	   @RequestMapping(value="/gotocheckout")
+	   public ModelAndView gotocheckout (HttpSession session) {
+		    List<Basket> baskets=saleManager.getAllBaskets();
+	        List<Basket> basketViews = new ArrayList<Basket>();
+			Log log = (Log)session.getAttribute("log");
+			
+			if(log != null && ( log.role == "Customer" )) {
+				ModelAndView model1 = new ModelAndView("checkout");
+				int sum=0;
+				if(null != baskets ) {
+					for (Basket basket: baskets) {
+						System.out.println("basket.account.id="+basket.account.id);
+						System.out.println("log.basket.account.id="+log.account.id);
+						if(basket.account.id==log.account.id) {
+						   basket.product.fileName=basket.product.FirstImage(basket.product.fileName);
+						   Basket basketView=basket;
+						   basketViews.add(basketView);
+						   basket.itemRequest =basket.quantityShop * basket.price;
+		            	   sum=sum+basket.itemRequest;
+						}
+			        }
+				}
+		 	    model1.addObject("productViews",basketViews);
+		 	    model1.addObject("log.role",log.role);
+		 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+		 	    model1.addObject("sum",sum);
+				return model1;
+			}
+			else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			}
+	   }
 	   
 	   
+
+	   
+	   /*
+	    *  Checkout As Guest
+	    */
+	   
+	   
+	   @RequestMapping(value="/gotocheckout&updateforguest", method = RequestMethod.POST,params = { "gotocheckout" })
+	   public String  gotochekoutforguest1 (HttpSession session,@ModelAttribute("Log") Log log) {
+		
+		   
+		   
+		   return null;  
+	   }
 	   
 	   
 	   
