@@ -22,15 +22,14 @@
 <div id="positioncheckOrder" >
          <h1  align="left"><i>Check your order</i></h1>
 	    <p  align="left"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></p>
-	   
 	     
 	                ___________________________________________________________________
-	    
+	       <div>
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
 		             <form:form  id="usrform"  method="post" action="deleteitemfrombasket&update" modelAttribute="basket" enctype="multipart/form-data">
 				   
-			                             ${status.index + 1} =     <b><u> ${basket.product.name} </u></b>
-			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br> <br>
+			                             ${status.index + 1} =     <b><u> ${basket.product.name} </u></b><br>
+			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/>
 	                                     Qty = <input id="quantityShop" type="number"   name="quantityShop" value="${basket.quantityShop}" oninput="calculate()" /> 
 	                                     <input type="submit" name="update" value="Change"   />  <br> 
 	                                     Price  =  ${basket.price} Kr  <br> 
@@ -46,17 +45,54 @@
 	                    ___________________________________________________________________
 	    
 		      </c:forEach>
+		      </div>
 		      <br>
-		   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		      <b>The Total =  ${sum}  Kr</b><br></b>
+		      <div id="center"><b>The Total =  ${sum}  Kr</b><br></div>
 		     
 		                ___________________________________________________________________
 	    
 	          
-</div>
+</div>    
+                     
 <br> 	    
 		     <div id="positionContinueToPay">
-	           <a href="checkout" ><button>Continue to Pay</button>  </a><br>
+		             <h1  align="left"><i>Complete your purchase</i></h1><br>
+	                   ___________________________________________________________________
+	           
+	          
+		             <form:form  id="usrform"  method="post" action="addaddressdelivery" modelAttribute="addressDelivery" >
+				             <input type="hidden" id="id"        name="id" value="${addressDelivery.id}"  /> 
+				             <input type="hidden" id="accountId" name="id" value="${addressDelivery.account.id}"  /> 
+				             <input type="hidden" id="orderId""  name="orderId" value="${addressDelivery.order.id}"  />   
+			                 
+			                 FirstName:       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;   LastName:<br>
+			                 <input type="text"   id="firstName"       name="firstName" value="${addressDelivery.firstName}"  />
+	                                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+	                         <input type="text"   id="lastName"       name="lastName" value="${addressDelivery.lastName}"  /> <br>
+	                         personNumber:<br>
+	                         <input type="text"   id="personNumber"       name="personNumber" value="${addressDelivery.personNumber}"  /> <br>
+	                         C/O:<br>                        
+	                         <input type="text"   id="cO"       name="cO" value="${addressDelivery.cO}"  /> <br>
+	                         Address:<br>
+			                 <input type="text"   id="streetAddress"   name="streetAddress" value="${addressDelivery.streetAddress}"  /><br> 
+			                  city:<br>
+	                         <input type="text"   id="city"       name="city" value="${addressDelivery.city}"  /> <br>
+	                         Post/Zip Code:*<br>
+	                         <input type="text"   id="zipCode"       name="zipCode" value="${addressDelivery.zipCode}"  /><br>
+	                        
+	                         Door Code:<br>
+	                         <input type="text"   id="doorCode"       name="doorCode" value="${addressDelivery.doorCode}"  /> <br>
+	                         Email:<br>
+	                         <input type="text"   id="email"       name="email" value="${addressDelivery.email}"  /> <br>
+	                         Phone:<br>
+	                         <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}"  />  <br>
+	                                  
+	                 </form:form>
+	                    ___________________________________________________________________
+	    
+		     
+		      
+		      <a href="checkout" ><button>Continue to Pay</button>  </a><br>
 	         </div>
 </body>
 
