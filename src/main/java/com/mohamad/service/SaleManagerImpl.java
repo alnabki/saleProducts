@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamad.dao.Dao;
 import com.mohamad.model.Account;
+import com.mohamad.model.AddressDelivery;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
@@ -44,6 +45,29 @@ public class SaleManagerImpl implements SaleManager {
 			public Account  getAccountById(int id) {
 				return dao.getAccountById(id);
 			}
+			
+			
+			public void addAddressDelivery(AddressDelivery addressDelivery) {;
+			dao.addAddressDelivery( addressDelivery);
+}
+
+			
+			public void updateAddressDelivery(AddressDelivery addressDelivery){
+				dao.updateAddressDelivery( addressDelivery);
+			}
+			
+			public List<AddressDelivery> getAllAddressDeliverys(){
+				return dao. getAllAddressDeliverys();
+			}
+			public void deleteAddressDelivery(int id){
+				dao.deleteAddressDelivery( id);
+			}
+			
+			public AddressDelivery getAddressDeliveryById(int id){
+				return dao.getAddressDeliveryById( id);
+			}
+			
+			
 			
 			
 			

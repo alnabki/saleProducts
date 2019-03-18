@@ -3,6 +3,7 @@ package com.mohamad.service;
 import java.util.List;
 
 import com.mohamad.model.Account;
+import com.mohamad.model.AddressDelivery;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
@@ -16,6 +17,13 @@ public interface SaleManager  {
 	public List<Account> getAllAccounts();
 	public void deleteAccount(int accountId);
 	public Account  getAccountById(int id);
+	
+	
+	public void addAddressDelivery(AddressDelivery addressDelivery);
+	public void updateAddressDelivery(AddressDelivery addressDelivery);
+	public List<AddressDelivery> getAllAddressDeliverys();
+	public void deleteAddressDelivery(int id);
+	public AddressDelivery getAddressDeliveryById(int id);
 	
 	public void addAdmin(Admin admin);
 	public List<Admin> getAllAdmins();

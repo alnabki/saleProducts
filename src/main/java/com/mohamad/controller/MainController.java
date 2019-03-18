@@ -38,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.mohamad.model.Account;
+import com.mohamad.model.AddressDelivery;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
 import com.mohamad.model.CrunchifyEmailAPI;
@@ -602,6 +603,14 @@ import com.mohamad.service.SaleManager;
 		    *  Checkout For Customer
 		    */
 	      
+	   @RequestMapping(value = "/addaddressdeliveryandcontinuetopay", method = RequestMethod.POST,params = { "payforthisitem" })
+	    public String addaddressdeliveryandcontinuetopay(HttpSession session,@ModelAttribute("AddressDelivery") AddressDelivery addressDelivery) {
+		   
+		
+		   
+		  return null; 
+	   }
+	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "payforthisitem" })
 	    public String payforthisitem(HttpSession session,@ModelAttribute("BASKET") Basket basket) {
 		   
@@ -609,7 +618,6 @@ import com.mohamad.service.SaleManager;
 		   
 		  return null; 
 	   }
-	   
 	   
 	   @RequestMapping(value="/gotocheckout")
 	   public ModelAndView gotocheckout (HttpSession session) {

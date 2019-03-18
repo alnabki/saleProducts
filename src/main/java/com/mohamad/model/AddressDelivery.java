@@ -1,11 +1,20 @@
 package com.mohamad.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 
 @Entity
@@ -28,8 +37,7 @@ public class AddressDelivery {
 	
 	
 	
-	@Column (name="order_id")
-	public int orderId;
+	
 	
 	@Column (name="first_name")
     public String firstName;
@@ -62,11 +70,12 @@ public class AddressDelivery {
 	@Column (name="phone")
 	public int phone;
 	
-	
-	@OneToOne(mappedBy = "address")
+	@ManyToOne
+	@JoinColumn(name = "account_id", nullable = true)
 	public Account account;
 	
 	
+
 	public Account getAccount() {
 		return account;
 	}
@@ -74,8 +83,7 @@ public class AddressDelivery {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
- 
-	
+
 	public int getId() {
 		return id;
 	}
@@ -85,13 +93,7 @@ public class AddressDelivery {
 	}
 
 	
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
+	
 
 	public String getFirstName() {
 		return firstName;

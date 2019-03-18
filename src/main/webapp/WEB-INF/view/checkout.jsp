@@ -58,14 +58,14 @@
 		     <div id="positionContinueToPay">
 		             <h1  align="left"><i>Complete your purchase</i></h1><br>
 		             
-		             ___________________________________________________________________
+		             __________________________________________________________________
 	                <p></i> Your Delivery Address </p>
 	                  
 	          
-		             <form:form  id="usrform"  method="post" action="addaddressdelivery" modelAttribute="addressDelivery" >
+		             <form:form  id="usrform"  method="post" action="addaddressdeliveryandcontinuetopay" modelAttribute="addressDelivery" >
 		               
 				             <input type="hidden" id="id"        name="id" value="${addressDelivery.id}"  />
-				             <input type="hidden" id="accountId" name="id" value="${addressDelivery.account.id}"  /> 
+				             <input type="hidden" id="accountId" name="id" value="${log.account.id}"  /> 
 				             <input type="hidden" id="orderId""  name="orderId" value="${addressDelivery.order.id}"  />  
 				              
 			                <table style="width:120%"> 
