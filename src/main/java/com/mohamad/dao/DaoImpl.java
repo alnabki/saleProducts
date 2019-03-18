@@ -132,7 +132,23 @@ public class DaoImpl implements Dao  {
 		    session.getTransaction().commit();
 		}
 
-	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<AddressDelivery> getAddressDeliveryByAccountId(int accountId) {
+			Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    List<AddressDelivery> addressesDelivery = null;
+		    try {
+		        System.out.println("IN LIST");
+		        addressesDelivery = (List<AddressDelivery>)session.createQuery("from AddressDelivery where account_id="+accountId).list();
+		        System.out.println("IN LIST");
+		    } catch (HibernateException e) {
+		        e.printStackTrace();
+		        session.getTransaction().rollback();
+		    }
+		// session.getTransaction().commit();
+		    return addressesDelivery;
+		}
 	
 	
 	

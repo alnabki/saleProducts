@@ -641,9 +641,14 @@ import com.mohamad.service.SaleManager;
 						   basketViews.add(basketView);
 						   basket.itemRequest =basket.quantityShop * basket.price;
 		            	   sum=sum+basket.itemRequest;
+		            	  List<AddressDelivery> addreses= saleManager.getAddressDeliveryByAccountId(basket.account.id);
+		            	  model1.addObject("addreses",addreses);
 						}
 			        }
 				}
+				
+				
+				 
 		 	    model1.addObject("productViews",basketViews);
 		 	    model1.addObject("log.role",log.role);
 		 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);

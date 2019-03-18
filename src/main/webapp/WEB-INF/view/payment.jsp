@@ -42,11 +42,13 @@
 	    
 		      </c:forEach>
 		      </div>
-		      <br>
-		      <div id="totalSum"><b>The Total =  ${sum}  Kr</b><br></div>
-		     
-		                ____________________________________________________________________________________
-	          
+		      <br><br><br><br>
+		      <div  align="center" id="totalSum">
+				                ____________________________________________________________________________________<br>
+				    
+				      <b>The Total for Pay =  ${sum}  Kr</b><br>
+				                ____________________________________________________________________________________
+	          </div>
 </div>    
                      
 <br> 	    
@@ -54,24 +56,30 @@
 		             
 		              <p> Your Delivery Address </p>
 		             __________________________________________________________________
+		             <c:forEach var="addressDelivery" items="${addreses}" varStatus="status">  
 			                <table style="width:120%"> 
-			                     
+			                    
 			                <tr>
-			                    <td> FirstName:${addressDelivery.firstName}  </td>
-	                            <td> LastName:${addressDelivery.lastName}   </td>
+			                    <td> FirstName:<br>
+			                          ${addressDelivery.firstName}  </td>
+	                            <td> LastName:<br>
+	                                  ${addressDelivery.lastName}   </td>
 	                        </tr>
 	                         <tr> 
-	                            <td colspan="2"> personNumber:${addressDelivery.personNumber} </td>
+	                            <td colspan="2"> personNumber:<br>
+	                                                    ${addressDelivery.personNumber} </td>
 	                        
 	                         </tr>
 	                         
 	                         <tr>                         
-	                             <td colspan="2">C/O :${addressDelivery.cO} </td>
+	                             <td colspan="2">C/O :<br>
+	                                            ${addressDelivery.cO} </td>
 	                         </tr>
 	                             
 	                        
 			                <tr>                         
-	                             <td colspan="2"> Street Address*:<br>${addressDelivery.streetAddress}</td>
+	                             <td colspan="2"> Street Address*:<br>
+	                                              ${addressDelivery.streetAddress}</td>
 			                </tr>
 			                
 			                 
@@ -91,9 +99,11 @@
 	                            </td>    
 	                         </tr>
 	                         <tr>                         
-	                           <td colspan="2"> country: ${addressDelivery.country}</td>
+	                           <td colspan="2"> country:<br>
+	                                          ${addressDelivery.country}</td>
 			                </tr>
-	                             </table>  
+	                             </table> 
+	                             </c:forEach> 
 	                            <br> <br><br>
 	                          
 	                

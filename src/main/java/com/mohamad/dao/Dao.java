@@ -23,6 +23,7 @@ public interface Dao {
 	public List<AddressDelivery> getAllAddressDeliverys();
 	public void deleteAddressDelivery(int id);
 	public AddressDelivery getAddressDeliveryById(int id);
+	public List<AddressDelivery> getAddressDeliveryByAccountId(int accountId);
 	
 	public void addAdmin(Admin admin);
 	public List<Admin> getAllAdmins();

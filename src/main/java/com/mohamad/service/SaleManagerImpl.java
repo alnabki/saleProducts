@@ -66,7 +66,10 @@ public class SaleManagerImpl implements SaleManager {
 			public AddressDelivery getAddressDeliveryById(int id){
 				return dao.getAddressDeliveryById( id);
 			}
-			
+			public List<AddressDelivery> getAddressDeliveryByAccountId(int accountId){
+				
+				return dao.getAddressDeliveryByAccountId( accountId);
+			}
 			
 			
 			
