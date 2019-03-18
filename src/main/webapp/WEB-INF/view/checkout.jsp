@@ -64,9 +64,9 @@
 	          
 		             <form:form  id="usrform"  method="post" action="addaddressdeliveryandcontinuetopay" modelAttribute="addressDelivery" >
 		               
-				             <input type="hidden" id="id"        name="id" value="${addressDelivery.id}"  />
-				             <input type="hidden" id="accountId" name="id" value="${log.account.id}"  /> 
-				             <input type="hidden" id="orderId""  name="orderId" value="${addressDelivery.order.id}"  />  
+				           
+				             <input type="hidden" id="account" name="account.id" value="${log.account.id}"  /> 
+				               
 				              
 			                <table style="width:120%"> 
 			                     
@@ -80,7 +80,7 @@
 	                         </tr>
 	                         
 	                         <tr>                         
-	                             <td colspan="2">C/O :<br> <input type="text"   id="cO"       name="cO" value="${addressDelivery.cO}"  /> </td>
+	                             <td colspan="2">C/O :<br> <input type="text"   id="cO"       name="cO"  value="${addressDelivery.cO}"  /> </td>
 	                         </tr>
 	                             
 	                        
@@ -107,10 +107,12 @@
 	                         <tr>                         
 	                             <td colspan="2"> country*:<br><input type="text"   id="country"   name="country" value="${addressDelivery.country}"  /></td>
 			                </tr>
-	                             </table>      
+	                             </table>  
+	                            <br> <br><br>
+	                              <input type="submit"  value="Continue to Pay"   />  <br>   
 	                 </form:form>
-	               <br>
-		      <a href="checkout" ><button>Continue to Pay</button>  </a><br><br><br><br><br>
+	            
+		                 <br> <br><br>
 	         </div>
 	         
 </body>

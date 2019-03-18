@@ -603,12 +603,12 @@ import com.mohamad.service.SaleManager;
 		    *  Checkout For Customer
 		    */
 	      
-	   @RequestMapping(value = "/addaddressdeliveryandcontinuetopay", method = RequestMethod.POST,params = { "payforthisitem" })
+	   @RequestMapping(value = "/addaddressdeliveryandcontinuetopay", method = RequestMethod.POST)
 	    public String addaddressdeliveryandcontinuetopay(HttpSession session,@ModelAttribute("AddressDelivery") AddressDelivery addressDelivery) {
 		   
-		
+		  saleManager.addAddressDelivery(addressDelivery);
 		   
-		  return null; 
+		  return "redirect:basket";  
 	   }
 	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "payforthisitem" })

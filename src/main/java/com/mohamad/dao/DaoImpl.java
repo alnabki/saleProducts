@@ -82,7 +82,7 @@ public class DaoImpl implements Dao  {
 		    session.getTransaction().commit();
 		}
 
-// addressDelivery Process
+// Address Delivery Process
 	
 	@Transactional
 	public void addAddressDelivery(AddressDelivery addressDelivery) {

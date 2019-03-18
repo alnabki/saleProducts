@@ -36,9 +36,6 @@ public class AddressDelivery {
 	public int id;
 	
 	
-	
-	
-	
 	@Column (name="first_name")
     public String firstName;
 	
@@ -61,7 +58,7 @@ public class AddressDelivery {
 	public String city;
 	
 	@Column (name="country")
-	public int country;
+	public String country;
 	
 	@Column (name="door_code")
 	public String doorCode;
@@ -153,11 +150,11 @@ public class AddressDelivery {
 	
 	
 
-	public int getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(int country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
