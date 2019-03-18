@@ -166,7 +166,6 @@ public class AddressDelivery {
 		this.doorCode = doorCode;
 	}
 
-	
 
 	public int getPhone() {
 		return phone;

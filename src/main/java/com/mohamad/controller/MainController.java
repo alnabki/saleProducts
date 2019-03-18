@@ -605,10 +605,55 @@ import com.mohamad.service.SaleManager;
 	      
 	   @RequestMapping(value = "/addaddressdeliveryandcontinuetopay", method = RequestMethod.POST)
 	    public String addaddressdeliveryandcontinuetopay(HttpSession session,@ModelAttribute("AddressDelivery") AddressDelivery addressDelivery) {
-		   
+		  boolean  check=false;
+		  List<AddressDelivery> addresses=saleManager.getAllAddressDeliverys();
+		  for (AddressDelivery address :addresses) {
+			 if  (address.account.id==addressDelivery.account.id) {
+				 check=true;
+			 }
+		  }
+		  if(check==false) {
 		  saleManager.addAddressDelivery(addressDelivery);
-		   
-		  return "redirect:basket";  
+		  }
+		  else {
+			  System.out.println("your address is registreted");
+		  }
+		  return "redirect:payment";  
+	   }
+	   
+	   
+	   @RequestMapping(value="/payment")
+	   public ModelAndView payment (HttpSession session) {
+		    List<Basket> baskets=saleManager.getAllBaskets();
+	        List<Basket> basketViews = new ArrayList<Basket>();
+			Log log = (Log)session.getAttribute("log");
+			
+			if(log != null && ( log.role == "Customer" )) {
+				ModelAndView model1 = new ModelAndView("payment");
+				int sum=0;
+				if(null != baskets ) {
+					for (Basket basket: baskets) {
+						System.out.println("basket.account.id="+basket.account.id);
+						System.out.println("log.basket.account.id="+log.account.id);
+						if(basket.account.id==log.account.id) {
+						   basket.product.fileName=basket.product.FirstImage(basket.product.fileName);
+						   Basket basketView=basket;
+						   basketViews.add(basketView);
+						   basket.itemRequest =basket.quantityShop * basket.price;
+		            	   sum=sum+basket.itemRequest;
+						}
+			        }
+				}
+		 	    model1.addObject("productViews",basketViews);
+		 	    model1.addObject("log.role",log.role);
+		 	    model1.addObject("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+		 	    model1.addObject("sum",sum);
+				return model1;
+			}
+			else {
+				   ModelAndView model2 = new ModelAndView("notlogin");
+		 		return model2;
+			}
 	   }
 	   
 	   @RequestMapping(value = "/deleteitemfrombasket&update", method = RequestMethod.POST,params = { "payforthisitem" })
