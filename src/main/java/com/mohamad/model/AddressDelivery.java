@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -25,8 +26,7 @@ public class AddressDelivery {
 	@Column (name="id")
 	public int id;
 	
-	@Column (name="account_id")
-	public int accountId;
+	
 	
 	@Column (name="order_id")
 	public int orderId;
@@ -61,7 +61,21 @@ public class AddressDelivery {
 	
 	@Column (name="phone")
 	public int phone;
+	
+	
+	@OneToOne(mappedBy = "address")
+	public Account account;
+	
+	
+	public Account getAccount() {
+		return account;
+	}
 
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+ 
+	
 	public int getId() {
 		return id;
 	}
@@ -70,14 +84,7 @@ public class AddressDelivery {
 		this.id = id;
 	}
 
-	public int getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
-	}
-
+	
 	public int getOrderId() {
 		return orderId;
 	}
@@ -169,6 +176,8 @@ public class AddressDelivery {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
+
+	
 	
 	
 	

@@ -212,13 +212,14 @@ public class DaoImpl implements Dao  {
 		    Account account=new Account();
 		    List<Account> accounts = null;
 		    try {
-		        System.out.println("IN LIST");
+		        System.out.println("IN LIST1");
 		        accounts = (List<Account>)session.createQuery("from Account ").list();
+		        System.out.println("IN LIST2");
 		        outer:
 		        for(Account acc:accounts) {
 			    	if(acc.email.equals(email) && acc.password.equals(password) ) {
 			    		account=acc;
-			    		System.out.println("IN LIST");
+			    		System.out.println("IN LIST3");
 			    		break outer;
 			        }
 			    	else {

@@ -2,10 +2,13 @@ package com.mohamad.model;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,10 +40,23 @@ import javax.persistence.Table;
 	@Column (name="confirm_email")
 	public String confirmEmail;
 	
-	@Column (name="address_id")
-	public String addressId;
+	 
 	
 	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+	public AddressDelivery address;
+	
+	
+	public AddressDelivery getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDelivery address) {
+		this.address = address;
+	}
+  
 	
 	public String getFirstName() {
 		return firstName;
@@ -92,12 +108,7 @@ import javax.persistence.Table;
 		this.confirmEmail = confirmEmail;
 	}
 
-	public String getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(String addressId) {
-		this.addressId = addressId;
-	}
+	
+	
 	
 }
