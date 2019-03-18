@@ -55,8 +55,6 @@ public class AddressDelivery {
 	@Column (name="door_code")
 	public String doorCode;
 	
-	@Column (name="email")
-	public String email;
 	
 	@Column (name="phone")
 	public int phone;
@@ -149,13 +147,7 @@ public class AddressDelivery {
 		this.doorCode = doorCode;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 
 	public int getPhone() {
 		return phone;

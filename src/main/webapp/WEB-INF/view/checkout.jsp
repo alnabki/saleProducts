@@ -47,7 +47,7 @@
 		      </c:forEach>
 		      </div>
 		      <br>
-		      <div id="center"><b>The Total =  ${sum}  Kr</b><br></div>
+		      <div id="totalSum"><b>The Total =  ${sum}  Kr</b><br></div>
 		     
 		                ___________________________________________________________________
 	    
@@ -57,43 +57,59 @@
 <br> 	    
 		     <div id="positionContinueToPay">
 		             <h1  align="left"><i>Complete your purchase</i></h1><br>
-	                   ___________________________________________________________________
-	           
+		             
+		             ___________________________________________________________________
+	                <p></i> Your Delivery Address </p>
+	                  
 	          
 		             <form:form  id="usrform"  method="post" action="addaddressdelivery" modelAttribute="addressDelivery" >
-				             <input type="hidden" id="id"        name="id" value="${addressDelivery.id}"  /> 
+		               
+				             <input type="hidden" id="id"        name="id" value="${addressDelivery.id}"  />
 				             <input type="hidden" id="accountId" name="id" value="${addressDelivery.account.id}"  /> 
-				             <input type="hidden" id="orderId""  name="orderId" value="${addressDelivery.order.id}"  />   
-			                 
-			                 FirstName:       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;   LastName:<br>
-			                 <input type="text"   id="firstName"       name="firstName" value="${addressDelivery.firstName}"  />
-	                                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-	                         <input type="text"   id="lastName"       name="lastName" value="${addressDelivery.lastName}"  /> <br>
-	                         personNumber:<br>
-	                         <input type="text"   id="personNumber"       name="personNumber" value="${addressDelivery.personNumber}"  /> <br>
-	                         C/O:<br>                        
-	                         <input type="text"   id="cO"       name="cO" value="${addressDelivery.cO}"  /> <br>
-	                         Address:<br>
-			                 <input type="text"   id="streetAddress"   name="streetAddress" value="${addressDelivery.streetAddress}"  /><br> 
-			                  city:<br>
-	                         <input type="text"   id="city"       name="city" value="${addressDelivery.city}"  /> <br>
-	                         Post/Zip Code:*<br>
-	                         <input type="text"   id="zipCode"       name="zipCode" value="${addressDelivery.zipCode}"  /><br>
+				             <input type="hidden" id="orderId""  name="orderId" value="${addressDelivery.order.id}"  />  
+				              
+			                <table style="width:120%"> 
+			                     
+			                <tr>
+			                    <td> FirstName:*<br> <input type="text"   id="firstName"       name="firstName" value="${addressDelivery.firstName}"  />  </td>
+	                            <td> LastName:*<br>  <input type="text"   id="lastName"        name="lastName"  value="${addressDelivery.lastName}"  />   </td>
+	                        </tr>
+	                         <tr> 
+	                            <td colspan="2"> personNumber:<br><input type="text"   id="personNumber"       name="personNumber" value="${addressDelivery.personNumber}"  /> </td>
 	                        
-	                         Door Code:<br>
-	                         <input type="text"   id="doorCode"       name="doorCode" value="${addressDelivery.doorCode}"  /> <br>
-	                         Email:<br>
-	                         <input type="text"   id="email"       name="email" value="${addressDelivery.email}"  /> <br>
-	                         Phone:<br>
-	                         <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}"  />  <br>
-	                                  
+	                         </tr>
+	                         
+	                         <tr>                         
+	                             <td colspan="2">C/O :<br> <input type="text"   id="cO"       name="cO" value="${addressDelivery.cO}"  /> </td>
+	                         </tr>
+	                             
+	                        
+			                <tr>                         
+	                             <td colspan="2"> Street Address*:<br><input type="text"   id="streetAddress"   name="streetAddress" value="${addressDelivery.streetAddress}"  /></td>
+			                </tr>
+			                
+			                 
+	                         <tr> 
+	                              <td> city:*<br> 
+	                                  <input type="text"   id="city"       name="city" value="${addressDelivery.city}"  /></td>
+	                        
+	                              <td> Post/Zip Code:*<br>
+	                                   <input type="text"   id="zipCode"       name="zipCode" value="${addressDelivery.zipCode}"  /></td>
+	                         </tr>
+	                        
+	                         <tr>
+	                            <td >Phone:*<br>
+	                                <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}"  />  </td>
+	                            <td > Door Code:<br>
+	                              <input type="text"   id="doorCode"       name="doorCode" value="${addressDelivery.doorCode}"  />  <br>
+	                         </td>    
+	                         </tr>
+	                             </table>      
 	                 </form:form>
-	                    ___________________________________________________________________
-	    
-		     
-		      
-		      <a href="checkout" ><button>Continue to Pay</button>  </a><br>
+	               <br>
+		      <a href="checkout" ><button>Continue to Pay</button>  </a><br><br><br><br><br>
 	         </div>
+	         
 </body>
 
 </html>
