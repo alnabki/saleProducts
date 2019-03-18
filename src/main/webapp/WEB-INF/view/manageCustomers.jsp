@@ -34,12 +34,8 @@
 		          <th> Last Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
-		          <th> Age     </th>
-		          <th> Phone   </th>
-		          <th> Address </th>
-		          <th> Post code     </th>
-		          <th> City   </th>
-		          <th> Country   </th>
+		           <th> Delete</th>
+		          
 		      </tr>  
 	          <c:forEach var="account" items="${accounts}" varStatus="status">
 		      <tr >
@@ -49,12 +45,7 @@
 	              <td><input type='text'     name="lastName"          value = '${account.lastName}'      required/></td>
 	             <td><input type='text'     name="email"         value = '${account.email}'    required/></td>    
 	             <td><input type='password' name="password"      value = '${account.password}' required/></td>
-	             <td><input type='text'     name="age"           value = '${account.age}'      required/></td>
-	             <td><input type='text'     name="phone"         value = '${account.phone}'      required/></td>
-	             <td><input type='text'     name="address"       value = '${account.address}'    required/></td> 
-	             <td><input type='text'     name="postcode"      value = '${account.postcode}'    required/></td>
-	             <td><input type='text'     name="city"          value = '${account.city}'    required/></td>
-	             <td><input type='text'     name="country"       value = '${account.country}'    required/></td>
+	             
 	               
 	             <td><a href="deleteaccount?id=${account.id}">  DELETE</a> </td>	  
 		      </tr>

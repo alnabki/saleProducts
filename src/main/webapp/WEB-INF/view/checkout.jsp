@@ -102,8 +102,11 @@
 	                                <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}"  />  </td>
 	                            <td > Door Code:<br>
 	                              <input type="text"   id="doorCode"       name="doorCode" value="${addressDelivery.doorCode}"  />  <br>
-	                         </td>    
+	                            </td>    
 	                         </tr>
+	                         <tr>                         
+	                             <td colspan="2"> country*:<br><input type="text"   id="country"   name="country" value="${addressDelivery.country}"  /></td>
+			                </tr>
 	                             </table>      
 	                 </form:form>
 	               <br>

@@ -52,6 +52,9 @@ public class AddressDelivery {
 	@Column (name="city")
 	public String city;
 	
+	@Column (name="country")
+	public int country;
+	
 	@Column (name="door_code")
 	public String doorCode;
 	
@@ -137,6 +140,16 @@ public class AddressDelivery {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	
+
+	public int getCountry() {
+		return country;
+	}
+
+	public void setCountry(int country) {
+		this.country = country;
 	}
 
 	public String getDoorCode() {
