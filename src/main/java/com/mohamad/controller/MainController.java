@@ -68,8 +68,8 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
-		   // session.setAttribute("i",0);
-		   // session.removeAttribute("log");
+		    session.setAttribute("i",0);
+		    session.removeAttribute("log");
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
