@@ -55,12 +55,9 @@
 		          <th>Full Name    </th>
 		          <th> Email   </th>
 		          <th> Password</th>
-		          <th> Age     </th>
-		          <th> Phone   </th>
-		          <th> Address </th>
-		          <th> Post code     </th>
-		          <th> City   </th>
-		          <th> Country   </th>
+		          
+		          <th> Edit </th>
+		        
 		      </tr>  
 	          <c:forEach var="account" items="${accounts}" varStatus="status">
 		      <tr >
@@ -68,12 +65,8 @@
 	              <td> ${account.firstName} ${account.lastName}     </td>
 	              <td> ${account.email}     </td>
 	              <td> ${account.password}  </td>
-	              <td> ${account.age}       </td>
-	              <td> ${account.phone}     </td>
-	              <td> ${account.address}   </td>
-	              <td> ${account.postcode}       </td>
-	              <td> ${account.city}     </td>
-	              <td> ${account.country}     </td>
+	              <td> Manage Customer  </td>
+	              
 		      </tr>
 		     </c:forEach>
 		    </table>

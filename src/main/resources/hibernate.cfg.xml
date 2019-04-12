@@ -15,7 +15,7 @@
         <mapping class="com.mohamad.model.Basket" />
         <mapping class="com.mohamad.model.SaleFileUpload" />
          <mapping class="com.mohamad.model.CrunchifyEmailAPI" />  
-       
+         <mapping class="com.mohamad.model.AddressDelivery" />  
      
     </session-factory>
 </hibernate-configuration>

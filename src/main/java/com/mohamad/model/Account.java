@@ -2,11 +2,16 @@ package com.mohamad.model;
 
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="account")
@@ -34,24 +39,11 @@ import javax.persistence.Table;
 	@Column (name="email")
 	public String email;
 	
-	@Column (name="age")
-	public int age;
-	
-	@Column (name="phone")
-	public int phone;
-	
-	@Column (name="address")
-	public String address;
-	
-	@Column (name="postcode")
-	public String postcode;
-	
-	@Column (name="city")
-	public String city;
+	@Column (name="confirm_email")
+	public String confirmEmail;
 	
 	
-	
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -76,58 +68,6 @@ import javax.persistence.Table;
 		this.email = email;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public int getPhone() {
-		return phone;
-	}
-
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-	@Column (name="country")
-	public String country;
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -145,5 +85,16 @@ import javax.persistence.Table;
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getConfirmEmail() {
+		return confirmEmail;
+	}
+
+	public void setConfirmEmail(String confirmEmail) {
+		this.confirmEmail = confirmEmail;
+	}
+
+	
+	
 	
 }

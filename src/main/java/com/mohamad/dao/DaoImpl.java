@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamad.model.Account;
+import com.mohamad.model.AddressDelivery;
 import com.mohamad.model.Admin;
 import com.mohamad.model.Basket;
 import com.mohamad.model.Customer;
@@ -81,6 +82,75 @@ public class DaoImpl implements Dao  {
 		    session.getTransaction().commit();
 		}
 
+// Address Delivery Process
+	
+	@Transactional
+	public void addAddressDelivery(AddressDelivery addressDelivery) {
+		this.sessionFactory.getCurrentSession().save(addressDelivery);
+	}
+	@Transactional
+	public AddressDelivery getAddressDeliveryById(int id) {
+	    Session session = sessionFactory.getCurrentSession();
+	    AddressDelivery addressDelivery=null;
+	    System.out.println("IN GetIteam");
+	    try {
+	        System.out.println("IN GetIteam");
+	        session.beginTransaction();
+	        addressDelivery = (AddressDelivery) session.get(AddressDelivery.class, id);
+	    } catch (HibernateException e) {
+	        e.printStackTrace();
+	        session.getTransaction().rollback();
+	    }
+	   //session.getTransaction().commit();
+	    return addressDelivery;
+	}
+	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<AddressDelivery> getAllAddressDeliverys(){
+		return this.sessionFactory.getCurrentSession().createQuery("from AddressDelivery").list();
+	}
+	@Transactional
+	public void deleteAddressDelivery(int id) {
+		AddressDelivery addressDelivery = (AddressDelivery) sessionFactory.getCurrentSession().load(
+				AddressDelivery.class, id);
+        if (null != addressDelivery) {
+        	this.sessionFactory.getCurrentSession().delete(addressDelivery);
+        }
+    }
+	@Transactional
+	public void updateAddressDelivery(AddressDelivery addressDelivery) {
+		 Session session = sessionFactory.getCurrentSession();
+		    try {
+		        System.out.println("IN Update");
+		        session.beginTransaction();
+		        session.saveOrUpdate(addressDelivery);
+		        } catch (HibernateException e) {
+		            e.printStackTrace();
+		            session.getTransaction().rollback();
+		        }
+		    session.getTransaction().commit();
+		}
+
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public List<AddressDelivery> getAddressDeliveryByAccountId(int accountId) {
+			Session session = sessionFactory.getCurrentSession();
+		    session.beginTransaction();
+		    List<AddressDelivery> addressesDelivery = null;
+		    try {
+		        System.out.println("IN LIST");
+		        addressesDelivery = (List<AddressDelivery>)session.createQuery("from AddressDelivery where account_id="+accountId).list();
+		        System.out.println("IN LIST");
+		    } catch (HibernateException e) {
+		        e.printStackTrace();
+		        session.getTransaction().rollback();
+		    }
+		// session.getTransaction().commit();
+		    return addressesDelivery;
+		}
+	
+	
 	
 // Admin Process	
 	@Transactional
@@ -211,14 +281,16 @@ public class DaoImpl implements Dao  {
 		    session.beginTransaction();
 		    Account account=new Account();
 		    List<Account> accounts = null;
+		  
 		    try {
-		        System.out.println("IN LIST");
-		        accounts = (List<Account>)session.createQuery("from Account ").list();
+		        System.out.println("IN LIST1");
+		        accounts = (List<Account>)session.createQuery("from Account  ").list();
+		        System.out.println("IN LIST2");
 		        outer:
 		        for(Account acc:accounts) {
 			    	if(acc.email.equals(email) && acc.password.equals(password) ) {
 			    		account=acc;
-			    		System.out.println("IN LIST");
+			    		System.out.println("IN LIST3");
 			    		break outer;
 			        }
 			    	else {

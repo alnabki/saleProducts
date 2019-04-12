@@ -80,8 +80,26 @@ body {
   position: relative;
   left:100px;
   top: 150px;
+  margin:50 px;
    
 }
+
+#positioncheckOrder{
+  position: relative;
+  left:100px;
+  top: 100px;
+  margin:20 px;
+	
+}
+#positionContinueToPay{
+  position: absolute;
+  
+  top: 230px;
+ margin-left:800px;
+ float: right;
+	
+}
+
 
 #login{
 	text-align: center;
@@ -110,7 +128,8 @@ padding-top:1em;
 }
 
 .imageProductInBasket {
-  width:5%;
+  float: left;	
+  width:9%;
   height: auto;
 }
    <!-- background-image: url(http://localhost:8080/saleProductsebapp/resources/images/taylor.jpg);-->
