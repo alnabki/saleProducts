@@ -8,16 +8,16 @@
 
 <html>
 <head>
-
+<style><%@include file="/resources/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 <title>Insert title here</title>
-<style><%@include file="/resources/css/mystyle.css"%></style>
+ <link href="<c:url value="/resources/css/mystyle.css" />" rel="stylesheet">
 </head>
 
  <body> 
- 
+
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

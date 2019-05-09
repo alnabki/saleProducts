@@ -951,4 +951,13 @@ import com.mohamad.service.SaleManager;
 			 		return model2;
 				}
 		    }
+			 @SuppressWarnings("unused")
+			   @RequestMapping(value = "/search", method = RequestMethod.GET)
+				public ModelAndView search(HttpSession session) {
+				 
+				 ModelAndView model = new ModelAndView("searchResult");
+				 return model;
+				 
+				 
+			 }
 	}
