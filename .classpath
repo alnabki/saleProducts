@@ -47,7 +47,7 @@
 	<classpathentry kind="lib" path="libs/spring-mvc-3.0.7.jar"/>
 	<classpathentry kind="lib" path="libs/spring-web-4.2.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="libs/spring-webmvc-4.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohammad/Desktop/jaf-1.1.1/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mohammad/Desktop/javamail-1.4.7/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mohamad/eclipse-workspace/saleProducts/libs/activation-jaf1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mohamad/eclipse-workspace/saleProducts/libs/ant-javamail-1.7.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
