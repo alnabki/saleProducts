@@ -18,12 +18,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="cart")
 public class Basket {
-	
-	
-	
-	
-	
-	
 
 	@Id
     @GeneratedValue
@@ -31,17 +25,14 @@ public class Basket {
 	 @Column(name="id")
 	 public int id;
 	
-	 
-
-
-
-	
-	
 	@Column(name="quantity_shop")
 	 public int quantityShop;
 	
 	@Column(name="price")
 	 public int price;
+	
+	@Column(name="request_price")
+	 public int itemRequest;
 	
 	@ManyToOne
 	@JoinColumn(name = "account_id", nullable = true)
@@ -51,10 +42,6 @@ public class Basket {
 	@JoinColumn(name = "product_id", nullable = true)
 	public Product product;
 	
-	
-	
-	
-
 	public Product getProduct() {
 		return product;
 	}
@@ -97,8 +84,7 @@ public class Basket {
 		this.account = account;
 	}
 
-	@Column(name="request_price")
-	 public int itemRequest;
+	
 	 
 	
 		public int getItemRequest() {

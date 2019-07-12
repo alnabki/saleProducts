@@ -20,7 +20,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="mohalnabki@gmail.com" />
-		<property name="password" value="Moh11019723" />
+		<property name="password" value="Mk232198" />
  
 		<!-- The name of the property, following JavaBean naming conventions -->
 		<property name="javaMailProperties">

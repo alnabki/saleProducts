@@ -81,6 +81,7 @@
 		          <th> quantity   </th>
 		           <th> Order's Date   </th>
 		      </tr> 
+		     
 		       <c:forEach var="order" items="${orders}" varStatus="status"> 
 		          <tr >
 		             <td> ${status.index + 1}       </td>

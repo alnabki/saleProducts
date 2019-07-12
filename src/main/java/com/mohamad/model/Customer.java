@@ -9,13 +9,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="customer")
 public class Customer  {
-
 	
 	/**
 	 * 
 	 */
-
-
 	@Id
     @GeneratedValue
     
@@ -37,8 +34,6 @@ public class Customer  {
 	@Column(name="age")
     public int age;
 	
-	
-
 	@Column(name="phone")
     public long phone;
 
