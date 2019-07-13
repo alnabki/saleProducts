@@ -43,11 +43,12 @@
 		             
 		        </ul>
 		     </div> 
-		  
-	        <form class="form-inline my-2 my-lg-0">
-	             <i class="fa fa-fw fa-search"></i><input class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
+		     
+	         <form:form class="form-inline my-2 my-lg-0" name="getForm"  action="search"  method="get" modelAttribute="product">
+	             <i class="fa fa-fw fa-search"></i>
+	             <input class="form-control mr-sm-2" type="text" placeholder="Search1"  aria-label="Search">
 	            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	        </form>
+	         </form:form>
 	                   <div >
 		              <a   href="basket">   <button class="btn btn-outline-success my-2 my-sm-0" >Basket(${log.numberOfTheItemsInTheBasket })</button>    </a> 
 		     		  </div>
