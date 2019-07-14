@@ -15,33 +15,51 @@
  <link href="<c:url value="/resources/css/mystyle.css" />" rel="stylesheet">
 </head>
 
- <body> 
+ <body class="login-body"> 
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-
-        <span class="navbar-toggler-icon"></span>
-    </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                  <a class="active" href="/saleProducts/"><i class="fas fa-home"></i>Home</a>
-                </li>
-                <li class="nav-item active">
-                  <a href="login">  <i class="fa fa-fw fa-user"></i> Sign in</a>
-                </li>
-                <li class="nav-item active">
-                  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-                </li>
-              </ul>
-
-              <form class="form-inline my-2 my-lg-0">
-
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index">BRAND NAME</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index"><i class="fas fa-home mr-2"></i>Home<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope mr-2"></i> Contact</a>
+                    </li>
+                </ul>
+                <!--<ul class="navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-2"></i>Profile</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#"><i class="fas fa-shopping-basket mr-2"></i>Basket(NUMBER)</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-key mr-2"></i>Reset password</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
+                        </div>
+                    </li>
+                </ul>-->
+                <ul class="navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login"><button class="btn btn-outline-primary my-2 my-sm-0">Sign
+                                in</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="greataccount"><button
+                                class="btn btn-outline-primary my-2 my-sm-0">Sign
+                                up</button></a>
+                    </li>
+                </ul>
             </div>
-          </nav>
+        </div>
+    </nav>
           <div class=" heading text-center text-light">
             <h1 class="Display-4">Sign in to your account</h1>
             <p>Sign in to your account or <a style="text-decoration: underline" class="text-light" href ="greataccount">create an account</a></p>
@@ -79,21 +97,6 @@
     </div>
   </div>
 
-          <div id="positionIndex">
-            <form:form name="login" method="post" action="checklogin" modelAttribute="account">
-              Email:<br>
-              <span>
-		             <input name="email" type="text" maxlength="64" value='${account.email}'><br>
-		            </span>
-              <span>
-		             password:<br>
-		              <input class="loginUserPass" id="pass-Loginid" name="password" type="password" maxlength="64" value='${account.password}'>
-		          
-		            </span>
-              <input type="submit" value="login" />
-
-            </form:form>
-          </div>
 
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

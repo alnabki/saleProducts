@@ -10,12 +10,11 @@
 <head>
 <style><%@include file="/resources/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 <title>Insert title here</title>
-<style><%@include file="/resources/css/mystyle.css"%></style>
-
-
+ <link href="<c:url value="/resources/css/mystyle.css" />" rel="stylesheet">
 </head>
 
 
@@ -31,7 +30,7 @@
  
 
 
-<div id="positionIndex" >
+<div class="container">
 	    <h1  align="center"><i>Products for sale<b></b></i></h1>
 	    __________________________________________________________________________________________________________________________________________
 	    
@@ -55,7 +54,7 @@
                                       <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
                                       <b>Description</b>            =  ${product.description} <br>
                     </form:form>
-         __________________________________________________________________________________________________________________________________________
+        <hr class="my-4">
 	    			     
 		          
 		        </c:forEach>
