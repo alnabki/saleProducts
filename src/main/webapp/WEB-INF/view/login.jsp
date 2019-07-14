@@ -60,6 +60,7 @@
             </div>
         </div>
     </nav>
+    
           <div class=" heading text-center text-light">
             <h1 class="Display-4">Sign in to your account</h1>
             <p>Sign in to your account or <a style="text-decoration: underline" class="text-light" href ="greataccount">create an account</a></p>
@@ -72,11 +73,11 @@
             <h5 class="card-title text-center">Sign In</h5>
             <form:form name="login" class="form-signin" method="post" action="checklogin" modelAttribute="account">
               <div class="form-label-group">
-                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" maxlength="64" value='${account.email}' required autofocus>
+                <input class="form-control"  id="inputEmail"  name="email" type="text"    placeholder="Email address" value=""  maxlength="64" value='${account.email}' >
                 <label for="inputEmail">Email address</label>
               </div>
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" maxlength="64" value='${account.password}' required>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" value="" maxlength="64" value='${account.password}' required>
                 <label for="inputPassword">Password</label>
               </div>
               <div class="custom-control custom-checkbox mb-3">
