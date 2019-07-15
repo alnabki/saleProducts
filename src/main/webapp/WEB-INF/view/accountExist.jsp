@@ -22,7 +22,7 @@
 <div align="center" color-text="red">
  <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big><br>
   An account already exists with the email address=<big><b> ${acc.email }</b></big> <br>
-  If you forgot te password click to forget password below       <br>
+  If you forgot the password click to forget password below       <br>
   <a href="forgetpassword"  >forget password</a>
                    	
 </div>

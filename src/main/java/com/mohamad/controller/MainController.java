@@ -236,6 +236,7 @@ import com.mohamad.service.SaleManager;
 				Log log = (Log) session.getAttribute("log");
 				if(log != null ) {
 				session.removeAttribute("log");
+				session.removeAttribute("acc");
 				}
 				return "redirect:login";			
 			}
@@ -311,9 +312,7 @@ import com.mohamad.service.SaleManager;
 		
 		@RequestMapping(value="/greatnewaccount")
 	 	public String  greataccount(HttpSession session,@ModelAttribute("Account") Account account){
-	 		//ModelAndView model = new ModelAndView("greatAccount");
-			Account acc=saleManager.checkEmail(account.email);
-			 //Account acc=saleManager.checkLogin(account.email,account.password);
+			 Account acc=saleManager.checkEmail(account.email);
 			 session.setAttribute("acc", acc);
 			 if(   acc==null) {
 			 		saleManager.addAccount(account);
@@ -324,12 +323,11 @@ import com.mohamad.service.SaleManager;
 			 			log.role = "Customer";
 			 			session.setAttribute("log", log);
 				 		session.setMaxInactiveInterval(-1);
+				 		return "redirect:maineftershop";
 			 		}
 			 		else {
 						return "redirect:accountexist";
-					}		
-					
-			 		return "redirect:maineftershop";
+					}	
 			 }
 			 else {
 					return "redirect:accountexist ";
@@ -349,18 +347,67 @@ import com.mohamad.service.SaleManager;
 	 		ModelAndView model = new ModelAndView("submitEmail");
 		 	return model;
 	 	}  
+		@RequestMapping(value="/forgetpasswordwhentheloginfaild")
+	 	public ModelAndView  forgetpasswordwhentheloginfaild(HttpSession session){
+	 		ModelAndView model = new ModelAndView("submitEmailWhenTheLoginFaild");
+		 	return model;
+	 	}  
+		
 		 	
 		@RequestMapping(value="/sendnewpasswordbyemail")
 	 	public ModelAndView  sendnewpasswordbyemail(){
-			//Account acc=(Account) session.getAttribute("acc");
 	 		ModelAndView model = new ModelAndView("passwordSent");
 		 	return model;
 	 	}  
 		
 		@SuppressWarnings("resource")
+		@RequestMapping(value="/sendnewpasswordbyemailwhentheloginfaild",method=RequestMethod.POST)
+		 	public ModelAndView  sendnewpasswordbyemailwhentheloginfaild(HttpSession session,@ModelAttribute("Account") Account account){
+			System.out.println("here111");
+			
+			 Account acc=saleManager.checkEmail(account.email);
+			ModelAndView model = new ModelAndView("passwordSentWhenTheLoginFaild");
+			
+			
+			
+			
+			
+			 if(acc !=null){
+				 System.out.println("herezzzzzzzzzzzzzzzzzz");
+				// Spring Bean file you specified in /src/main/resources folder
+					String crunchifyConfFile = "crunchify-bean.xml";
+					ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
+					
+					// @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
+					CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
+					
+					String toAddr = acc.email;
+					String fromAddr = "systemcamera4you@gmail.com";
+					
+					// email subject
+					String subject = "Hey.. This email sent for correct password";
+			 
+					// email body
+					String body = "your email="+acc.email+"     "+
+							"your password="+acc.password+"";
+					crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
+					String msg=" ";
+					 model.addObject("msg",msg);
+				} 
+	            else
+	            {
+	            	System.out.println("hereyyyyyyyyyyyyyyy1");
+	            	String msg="Please, Write correct email";
+	            	 model.addObject("msg",msg);
+	            }
+			   
+			 	return model;
+		}
+		
+		@SuppressWarnings("resource")
 			@RequestMapping(value="/sendnewpasswordbyemail",method=RequestMethod.POST)
 			 	public ModelAndView  sendnewpasswordbyemail(HttpSession session,@ModelAttribute("Account") Account account){
-			   ModelAndView model = new ModelAndView("passwordSent");
+			    ModelAndView model = new ModelAndView("passwordSent");			 
 				Account acc=(Account) session.getAttribute("acc");
 				 if(acc.email.equals(account.email)){
 					 
