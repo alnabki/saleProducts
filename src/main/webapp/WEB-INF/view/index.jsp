@@ -31,8 +31,8 @@
 
 
 <div class="container">
-	    <h1  align="center"><i>Products for sale<b></b></i></h1>
-	    __________________________________________________________________________________________________________________________________________
+	    
+	   <hr class="my-4">
 	    
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="log" >  

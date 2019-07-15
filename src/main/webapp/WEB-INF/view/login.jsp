@@ -80,7 +80,7 @@
                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" value="" maxlength="64" value='${account.password}' required>
                 <label for="inputPassword">Password</label>
               </div>
-              <div class="custom-control custom-checkbox mb-3">
+              <div class="custom-control custom-checkbox checkbox-inline mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
