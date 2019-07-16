@@ -24,8 +24,8 @@
      
       
        <h1>${msg}</h1>
-       <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big><br>
-       Write your email to send correct password</b></big> <br>
+       
+       Write your email to send the correct password</b></big> <br>
        <br>
   
                    	<form:form name="gratAccount" method="post" action="sendnewpasswordbyemailwhentheloginfaild" modelAttribute="account">

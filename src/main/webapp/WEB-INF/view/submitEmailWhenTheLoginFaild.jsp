@@ -21,8 +21,8 @@
  
 <div align="center" text-color="red">
 <h1>forget password</h1>
- <big><b> Hello </b></big><br>
-  Write your email to send new password</b></big> <br>
+
+  Write your email to send a new password</b></big> <br>
     <br>
   
                    	<form:form name="gratAccount" method="post" action="sendnewpasswordbyemailwhentheloginfaild" modelAttribute="account">

@@ -363,17 +363,11 @@ import com.mohamad.service.SaleManager;
 		@SuppressWarnings("resource")
 		@RequestMapping(value="/sendnewpasswordbyemailwhentheloginfaild",method=RequestMethod.POST)
 		 	public ModelAndView  sendnewpasswordbyemailwhentheloginfaild(HttpSession session,@ModelAttribute("Account") Account account){
-			System.out.println("here111");
-			
 			 Account acc=saleManager.checkEmail(account.email);
+			 session.setAttribute("acc", acc);
 			ModelAndView model = new ModelAndView("passwordSentWhenTheLoginFaild");
-			
-			
-			
-			
-			
 			 if(acc !=null){
-				 System.out.println("herezzzzzzzzzzzzzzzzzz");
+				
 				// Spring Bean file you specified in /src/main/resources folder
 					String crunchifyConfFile = "crunchify-bean.xml";
 					ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
