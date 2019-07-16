@@ -73,7 +73,7 @@
             <h5 class="card-title text-center">Sign In</h5>
             <form:form name="login" class="form-signin" method="post" action="checklogin" modelAttribute="account">
               <div class="form-label-group">
-                <input class="form-control"  id="inputEmail"  name="email" type="text"    placeholder="Email address" value=""  maxlength="64" value='${account.email}' >
+                <input class="form-control"  id="inputEmail"  name="email" type="email" placeholder="Email address" value=""  maxlength="64" value='${account.email}' required>
                 <label for="inputEmail">Email address</label>
               </div>
               <div class="form-label-group">

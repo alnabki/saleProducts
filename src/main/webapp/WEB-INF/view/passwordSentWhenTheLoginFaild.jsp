@@ -18,7 +18,7 @@
 <div align="right">
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
-  <c:if test='${msg =="Please, Write correct email"   }' >
+  <c:if test='${msg =="Please, Write correct email"}' >
     
      <div align="center" text-color="red">
      

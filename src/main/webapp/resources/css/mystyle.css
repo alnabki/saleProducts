@@ -10,10 +10,30 @@
   background: linear-gradient(to right, #0062e6, #33aeff);
   background-repeat: no-repeat;
   background-size: cover;
-  object: cover;
+  object-fit: cover;
 }
 
+.login,
+.image {
+  min-height: 100vh;
+}
 
+.bg-image {
+  background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+}
 
 .heading {
   padding-top: 100px;
@@ -129,7 +149,6 @@ tr:nth-child(even) {
 .form-label-group input {
   height: auto;
   border-radius: 2rem;
-  cursor: pointer;
 }
 
 .form-label-group > input,
@@ -147,6 +166,7 @@ tr:nth-child(even) {
   /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
+  cursor: text;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   transition: all 0.1s ease-in-out;
