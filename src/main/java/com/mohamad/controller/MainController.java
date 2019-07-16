@@ -323,7 +323,7 @@ import com.mohamad.service.SaleManager;
 			 			log.role = "Customer";
 			 			session.setAttribute("log", log);
 				 		session.setMaxInactiveInterval(-1);
-				 		return "redirect:maineftershop";
+				 		return "redirect:customer";
 			 		}
 			 		else {
 						return "redirect:accountexist";

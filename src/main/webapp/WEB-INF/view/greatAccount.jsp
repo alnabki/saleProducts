@@ -29,7 +29,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Create an account</h3>
-              <form>
+              <form:form name="gratAccount" method="post" action="greatnewaccount" modelAttribute="account">
                 <div class="form-label-group">
                   <input type="text" id="inputFirstname" class="form-control" placeholder="First name" name="firstName" maxlength="64" value='${account.firstName}' required autofocus>
                   <label for="inputFirstname">First name</label>
@@ -55,7 +55,7 @@
                   <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign up</button>
                 <div class="text-center">
                   <a class="small" href="login">Already have an account?</a></div>
-              </form>
+             </form:form>
             </div>
           </div>
         </div>
@@ -64,38 +64,7 @@
   </div>
 </div>
 
- <div id= "positionIndex" >
-		<form:form name="gratAccount" method="post" action="greatnewaccount" modelAttribute="account">
-		             First Name:<br>
-		             <span>
-		             <input class="GreatFirstName"  name="firstName" type="text" value="" maxlength="64"   value='${account.firstName}'><br>
-		            </span>
-		            <span>
-		             Last Name:<br>
-		              <input class="GeartLastName"  name="lastName" type="text" value="" maxlength="64" value='${account.lastName}'><br>
-		             
-		            </span>
-		            <span>
-		             Email Address:<br>
-		             <input class="GreatEmail"  name="email" type="text" value="" maxlength="64" value='${account.email}'><br>
-		            </span>
-		            
-		             <span>
-		             password:<br>
-		              <input class="GeartPasswor"  name="password" type="password" value="" maxlength="64" value='${account.password}'><br>
-		            </span>
-		            <span>
-		             Confirm Password:<br>
-		             
-		            </span>
-		            
-		            <span>
-		             Sign me up, Receive special offers, exclusives and promotions:<br>
-		            </span>
-		              <input  type="submit" value="Create Your Account"/> 
-		     
-	     </form:form>
-</div>	     
+ 
  
 </body>
 </html>
