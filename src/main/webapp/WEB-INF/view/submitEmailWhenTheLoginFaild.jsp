@@ -17,7 +17,7 @@
       </div>
       <div class="container text-center">
          <div class="row justify-content-center">
-            <div class="col-lg-5 text-center forget-form">
+            <div class="col-lg-5 text-center center-text">
                <h1 class="display-4">Forget password</h1>
                <p>You can reset your password here. Write your email here and recieve a message from us</p>
                <form:form name="gratAccount" class="form-signin" method="post" action="sendnewpasswordbyemailwhentheloginfaild" modelAttribute="account">

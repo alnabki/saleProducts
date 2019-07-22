@@ -252,7 +252,7 @@ tr:nth-child(even) {
   background-color: #fcfcfa;
 }
 
-.forget-form {
+.center-text {
     position: absolute;
     top: 50%;
     left: 50%;

@@ -26,7 +26,7 @@
                   <p>You can reset your password here. Write your email here and recieve a message from us</p>
                   <form:form name="gratAccount" class="form-signin" method="post" action="sendnewpasswordbyemailwhentheloginfaild" modelAttribute="account">
                      <div class="form-label-group">
-                        <input class="form-control"  id="inputEmail"  name="email" type="email" placeholder="Email address" value=""  maxlength="64" value='${account.email}' required>
+                        <input class="form-control is-invalid"  id="inputEmail"  name="email" type="email" placeholder="Email address" value=""  maxlength="64" value='${account.email}' required>
                         <label for="inputEmail">Email address</label>
                      </div>
                      <button class="btn btn-lg btn-primary text-uppercase w-50 text-center" type="submit">Forget password</button>
@@ -36,8 +36,8 @@
          </div>
       </c:if>
       <c:if test='${msg == " "}'>
-         <div align="center" text-color="red">
-            <h1>forget password</h1>
+         <div class="center-text text-center">
+            <h1 class="display-3">Forget password</h1>
             <big><b> Hello ${acc.firstName } ${acc.lastName }</b></big>
             <big><b>The password has been sent</b></big> <br>.
             <big><b>Try to Login by using the correct password  <br><a href="login" >Login</a></b></big> <br>
