@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-      <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+   <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">   
 <html>
 <head>
 <style><%@include file="/resources/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://kit.fontawesome.com/f11e7fef2e.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 <title>Insert title here</title>
@@ -17,49 +19,9 @@
 
  <body class="login-body"> 
 
-    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index">BRAND NAME</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index"><i class="fas fa-home mr-2"></i>Home<span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-envelope mr-2"></i> Contact</a>
-                    </li>
-                </ul>
-                <!--<ul class="navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-2"></i>Profile</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="#"><i class="fas fa-shopping-basket mr-2"></i>Basket(NUMBER)</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-key mr-2"></i>Reset password</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
-                        </div>
-                    </li>
-                </ul>-->
-                <ul class="navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login"><button class="btn btn-outline-primary my-2 my-sm-0">Sign
-                                in</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="greataccount"><button
-                                class="btn btn-outline-primary my-2 my-sm-0">Sign
-                                up</button></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   <div align="right">
+          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+</div>
     
           <div class=" heading text-center text-light">
             <h1 class="Display-4">Sign in to your account</h1>

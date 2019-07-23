@@ -11,7 +11,7 @@
 <style><%@include file="/resources/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/f11e7fef2e.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 <title>Insert title here</title>
  <link href="<c:url value="/resources/css/mystyle.css" />" rel="stylesheet">
