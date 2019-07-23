@@ -26,38 +26,34 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
-
- 
-
-
 <div class="container">
 	    
 	   <hr class="my-4">
 	    
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="log" >  
-		                              <h2 ><b><u> ${product.name} </u></b></h2> 
-		                               <b>S.No.</b>                  =  ${status.index + 1} 
-                                          <input type="hidden" name="basket.product.id"  value="${product.id}" />
-                                          <input type="hidden" name="basket.product.name"  value="${product.name}" />
-                                          <input type="hidden" name="basket.product.fileName"  value="${product.fileName}" />
-                                          <input type="hidden" name="basket.price"      value="${product.price}" />
-                                          
-                                       <b> Quantity in the Store</b>  =  ${product.quantity} <br>
-                                       <b>Price </b>                 =  ${product.price} Kr <br>
-                                       <b>Quantity</b>               = <input type="number"  name="basket.quantityShop" value="${quantityShop}" required />
-                                    
-                                      <input type="submit" value="Add to basket "   /><br>
-               
-                                        
-				                      
-                                      <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
-                                      <b>Description</b>            =  ${product.description} <br>
-                    </form:form>
-        <hr class="my-4">
+                       <h2 ><b><u> ${product.name} </u></b></h2> 
+                        <b>S.No.</b>                  =  ${status.index + 1} 
+                                 <input type="hidden" name="basket.product.id"  value="${product.id}" />
+                                 <input type="hidden" name="basket.product.name"  value="${product.name}" />
+                                 <input type="hidden" name="basket.product.fileName"  value="${product.fileName}" />
+                                 <input type="hidden" name="basket.price"      value="${product.price}" />
+                                 
+                              <b> Quantity in the Store</b>  =  ${product.quantity} <br>
+                              <b>Price </b>                 =  ${product.price} Kr <br>
+                              <b>Quantity</b>               = <input type="number"  name="basket.quantityShop" value="${quantityShop}" required />
+                           
+                             <input type="submit" value="Add to basket "   /><br>
+      
+                               
+                 
+                             <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
+                             <b>Description</b>            =  ${product.description} <br>
+                   </form:form>
+            <hr class="my-4">
 	    			     
 		          
-		        </c:forEach>
+		    </c:forEach>
 		       </div>
 		       
 </body>

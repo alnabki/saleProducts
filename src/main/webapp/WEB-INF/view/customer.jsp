@@ -17,18 +17,6 @@
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
-        
-        <br><br>
-        <div>
-	        <ul>
-	        <li>  <a href="#">#</a> </li>
-	         <li> <a href="#">#</a> </li>
-	         <li> <a href="#">#</a> </li>
-	         <li> <a href="#">#</a> </li>
-	        </ul>
-        </div>
-
-
 
 
  <div id="positionIndex" >

@@ -18,6 +18,7 @@
 <div align="right">
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
+	
 		  
 <div id="positionIndex" >
 	    <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></h1>

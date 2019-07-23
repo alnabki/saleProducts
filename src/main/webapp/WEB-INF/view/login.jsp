@@ -19,15 +19,15 @@
 
  <body class="login-body"> 
 
-   <div align="right">
+     <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
-</div>
+     </div>
     
-          <div class=" heading text-center text-light">
-            <h1 class="Display-4">Sign in to your account</h1>
-            <p>Sign in to your account or <a style="text-decoration: underline" class="text-light" href ="greataccount">create an account</a></p>
-          </div>
-          <div class="container">
+    <div class=" heading text-center text-light">
+      <h1 class="Display-4">Sign in to your account</h1>
+      <p>Sign in to your account or <a style="text-decoration: underline" class="text-light" href ="greataccount">create an account</a></p>
+    </div>
+    <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
@@ -45,6 +45,7 @@
               <div class="custom-control custom-checkbox checkbox-inline mb-3">
                  <a href="forgetpassword">forget password</a>
               </div>
+              
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
               
               <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
