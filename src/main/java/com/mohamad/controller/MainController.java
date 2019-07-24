@@ -68,8 +68,10 @@ import com.mohamad.service.SaleManager;
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public ModelAndView home(HttpSession session,Locale locale, Model model) {
 			logger.info("Welcome home! The client locale is {}.", locale);
+			
 		    session.setAttribute("i",0);
 		    session.removeAttribute("log");
+		    
 			ModelAndView model1 = new ModelAndView("index");
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -154,9 +156,10 @@ import com.mohamad.service.SaleManager;
 						List<Log> logs = new ArrayList<Log>();
 						int i = (int) session.getAttribute("i");
 						System.out.println("i="+i);
+						 session.removeAttribute("log.numberOfTheItemsInTheBasket");
 						log.numberOfTheItemsInTheBasket=i;
 						session.setAttribute("log", log);
-						Enumeration keys = session.getAttributeNames();
+						Enumeration   keys = session.getAttributeNames();
 						List<Basket>  baskets= new ArrayList<Basket>();
 						baskets=saleManager.getBasketByAccountId(log.account.id);
 								int sum=0;
@@ -171,32 +174,45 @@ import com.mohamad.service.SaleManager;
 					            	   Basket basket= x.basket;
 					            	   basket.account=log.account;
 					            	    session.removeAttribute(""+key+"");
-					            	    if ( baskets.isEmpty()) {
+					            	    if (baskets.isEmpty()) {
 					            	    	 saleManager.addToBasket(basket);
 					            	    }
 					            	    
-					            	    else {                     // for colection the items in the basket before login and efetr
+					            	    else {                     // for collection the items in the basket before login and after
 											 boolean itemNotExist=true;
+											 outer:
 							                 for(Basket basket1 : baskets) {
 										    	if(basket1.product.id == basket.product.id) {
 										    		basket1.quantityShop=basket1.quantityShop+basket.quantityShop;
 										    		saleManager.updateBasket(basket1);
-										    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
-												    System.out.println("itemNummberInBasket"+itemNummberInBasket);
-													session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+										    		 System.out.println("basket1.quantityShop="+basket1.quantityShop);
+										    		 
+										    		 System.out.println("log.numberOfTheItemsInTheBasketBeforSum="+log.numberOfTheItemsInTheBasket);
+										    		 
+										    		log.numberOfTheItemsInTheBasket = basket1.quantityShop ;
+												    System.out.println("itemNummberInBasket+="+itemNummberInBasket);
+												    
+												    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
+												    sum=sum+log.numberOfTheItemsInTheBasket;
+													//session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
 													itemNotExist=false;
+													break outer;
 										    	}
 							                 }
 									    	 if(itemNotExist) {
 									    		saleManager.addToBasket(basket);
 									    		log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+									    		 sum=sum+log.numberOfTheItemsInTheBasket;
 											    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
-											    session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+											   
 									    	 }
 									    	
 										}
 					                }
 					            }
+					            log.numberOfTheItemsInTheBasket=sum;
+					            session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+					            System.out.println("sum="+sum);
 					            session.setAttribute("i", 0);
 					            return "redirect:basket";
 		   }
