@@ -26,7 +26,7 @@
                      <label for="inputEmail">Email address</label>
                   </div>
                   <button class="btn btn-lg btn-primary text-uppercase w-50 text-center" type="submit">Forget password</button>
-               </form:form>
+               </form:form> 
             </div>
          </div>
       </div>

@@ -28,7 +28,7 @@
 </div>
 
  <div id= "positionIndex" >
-		<form:form name="gratAccount" method="post" action="greatnewaccount" modelAttribute="account">
+		<form:form name="gratAccount" method="po-st" action="greatnewaccount" modelAttribute="account">
 		             Firat Name:<br>
 		             <span>
 		             <input class="GreatFirstName"  name="firstName" type="text" value="" maxlength="64"   value='${account.firstName}'><br>
