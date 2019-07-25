@@ -258,3 +258,29 @@ tr:nth-child(even) {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.list-group-item form .form-group {
+  margin-bottom: 0 !important;
+}
+
+.body-index {
+  padding-top: 56px;
+}
+
+.img-fluid {
+  height: 350px !important;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img-placeholder .card-img-top {
+  background-size: cover;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel img {
+	object-fit: cover;
+	height: 100%;
+}
+
