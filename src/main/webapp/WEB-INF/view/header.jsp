@@ -60,13 +60,13 @@
           </div>
        </nav>
        <br><br><br><br><br><br><br>
-           
+           <!--  
 		     <form:form class="form-inline my-2 my-lg-0" name="getForm"  action="search"  method="get" modelAttribute="product">
 	             <i class="fa fa-fw fa-search"></i>
 	             <input  class="form-control mr-sm-2" type="text" placeholder="Search1"  aria-label="Search">
 	             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	         </form:form>     		   
-				   
+			-->	   
      </c:if>
  
      

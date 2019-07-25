@@ -124,6 +124,7 @@
                <c:url value="/resources/images/${product.fileName}" />
                "/><br> <br>
                <b>Description</b>            =  ${product.description} <br>
+               <hr class="my-4">
             </form:form>
             <hr class="my-4">
          </c:forEach>

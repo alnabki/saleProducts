@@ -940,7 +940,7 @@ import com.mohamad.service.SaleManager;
 			@RequestMapping(value = "/savefiles&update", method = RequestMethod.POST,params = { "savefiles" })
 		    public ModelAndView crunchifySave(HttpSession session,@ModelAttribute("uploadForm") SaleFileUpload uploadForm,Model map) throws IllegalStateException, IOException {
 		            
-		        String saveDirectory = "e:/backgrounds/";
+		        String saveDirectory = "c:/Users/mohamad/eclipse-workspace/saleProducts/src/main/webapp/resources/images/";
 		        List<MultipartFile> saleFiles = uploadForm.getFiles();
 		        List<String> fileNames = new ArrayList<String>();
 		        if (null != saleFiles && saleFiles.size() > 0) {
