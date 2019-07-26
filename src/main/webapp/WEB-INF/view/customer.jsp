@@ -108,11 +108,8 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
- <div id="positionIndex" >
-  
-	    <h1  align="center"><i>Products for sale<b></b></i></h1>
-	      <hr class="my-4">
+      <div class="row">
+          <hr class="my-4">
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasket"  method="post" modelAttribute="basket" >  
 			                          
@@ -140,8 +137,8 @@
            <hr class="my-4">		     
 		          
 		        </c:forEach>
-		       </div>
-					 
+		  
+		</div>	 
 
 </body>
 </html>

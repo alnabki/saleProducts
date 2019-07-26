@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 
 </head>
-<body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+<body class="manageCustomers-body" background="<c:url value='/resources/images/laptopBackground3.png'  />">
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
         </div>

@@ -10,8 +10,17 @@
   background-size: cover;
   object-fit: cover;
 }
-.login,
-.image {
+.viewAllProducts-body,.allProduct-body,.manageCustomers-body,.viewSales-body,.admin-body {
+	
+  background: #C0C0C0;
+  background: linear-gradient(to right, #D3D3D3, #FFFFFF);
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+	
+}
+
+.login,.image {
   min-height: 100vh;
 }
 .bg-image {

@@ -10,7 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body background="<c:url value='/resources/images/laptopBackground3.png'  />">
+<body class ="viewSales-body" background="<c:url value='/resources/images/laptopBackground3.png'  />">
 
 	<div align="right">
 	          <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
