@@ -106,12 +106,14 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-         <div class="row">
-                  <hr class="my-4">
+          <hr class="my-4">
+         <div class="row"  >
+                  
          <c:forEach var="product" items="${productViews}" varStatus="status">
             <form:form id="usrform" name="getForm" action="addtobasketasguest"  method="post" modelAttribute="log" >
-               <h2><b> ${product.name} </u></b></h2>
-               <b>S.No.</b>                  =  ${status.index + 1} 
+               <b>item.No</b>                  =  ${status.index + 1}
+               <h2><b> ${product.name} </b></h2>
+                
                <input type="hidden" name="basket.product.id"  value="${product.id}" />
                <input type="hidden" name="basket.product.name"  value="${product.name}" />
                <input type="hidden" name="basket.product.fileName"  value="${product.fileName}" />
@@ -120,13 +122,15 @@
                <b>Price </b>                 =  ${product.price} Kr <br>
                <b>Quantity</b>               = <input type="number"  name="basket.quantityShop" value="${quantityShop}" required />
                <input type="submit" value="Add to basket "   /><br>
-               <img class="imageProduct"  src="
-               <c:url value="/resources/images/${product.fileName}" />
-               "/><br> <br>
                <b>Description</b>            =  ${product.description} <br>
+               <div class="sizeOfImages">
+               <img class="imageProductForIndex"  src=" <c:url value="/resources/images/${product.fileName}" /> "
                
+               "/></div><br> <br>
+               
+               <hr class="my-4">
             </form:form>
-            <hr class="my-4">
+            
          </c:forEach>
          </div> 
                  </div>

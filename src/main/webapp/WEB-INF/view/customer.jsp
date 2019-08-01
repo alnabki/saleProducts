@@ -113,9 +113,9 @@
 	      <c:forEach var="product" items="${productViews}" varStatus="status">
 			    <form:form id="usrform" name="getForm" action="addtobasket"  method="post" modelAttribute="basket" >  
 			                          
-		                             
+		                             <b>tem.No</b>                  =  ${status.index + 1} <br>
 		                              <h2 ><b><u> ${product.name} </u></b></h2> 
-		                              <b>S.No.</b>                  =  ${status.index + 1} <br>
+		                              
 		                              
                                       <input type="hidden" name="product.id"  value="${product.id}" />
                                       <input type="hidden" name="product.name"  value="${product.name}" />
@@ -130,9 +130,12 @@
                                       <input type="submit" value="Add to basket "   /><br>
                
                                       
-				                      
-                                      <img class="imageProduct"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
-                                       <b>Description</b>        =  ${product.description} <br> 
+				                      <b>Description</b>        =  ${product.description} <br> 
+				                      <div class="sizeOfImages">
+                                      <img class="imageProductForIndex"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
+                                      </div><br> <br>
+                                      <hr class="my-4"> 
+                                      extra &nbsp;
                     </form:form>
            <hr class="my-4">		     
 		          

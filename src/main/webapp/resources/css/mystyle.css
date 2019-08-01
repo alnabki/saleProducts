@@ -74,6 +74,22 @@ tr:nth-child(even) {
   width: 5%;
   height: auto;
 }
+.imageProductForIndex {
+  width: 75px;
+  
+  height: auto;
+   
+  
+}
+#usrform {
+	
+	margin-right: 30px;
+	
+}
+.sizeOfImages{
+	 width: 50px;
+	 height:80px
+}
 .imageProduct1 {
   width: 15%;
   height: auto;
