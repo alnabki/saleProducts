@@ -94,17 +94,68 @@ tr:nth-child(even) {
   width: 15%;
   height: auto;
 }
-#positioncheckOrder {
+.positioncheckOrderInBasket {
   position: relative;
   left: 100px;
   top: 100px;
   margin: 20 px;
+  margin-right:700px;
 }
-#positionContinueToPay {
+.positioncheckOrder {
+  position: relative;
+  left: 100px;
+  top: 100px;
+  margin: 20 px;
+  margin-right:1000px;
+}
+.positioncheckOrderInThePayment {
+  position: relative;
+  left: 100px;
+  top: 100px;
+  margin: 20 px;
+  margin-right:1000px;
+}
+.positionContinueToPay {
+ margin-top: 75px;
+    position: absolute;
+     top: 32px; 
+    margin-left: 825px;
+      
+}
+
+.alignInCenter{
+	position: relative;
+    left: 100px;
+    top: 100px;
+	border: 3px solid #ccc;
+    font-size: 17px;
+    line-height: 4;
+    margin-left: 50px;
+    margin-right: 1000px;
+    padding-left: 120px;
+}
+.alignInCenter1{
+   position:  absolute;
+   left: 100px;
+   top: 700px;
+	margin-right: 334px;
+    border: 3px solid #ccc;
+    font-size: 15px;
+    line-height: 4;
+    margin-left: 900px;
+   
+  
+}
+.alignInCenter2{
   position: absolute;
-  top: 230px;
-  margin-left: 800px;
-  float: right;
+    left: 100px;
+    top: 590px;
+    margin-right: 334px;
+    border: 3px solid #ccc;
+    font-size: 15px;
+    line-height: 4;
+    margin-left: 100px;
+  
 }
 #basketWord {
   text-color: black;
@@ -308,4 +359,11 @@ tr:nth-child(even) {
 	object-fit: cover;
 	height: 100%;
 }
-
+.positionOfPayment{
+	
+	 margin-right: 900px;
+}
+.positionOfPaymentInThePayment{
+	
+	 margin-right: 200px;
+}

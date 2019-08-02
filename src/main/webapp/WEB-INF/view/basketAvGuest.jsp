@@ -15,14 +15,11 @@
 
 </head>
 <body onload="calculate()">
-
-
-
 <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
  <br> <br> <br> <br> <br>
-<div id="positionIndex" >
+<div class="positioncheckOrder" >
 	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
 	     
 	   <c:if test='${ i == 0 && log == null  }' >
@@ -35,8 +32,8 @@
 	    
 	    
 	     <c:if test='${ i !=0   }' >
-	        ____________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-		          <c:forEach var="log" items="${logs}" varStatus="status">
+	      <hr class="my-4">
+	              <c:forEach var="log" items="${logs}" varStatus="status">
 		      
 			           <c:if test='${ log !=null }' >
 					     <form:form id="usrform" name="getForm" action="gotochekout&updateforguest"  method="post" modelAttribute="log" enctype="multipart/form-data"> 
@@ -54,8 +51,8 @@
 		                                     <input type="submit" name="gotocheckoutforguest"  value="Pay only this seller"   /><br>
 		                                     <a href="deleteelement?id=${log.basket.product.id}">  Remove</a> <br>
 		                 </form:form>
-		                ____________________________________________________________________________________________________________________________________________________________________________________________________________<br> 
-			          </c:if>
+		              <hr class="my-4">
+		               </c:if>
 		      </c:forEach>
 		      
 		        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            

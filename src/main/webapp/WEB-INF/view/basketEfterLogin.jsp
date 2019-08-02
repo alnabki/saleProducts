@@ -22,7 +22,7 @@
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 
-<div id="positionIndex" >
+<div class="positioncheckOrder" >
 	    <h1  align="center"><i>Shopping cart (${i })items<b></b></i></h1>
 	     
 	   <c:if test='${ i == 0 && log == null  }' >

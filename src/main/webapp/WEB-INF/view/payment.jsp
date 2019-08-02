@@ -20,13 +20,14 @@
 </div>
 <div align="center"	>
     <h1> Payment</h1>
-</div>	  
-<div id="positioncheckOrder" >
+</div >	  
+<div class="positioncheckOrderInThePayment" >
          
 	    <p  align="left"><i>Your Order (${log.numberOfTheItemsInTheBasket} items)</i></p>
 	     
-	                ____________________________________________________________________________________
-	       <div>
+	               
+	     <div class="positionOfPaymentInThePayment" >
+	               <hr class="my-4">
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
 		            
 			                            
@@ -38,24 +39,19 @@
 	                                       price=${basket.price}<br><br><br>
 	                                     
 	                                    
-	                        ____________________________________________________________________________________<br>
-	    
+	                       <hr class="my-4">
 		      </c:forEach>
-		      </div>
-		      <br><br><br><br>
-		      <div  align="center" id="totalSum">
-				                ____________________________________________________________________________________<br>
-				    
-				      <b>The Total for Pay =  ${sum}  Kr</b><br>
-				                ____________________________________________________________________________________
-	          </div>
+         </div>
+		      
+		     
 </div>    
-                     
-<br> 	    
-		     <div id="positionContinueToPay">
+           <div class="alignInCenter">
+	               <b>The Total for Pay =  ${sum}  Kr</b><br>
+           </div>
+		    <div class="positionContinueToPay">
 		             
 		              <p> Your Delivery Address </p>
-		             __________________________________________________________________
+		             _________________________________________________________________
 		             <c:forEach var="addressDelivery" items="${addreses}" varStatus="status">  
 			                <table style="width:120%"> 
 			                    
@@ -108,7 +104,7 @@
 	                          
 	                
 	            
-		                 <br> <br><br>
+		               
 	         </div>
 	         
 </body>

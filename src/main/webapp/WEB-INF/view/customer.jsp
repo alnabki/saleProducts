@@ -135,7 +135,7 @@
                                       <img class="imageProductForIndex"  src="<c:url value="/resources/images/${product.fileName}" />"/><br> <br>
                                       </div><br> <br>
                                       <hr class="my-4"> 
-                                      extra &nbsp;
+                                      &nbsp;
                     </form:form>
            <hr class="my-4">		     
 		          

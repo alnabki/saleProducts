@@ -59,7 +59,7 @@
                 </ul>
           </div>
        </nav>
-       <br><br><br><br><br><br><br>
+       
            <!--  
 		     <form:form class="form-inline my-2 my-lg-0" name="getForm"  action="search"  method="get" modelAttribute="product">
 	             <i class="fa fa-fw fa-search"></i>

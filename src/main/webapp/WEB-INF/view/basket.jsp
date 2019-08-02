@@ -13,59 +13,51 @@
 <style><%@include file="/resources/css/mystyle.css"%></style>
 <title> Login</title>
 </head>
-<body >
 
+
+<body >
 <div align="right">
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
-	
-		  
-<div id="positionIndex" >
-	    <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></h1>
+  
+<div class="positioncheckOrderInBasket" >
+	  <h1  align="center"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></h1>
+	  <c:if test='${ log.numberOfTheItemsInTheBasket == 0 }' >
+	   <table align="center" >
+	     <tr>
+	       <td align="center">  you don't have any thing in the basket</td>
+	      </tr>
+	   </table>
+	   </c:if>
+	   <c:if test='${ log.numberOfTheItemsInTheBasket !=0   }' >
+	      <hr class="my-4">
+	      <c:forEach var="basket" items="${productViews}" varStatus="status">
+	             <form:form  id="usrform"  method="post" action="deleteitemfrombasket&update" modelAttribute="basket" enctype="multipart/form-data">
+	                          ${status.index + 1} =     <b><u> ${basket.product.name} </u></b>
+	                          <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br> <br>
+	                          Qty = <input id="quantityShop" type="number"   name="quantityShop" value="${basket.quantityShop}" oninput="calculate()" /> 
+	                          <input type="submit" name="update" value="Change"   />  <br> 
+	                          Price  =  ${basket.price} Kr  <br> 
+	                          Request Total = ${basket.itemRequest} Kr    <br> 
+	                          <!--   the cost = <i id="result"></i>  -->
+	                          <input type="hidden" id="id" name="id" value="${basket.id}"  />
+	                          <input type="hidden" id="price" name="price" value="${basket.price}" oninput="calculate()" />
+	                          <input type="hidden" name="product.id" value="${basket.product.id}" />
+	                          <input type="hidden" name="account.id" value="${basket.account.id}" /> <br>
+	                          <input type="submit" name="payforthisitem" value="Pay for this item"   /><br>
+	                          <a href="deleteitemfromBasket?id=${basket.id}&quantityShop=${basket.quantityShop}">  Remove</a> <br>
+	                </form:form>
+	         <hr class="my-4">
+	      </c:forEach>
 	   
-	   <c:if test='${ log.numberOfTheItemsInTheBasket == 0 }' >
-		   <table align="center" >
-		     <tr>
-		       <td align="center">  you don't have any thing in the basket</td>
-		      </tr>
-		   </table>
-	    </c:if>
-	    
-	     <c:if test='${ log.numberOfTheItemsInTheBasket !=0   }' >
-	                ____________________________________________________________________________________________________________________________
-	    
-		      <c:forEach var="basket" items="${productViews}" varStatus="status">
-		             <form:form  id="usrform"  method="post" action="deleteitemfrombasket&update" modelAttribute="basket" enctype="multipart/form-data">
-				   
-			                             ${status.index + 1} =     <b><u> ${basket.product.name} </u></b>
-			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br> <br>
-	                                     Qty = <input id="quantityShop" type="number"   name="quantityShop" value="${basket.quantityShop}" oninput="calculate()" /> 
-	                                     <input type="submit" name="update" value="Change"   />  <br> 
-	                                     Price  =  ${basket.price} Kr  <br> 
-	                                     Request Total = ${basket.itemRequest} Kr    <br> 
-	                                     <!--   the cost = <i id="result"></i>  -->
-	                                     <input type="hidden" id="id" name="id" value="${basket.id}"  />
-	                                     <input type="hidden" id="price" name="price" value="${basket.price}" oninput="calculate()" />
-	                                     <input type="hidden" name="product.id" value="${basket.product.id}" />
-	                                     <input type="hidden" name="account.id" value="${basket.account.id}" /> <br>
-	                                     <input type="submit" name="payforthisitem" value="Pay for this item"   /><br>
-	                                     <a href="deleteitemfromBasket?id=${basket.id}&quantityShop=${basket.quantityShop}">  Remove</a> <br>
-	                 </form:form>
-	                    ____________________________________________________________________________________________________________________________
-	    
-		      </c:forEach>
-		      <br>
-		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		      <b>The Total =  ${sum}  Kr</b><br></b>
-		     
-		                ____________________________________________________________________________________________________________________________
-	    
-	           <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		     
-	           <a href="gotocheckout" ><button>go to checkout</button>  </a>
 	   </c:if>
 </div>
-
+  <div class="alignInCenter">
+	        <b>The Total =  ${sum}  Kr </b>
+	     </div>
+	     <div class="alignInCenter1">
+	        <a href="gotocheckout" ><button>go to checkout</button>  </a>
+	     </div>
 </body>
 
 </html>

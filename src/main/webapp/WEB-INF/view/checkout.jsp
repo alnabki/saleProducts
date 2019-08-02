@@ -19,11 +19,11 @@
      <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
 </div>
 		  
-<div id="positioncheckOrder" >
+<div class="positioncheckOrder" >
          <h1  align="left"><i>Check your order</i></h1>
 	    <p  align="left"><i>Shopping cart (${log.numberOfTheItemsInTheBasket} items)</i></p>
 	     
-	                ___________________________________________________________________
+	       <hr class="my-4">
 	       <div>
 		      <c:forEach var="basket" items="${productViews}" varStatus="status">
 		             <form:form  id="usrform"  method="post" action="deleteitemfrombasket&update" modelAttribute="basket" enctype="multipart/form-data">
@@ -42,20 +42,15 @@
 	                                    
 	                                     <a href="deleteitemfromBasket?id=${basket.id}&quantityShop=${basket.quantityShop}">  Remove</a> <br>
 	                 </form:form>
-	                    ___________________________________________________________________
-	    
+	                  <hr class="my-4">
 		      </c:forEach>
 		      </div>
-		      <br>
-		      <div id="totalSum"><b>The Total =  ${sum}  Kr</b><br></div>
 		     
-		                ___________________________________________________________________
-	    
-	          
-</div>    
+		      </div> 
+		      <div class="alignInCenter"><b>The Total =  ${sum}  Kr</b><br></div>
                      
 <br> 	    
-		     <div id="positionContinueToPay">
+		     <div class="positionContinueToPay">
 		             <h1  align="left"><i>Complete your purchase</i></h1><br>
 		             
 		             __________________________________________________________________
@@ -71,8 +66,8 @@
 			                <table style="width:120%"> 
 			                     
 			                <tr>
-			                    <td> FirstName:*<br> <input type="text"   id="firstName"       name="firstName" value="${addressDelivery.firstName}"  />  </td>
-	                            <td> LastName:*<br>  <input type="text"   id="lastName"        name="lastName"  value="${addressDelivery.lastName}"  />   </td>
+			                    <td> FirstName:*<br> <input type="text"   id="firstName"       name="firstName" value="${addressDelivery.firstName}"  required/>  </td>
+	                            <td> LastName:*<br>  <input type="text"   id="lastName"        name="lastName"  value="${addressDelivery.lastName}"  required/>   </td>
 	                        </tr>
 	                         <tr> 
 	                            <td colspan="2"> personNumber:<br><input type="text"   id="personNumber"       name="personNumber" value="${addressDelivery.personNumber}"  /> </td>
@@ -85,31 +80,33 @@
 	                             
 	                        
 			                <tr>                         
-	                             <td colspan="2"> Street Address*:<br><input type="text"   id="streetAddress"   name="streetAddress" value="${addressDelivery.streetAddress}"  /></td>
+	                             <td colspan="2"> Street Address*:<br><input type="text"   id="streetAddress"   name="streetAddress" value="${addressDelivery.streetAddress}"  required/></td>
 			                </tr>
 			                
 			                 
 	                         <tr> 
 	                              <td> city:*<br> 
-	                                  <input type="text"   id="city"       name="city" value="${addressDelivery.city}"  /></td>
+	                                  <input type="text"   id="city"       name="city" value="${addressDelivery.city}" required /></td>
 	                        
 	                              <td> Post/Zip Code:*<br>
-	                                   <input type="text"   id="zipCode"       name="zipCode" value="${addressDelivery.zipCode}"  /></td>
+	                                   <input type="text"   id="zipCode"       name="zipCode" value="${addressDelivery.zipCode}"  required/></td>
 	                         </tr>
 	                        
 	                         <tr>
 	                            <td >Phone:*<br>
-	                                <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}"  />  </td>
+	                                <input type="text"   id="phone"       name="phone" value="${addressDelivery.phone}" required />  </td>
 	                            <td > Door Code:<br>
 	                              <input type="text"   id="doorCode"       name="doorCode" value="${addressDelivery.doorCode}"  />  <br>
 	                            </td>    
 	                         </tr>
 	                         <tr>                         
-	                             <td colspan="2"> country*:<br><input type="text"   id="country"   name="country" value="${addressDelivery.country}"  /></td>
+	                             <td colspan="2"> country*:<br><input type="text"   id="country"   name="country" value="${addressDelivery.country}" required /></td>
 			                </tr>
 	                             </table>  
-	                            <br> <br><br>
-	                              <input type="submit"  value="Continue to Pay"   />  <br>   
+	                             <br><br>
+	                             <div class="alignInCenter2">
+	                               <input type="submit"  value="Continue to Pay"   />    
+	                             </div>
 	                 </form:form>
 	            
 		                 <br> <br><br>
