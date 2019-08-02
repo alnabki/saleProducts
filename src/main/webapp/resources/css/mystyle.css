@@ -135,9 +135,9 @@ tr:nth-child(even) {
     padding-left: 120px;
 }
 .alignInCenter1{
-   position:  absolute;
-   left: 100px;
-   top: 700px;
+   position: relative;
+    left: 100px;
+    top: 40px;
 	margin-right: 334px;
     border: 3px solid #ccc;
     font-size: 15px;
@@ -155,6 +155,33 @@ tr:nth-child(even) {
     font-size: 15px;
     line-height: 4;
     margin-left: 100px;
+  
+}
+.alignInCenterForBasketAvGuest{
+	position: relative;
+    left: 100px;
+    top: 100px;
+    border: 3px solid #e84d4d;
+    font-size: 17px;
+    line-height: 4;
+    margin-left: 50px;
+    margin-right: 1px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.alignInCenterForBasketAvGuest1{
+       position: relative;
+    left: 900px;
+    top: 45px;
+    font-size: 15px;
+    line-height: 3;
+    /* margin-left: 0px; */
+    ma: ;
+    margin-left: 2px;
+    padding-left: 50px;
+    padding-right: 100px;
+   
   
 }
 #basketWord {

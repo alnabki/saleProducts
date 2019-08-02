@@ -105,7 +105,7 @@
 	                             </table>  
 	                             <br><br>
 	                             <div class="alignInCenter2">
-	                               <input type="submit"  value="Continue to Pay"   />    
+	                               <input  class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"  value="Continue to Pay"   />    
 	                             </div>
 	                 </form:form>
 	            
