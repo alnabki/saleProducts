@@ -151,80 +151,68 @@ import com.mohamad.service.SaleManager;
 		   @SuppressWarnings({ "unused", "rawtypes" })
 		   @RequestMapping(value="/maineftershop")
 			public String maineftershop(HttpSession session) {
-					    Log log=(Log) session.getAttribute("log");
-					
-						List<Log> logs = new ArrayList<Log>();
-						int i = (int) session.getAttribute("i");
-						System.out.println("i="+i);
-						 session.removeAttribute("log.numberOfTheItemsInTheBasket");
-						log.numberOfTheItemsInTheBasket=i;
-						session.setAttribute("log", log);
-						Enumeration   keys = session.getAttributeNames();
-						List<Basket>  baskets= new ArrayList<Basket>();
-						baskets=saleManager.getBasketByAccountId(log.account.id);
-								int sum=0;
-								for(Basket basket2 : baskets) {
-									 sum=sum+basket2.quantityShop;
-								 }
-					            while (keys.hasMoreElements()) {
-					                String key = (String)keys.nextElement();
-					              //  System.out.println(key + ": " + session.getAttribute(key) );
-					                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {
-					            	
-					                }
-					                else {
-					            	   Log x=(Log) session.getAttribute(""+key+"");
-					            	   Basket basket= x.basket;
-					            	   basket.account=log.account;
-					            	    session.removeAttribute(""+key+"");
-					            	    if (baskets.isEmpty()) {
-					            	    	 saleManager.addToBasket(basket);
-					            	    	// sum=log.numberOfTheItemsInTheBasket;
-					            	    }
-					            	    
-					            	    else {                     // for collection the items in the basket before login and after
-											 boolean itemNotExist=true;
-											 
-											 
-											 
-											 outer:
-							                 for(Basket basket1 : baskets) {
-										    	if(basket1.product.id == basket.product.id) {
-										    		basket1.quantityShop=basket1.quantityShop+basket.quantityShop;
-										    		saleManager.updateBasket(basket1);
-										    	//	 System.out.println("basket1.quantityShop="+basket1.quantityShop);
-										    		 
-										    	//	 System.out.println("log.numberOfTheItemsInTheBasketBeforSum="+log.numberOfTheItemsInTheBasket);
-										    		 
-										    		//log.numberOfTheItemsInTheBasket = basket1.quantityShop ;
-												   // System.out.println("itemNummberInBasket+="+itemNummberInBasket);
-												    
-												 //   System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
-												  //  sum=sum+log.numberOfTheItemsInTheBasket;
-													//session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
-													itemNotExist=false;
-													break outer;
-										    	}
-							                 }
-									    	 if(itemNotExist) {
-									    		saleManager.addToBasket(basket);
-									    	//	log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
-									    		
-									    		// sum=sum+log.numberOfTheItemsInTheBasket;
-											  //  System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
-											   
-									    	 }
-									    	
-										}
-					                }
-					            }
-					            log.numberOfTheItemsInTheBasket=sum+i;
-					            session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
-					            System.out.println("sum="+sum);
-					            System.out.println("i="+i);
-					            System.out.println("log.numberOfTheItemsInTheBasket-finish="+log.numberOfTheItemsInTheBasket);
-					            session.setAttribute("i", 0);
-					            return "redirect:basket";
+			    Log log=(Log) session.getAttribute("log");
+				List<Log> logs = new ArrayList<Log>();
+				int i = (int) session.getAttribute("i");
+				System.out.println("i="+i);
+				 session.removeAttribute("log.numberOfTheItemsInTheBasket");
+				log.numberOfTheItemsInTheBasket=i;
+				session.setAttribute("log", log);
+				Enumeration   keys = session.getAttributeNames();
+				List<Basket>  baskets= new ArrayList<Basket>();
+				baskets=saleManager.getBasketByAccountId(log.account.id);
+				int sum=0;
+				for(Basket basket2 : baskets) {
+					 sum=sum+basket2.quantityShop;
+		        }
+	            while (keys.hasMoreElements()) {
+	                String key = (String)keys.nextElement();
+	                System.out.println(key + ": " + session.getAttribute(key) );
+	                if (key.contentEquals("log.numberOfTheItemsInTheBasket") || key.contentEquals("i") || key.contentEquals("log")|| key.contentEquals("acc")) {
+	            	
+	                }
+	                else {
+	            	   Log x=(Log) session.getAttribute(""+key+"");
+	            	   Basket basket= x.basket;
+	            	   basket.account=log.account;
+	            	    session.removeAttribute(""+key+"");
+	            	    if (baskets.isEmpty()) {
+	            	    	 saleManager.addToBasket(basket);
+	            	    }
+	            	    else {                     // for collection the items in the basket before login and after
+							 boolean itemNotExist=true;
+							 outer:
+			                 for(Basket basket1 : baskets) {
+						    	if(basket1.product.id == basket.product.id) {
+						    		basket1.quantityShop=basket1.quantityShop+basket.quantityShop;
+						    		saleManager.updateBasket(basket1);
+						    	 /* System.out.println("basket1.quantityShop="+basket1.quantityShop);
+						    		 System.out.println("log.numberOfTheItemsInTheBasketBeforSum="+log.numberOfTheItemsInTheBasket);
+						    		log.numberOfTheItemsInTheBasket = basket1.quantityShop ;
+								    System.out.println("itemNummberInBasket+="+itemNummberInBasket);
+								    System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);
+								    sum=sum+log.numberOfTheItemsInTheBasket;
+									session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);*/
+									itemNotExist=false;
+									break outer;
+						    	}
+			                 }
+					    	 if(itemNotExist) {
+					    		saleManager.addToBasket(basket);
+					          	 /*log.numberOfTheItemsInTheBasket=basket.quantityShop +log.numberOfTheItemsInTheBasket;
+					    		 sum=sum+log.numberOfTheItemsInTheBasket;
+							     System.out.println("log.numberOfTheItemsInTheBasket="+log.numberOfTheItemsInTheBasket);*/
+					    	 }
+						}
+	                }
+	            }
+	            log.numberOfTheItemsInTheBasket=sum+i;
+	            session.setAttribute("log.numberOfTheItemsInTheBasket",log.numberOfTheItemsInTheBasket);
+	            System.out.println("sum="+sum);
+	            System.out.println("i="+i);
+	            System.out.println("log.numberOfTheItemsInTheBasket-finish="+log.numberOfTheItemsInTheBasket);
+	            session.setAttribute("i", 0);
+	            return "redirect:basket";
 		   }
 						
 						
