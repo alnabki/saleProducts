@@ -50,7 +50,7 @@
 	         <hr class="my-4">
 	      </c:forEach>
 	   
-	   </c:if>
+	  
 </div>
   <div class="alignInCenter">
 	        <b>The Total =  ${sum}  Kr </b>
@@ -58,6 +58,7 @@
 	     <div class="alignInCenter1">
 	        <a href="gotocheckout" ><button class="btn btn-lg btn-primary btn-block text-uppercase">go to checkout</button>  </a>
 	     </div>
+	      </c:if>
 </body>
 
 </html>

@@ -44,11 +44,12 @@
 	                 </form:form>
 	                  <hr class="my-4">
 		      </c:forEach>
-		      </div>
+		     
 		     
 		      </div> 
-		      <div class="alignInCenter"><b>The Total =  ${sum}  Kr</b><br></div>
-                     
+   </div>  		      
+		      <div class="alignInCenter11"><b>The Total =  ${sum}  Kr</b><br></div>
+                 
 <br> 	    
 		     <div class="positionContinueToPay">
 		             <h1  align="left"><i>Complete your purchase</i></h1><br>

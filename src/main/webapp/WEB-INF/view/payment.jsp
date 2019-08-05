@@ -15,97 +15,90 @@
 </head>
 <body >
 
-<div align="right">
-     <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
-</div>
-<div align="center"	>
-    <h1> Payment</h1>
-</div >	  
-<div class="positioncheckOrderInThePayment" >
-         
-	    <p  align="left"><i>Your Order (${log.numberOfTheItemsInTheBasket} items)</i></p>
-	     
-	               
-	     <div class="positionOfPaymentInThePayment" >
-	               <hr class="my-4">
-		      <c:forEach var="basket" items="${productViews}" varStatus="status">
-		            
-			                            
-			                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br>
-			                               ${status.index + 1} =     <b><u> ${basket.product.name} </u></b><br>
-	                                       Qty ${basket.quantityShop} ,
-	                                       Price  =  ${basket.price} Kr  ,  
-	                                       Request Total = ${basket.itemRequest} Kr   ,  
-	                                       price=${basket.price}<br><br><br>
-	                                     
-	                                    
-	                       <hr class="my-4">
-		      </c:forEach>
-         </div>
-		      
-		     
-</div>    
-           <div class="alignInCenter">
-	               <b>The Total for Pay =  ${sum}  Kr</b><br>
-           </div>
-		    <div class="positionContinueToPay">
-		             
-		              <p> Your Delivery Address </p>
-		             _________________________________________________________________
-		             <c:forEach var="addressDelivery" items="${addreses}" varStatus="status">  
-			                <table style="width:120%"> 
-			                    
-			                <tr>
-			                    <td> FirstName:<br>
-			                          ${addressDelivery.firstName}  </td>
-	                            <td> LastName:<br>
-	                                  ${addressDelivery.lastName}   </td>
-	                        </tr>
-	                         <tr> 
-	                            <td colspan="2"> personNumber:<br>
-	                                                    ${addressDelivery.personNumber} </td>
-	                        
-	                         </tr>
-	                         
-	                         <tr>                         
-	                             <td colspan="2">C/O :<br>
-	                                            ${addressDelivery.cO} </td>
-	                         </tr>
-	                             
-	                        
-			                <tr>                         
-	                             <td colspan="2"> Street Address*:<br>
-	                                              ${addressDelivery.streetAddress}</td>
-			                </tr>
-			                
-			                 
-	                         <tr> 
-	                              <td> city:*<br> 
-	                                  ${addressDelivery.city}</td>
-	                        
-	                              <td> Post/Zip Code:*<br>
-	                                   ${addressDelivery.zipCode}</td>
-	                         </tr>
-	                        
-	                         <tr>
-	                            <td >Phone:*<br>
-	                               ${addressDelivery.phone}  </td>
-	                            <td > Door Code:<br>
-	                              ${addressDelivery.doorCode}  <br>
-	                            </td>    
-	                         </tr>
-	                         <tr>                         
-	                           <td colspan="2"> country:<br>
-	                                          ${addressDelivery.country}</td>
-			                </tr>
-	                             </table> 
-	                             </c:forEach> 
-	                            <br> <br><br>
-	                          
-	                
-	            
-		               
+	<div align="right">
+	     <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
+	</div>
+	<div align="center"	>
+	    <h1> Payment</h1>
+	</div >	  
+	<div class="positioncheckOrderInThePayment2" >
+	         
+		    <p  align="left"><i>Your Order (${log.numberOfTheItemsInTheBasket} items)</i></p>
+		     <div  >
+		               <hr class="my-4">
+			      <c:forEach var="basket" items="${productViews}" varStatus="status">
+				                             <img class="imageProductInBasket"  src="<c:url value="/resources/images/${basket.product.fileName}" />"/><br>
+				                               ${status.index + 1} =     <b><u> ${basket.product.name} </u></b><br>
+		                                       Qty ${basket.quantityShop} ,
+		                                       Price  =  ${basket.price} Kr  ,  
+		                                       Request Total = ${basket.itemRequest} Kr   ,  
+		                                       price=${basket.price}<br><br><br>
+		                                     
+		                       <hr class="my-4">
+			      </c:forEach>
 	         </div>
+	</div>    
+	<div class="alignInCenter">
+	     <b>The Total for Pay =  ${sum}  Kr</b><br>
+	</div>
+    <div class="positionContinueToPay2">
+           
+            <p> Your Delivery Address </p>
+          
+           <c:forEach var="addressDelivery" items="${addreses}" varStatus="status">  
+               <table style="width:200%"> 
+                   
+               <tr>
+                   <td> FirstName:<br>
+                         ${addressDelivery.firstName}  </td>
+                         <td> LastName:<br>
+                               ${addressDelivery.lastName}   </td>
+                     </tr>
+                      <tr> 
+                         <td colspan="2"> personNumber:<br>
+                                                 ${addressDelivery.personNumber} </td>
+                     
+                      </tr>
+                      
+                      <tr>                         
+                          <td colspan="2">C/O :<br>
+                                         ${addressDelivery.cO} </td>
+                      </tr>
+                          
+                     
+               <tr>                         
+                          <td colspan="2"> Street Address*:<br>
+                                           ${addressDelivery.streetAddress}</td>
+               </tr>
+               
+                
+                      <tr> 
+                           <td> city:*<br> 
+                               ${addressDelivery.city}</td>
+                     
+                           <td> Post/Zip Code:*<br>
+                                ${addressDelivery.zipCode}</td>
+                      </tr>
+                     
+                      <tr>
+                         <td >Phone:*<br>
+                            ${addressDelivery.phone}  </td>
+                         <td > Door Code:<br>
+                           ${addressDelivery.doorCode}  <br>
+                         </td>    
+                      </tr>
+                      <tr>                         
+                        <td colspan="2"> country:<br>
+                                       ${addressDelivery.country}</td>
+               </tr>
+                          </table> 
+                          </c:forEach> 
+                         <br> <br><br>
+                       
+             
+         
+             
+     </div>
 	         
 </body>
 
