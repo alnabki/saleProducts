@@ -24,7 +24,7 @@
            });
     });
 </script>
-<body background="<c:url value='/resources/images/background7.jpg'  />">
+<body class="editProduct-body">
      <div align="right">
           <jsp:include  flush="true" page="/WEB-INF/view/header.jsp"/>
           <a href="addproduct">Back</a>

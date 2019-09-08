@@ -10,7 +10,7 @@
   background-size: cover;
   object-fit: cover;
 }
-.viewAllProducts-body,.allProduct-body,.manageCustomers-body,.viewSales-body,.admin-body {
+.viewAllProducts-body,.allProduct-body,.manageCustomers-body,.viewSales-body,.admin-body,.editProduct-body,.editProduct2-body {
 	
   background: #C0C0C0;
   background: linear-gradient(to right, #D3D3D3, #FFFFFF);
